@@ -1,11 +1,11 @@
-# Author
+## Author
 ![@DDCreationStudios](https://s3-us-west-2.amazonaws.com/s.cdpn.io/854371/profile/profile-80_2.jpg)
 
 Created by Daniel Deutsch (<kbd>
 [Github](https://github.com/DDCreationStudios) / [FreeCodeCamp](https://www.freecodecamp.com/ddcreationstudios) / [CodePen](http://codepen.io/ddcreationstudios/) / [LinkedIn](https://www.linkedin.com/in/daniel-deutsch-b95611127) / [Site](http://ddcreationstudios.at//) / [E-Mail](mailto:office@ddcreationstudios.at)
 </kbd>)
 
-## FreeCodeCamp Dynamic Web Application Projects:
+### FreeCodeCamp Dynamic Web Application Projects:
 # Build A Voting App [![Build Status](https://travis-ci.org/DDCreationStudios/votingApp.svg?branch=master)](https://travis-ci.org/DDCreationStudios/votingApp)
 
 ## Watch it on Heroku:
