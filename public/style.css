@@ -1,0 +1,10 @@
+body {
+    display: flex;
+    height: 100vh;
+    flex-direction: column;
+    font-family: Verdana;
+}
+main {
+    flex: 1 0 auto;
+    font-family: Verdana;
+}
