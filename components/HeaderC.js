@@ -1,4 +1,5 @@
 import React from 'react';
+import * as materialize from 'materialize-css';
 
 export default class Header extends React.Component {
   render () {

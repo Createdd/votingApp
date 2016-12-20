@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Header from './HeaderC.js';
 import Footer from './FooterC.js';
+import * as materialize from 'materialize-css';
 
 
 class Main extends React.Component {

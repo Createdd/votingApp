@@ -23,6 +23,7 @@
     "babel-preset-stage-0": "^6.3.13",
     "babel-register": "^6.4.3",
     "express": "^4.13.4",
+    "materialize-css": "^0.97.8",
     "react": "^0.14.7",
     "react-dom": "^0.14.7",
     "webpack": "^1.12.13"
