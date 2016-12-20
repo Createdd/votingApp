@@ -6,7 +6,7 @@ Created by Daniel Deutsch (<kbd>
 </kbd>)
 
 ### FreeCodeCamp Dynamic Web Application Projects:
-# Build A Voting App [![Travis CI](https://travis-ci.org/DDCreationStudios/votingApp.svg?branch=master)](https://travis-ci.org/DDCreationStudios/votingApp) [![devDependency Status](https://david-dm.org/DDCreationStudios/votingApp/dev-status.svg)](https://DDCreationStudios/votingApp#info=devDependencies)
+# Build A Voting App [![Travis CI](https://travis-ci.org/DDCreationStudios/votingApp.svg?branch=master)](https://travis-ci.org/DDCreationStudios/votingApp) [![dependencies Status](https://david-dm.org/DDCreationStudios/votingApp/status.svg)](https://david-dm.org/DDCreationStudios/votingApp)
 
 ## Watch it on Heroku:
 <a href="https://ddcs-votingapp.herokuapp.com/" target="_blank">https://ddcs-votingapp.herokuapp.com/</a>
