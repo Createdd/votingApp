@@ -1,13 +1,13 @@
 {
   "name": "votingApp",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "app.js",
   "author": "Daniel Deutsch <deudan1010@gmail.com>",
   "license": "MIT",
   "scripts": {
     "webpack-watch": "webpack -w",
     "express-server": "node ./server",
-    "dev": "concurrently --kill-others \"npm run webpack-watch\" \"npm run express-server\""
+    "dev": "concurrently --kill-others \"yarn run webpack-watch\" \"yarn run express-server\""
   },
   "jshintConfig": {
     "node": true,
@@ -24,6 +24,7 @@
     "babel-register": "^6.4.3",
     "express": "^4.13.4",
     "materialize-css": "^0.97.8",
+    "passwordless": "^1.1.2",
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
     "webpack": "^1.12.13"
