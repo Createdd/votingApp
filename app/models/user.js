@@ -10,7 +10,7 @@ let usernameValidator = [
     message: 'Name should have between {ARGS[0]} and {ARGS[1]} characters'
   }),
   validate({
-    validator: 'isAlphaNumeric',
+    validator: 'isAlphanumeric',
     passIfEmpty: false,
     message: 'Name should only contain alphanumeric characters'
   })
