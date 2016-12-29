@@ -79,12 +79,16 @@ module.exports = function(express,app) {
   //----------delete user
   router.delete('/:id', (req,res) => {
     let userId = req.params.id;
-    User.remove({_id: userId}, err => {
+    User.remove({_id: userId}, (err, obj) => {
       if(err) {
         console.log(err);
-        res.status(500).send('Cannot delete user');
+        return res.status(500).send('Cannot delete user');
       }
-      res.send('User deleted');
+      if(obj.result.n === 0) {
+        return res.status(404).send('User not found');
+      } else {
+        res.send('User deleted');
+      }
     });
   });
 
