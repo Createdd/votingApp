@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/local/bin/node /usr/local/bin/yarn add underscore -save
+  /usr/local/bin/node /usr/local/bin/yarn add mongoose-validator --save
 
 PATH: 
   /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
@@ -42,6 +42,7 @@ npm manifest:
       "express": "^4.13.4",
       "materialize-css": "^0.97.8",
       "mongoose": "^4.7.4",
+      "mongoose-validator": "^1.2.5",
       "passwordless": "^1.1.2",
       "react": "^15.4.1",
       "react-dom": "^15.4.1",
@@ -1209,7 +1210,7 @@ Lockfile:
     version "1.0.0"
     resolved "https://registry.yarnpkg.com/delegates/-/delegates-1.0.0.tgz#84c6e159b81904fdca59a0ef44cd870d31250f9a"
   
-  depd@~1.1.0:
+  depd@1.1.0, depd@~1.1.0:
     version "1.1.0"
     resolved "https://registry.yarnpkg.com/depd/-/depd-1.1.0.tgz#e1bd82c6aab6ced965b97b88b17ed3e528ca18c3"
   
@@ -1933,6 +1934,13 @@ Lockfile:
       es6-promise "3.2.1"
       mongodb-core "2.1.2"
       readable-stream "2.1.5"
+  
+  mongoose-validator@^1.2.5:
+    version "1.2.5"
+    resolved "https://registry.yarnpkg.com/mongoose-validator/-/mongoose-validator-1.2.5.tgz#20ecce963d2e7ea9c244a35494aa73c435a958db"
+    dependencies:
+      underscore "^1.8.3"
+      validator "^4.0.2"
   
   mongoose@^4.7.4:
     version "4.7.4"
@@ -2717,6 +2725,12 @@ Lockfile:
   uuid@^3.0.0:
     version "3.0.1"
     resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.0.1.tgz#6544bba2dfda8c1cf17e629a3a305e2bb1fee6c1"
+  
+  validator@^4.0.2:
+    version "4.9.0"
+    resolved "https://registry.yarnpkg.com/validator/-/validator-4.9.0.tgz#082ffce2a76148ff07a8e89e9c2ba43aaf12ec4c"
+    dependencies:
+      depd "1.1.0"
   
   vary@~1.1.0:
     version "1.1.0"

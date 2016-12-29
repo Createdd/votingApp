@@ -26,6 +26,7 @@
     "express": "^4.13.4",
     "materialize-css": "^0.97.8",
     "mongoose": "^4.7.4",
+    "mongoose-validator": "^1.2.5",
     "passwordless": "^1.1.2",
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
