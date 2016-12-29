@@ -1,7 +1,6 @@
 'use strict';
 const mongoose = require('mongoose');
 const validate = require('mongoose-validator');
-let emailRegex = new RegExp('^([a-z0-9-_\.\!\#\$\%\&\'\*\+\/\=\?\^\`\{\|\}\~]+@(?:[a-z0-9\-]+)(?:\.[0-9a-z\-]+)+)$', 'i');
 
 //----------Validations
 let usernameValidator = [
