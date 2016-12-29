@@ -1,5 +1,6 @@
 'use strict';
 var User = require('../models/user');
+const _ = require('underscore');
 
 module.exports = function(express,app) {
   let router = express.Router();
@@ -14,7 +15,21 @@ module.exports = function(express,app) {
         res.status(404).send('No Users found');
       }
     });
-    console.warn('router works');
+  });
+  /*router.get('/:id', (req,res) => {
+    let userId = req.params.id;
+
+  });*/
+  router.post('/', (req,res) => {
+    let validAttributes = _.pick(req.body, 'username', 'email', 'password');
+    let newUser = new User (validAttributes);
+    newUser.save((err,user) => {
+      if(err){
+        res.status(500).json({success: false, message: err});
+      } else {
+        res.json(user);
+      }
+    });
   });
   return router;
 };

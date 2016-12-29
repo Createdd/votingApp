@@ -24,9 +24,6 @@ app.use('/', express.static('public'));
 app.use(bodyParser.urlencoded({ extended: false }));
 
 
-
-
-
 app.listen(port, function(){
   console.log(`Listening on: ${port}.`);
 });

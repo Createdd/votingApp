@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/local/bin/node /usr/local/bin/yarn add body-parser -save
+  /usr/local/bin/node /usr/local/bin/yarn add underscore -save
 
 PATH: 
   /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
@@ -45,6 +45,7 @@ npm manifest:
       "passwordless": "^1.1.2",
       "react": "^15.4.1",
       "react-dom": "^15.4.1",
+      "underscore": "^1.8.3",
       "webpack": "^1.12.13"
     },
     "devDependencies": {
@@ -1597,13 +1598,9 @@ Lockfile:
     version "0.0.1"
     resolved "https://registry.yarnpkg.com/https-browserify/-/https-browserify-0.0.1.tgz#3f91365cabe60b77ed0ebba24b454e3e09d95a82"
   
-  iconv-lite@0.4.13:
+  iconv-lite@0.4.13, iconv-lite@~0.4.13:
     version "0.4.13"
     resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.13.tgz#1f88aba4ab0b1508e8312acc39345f36e992e2f2"
-  
-  iconv-lite@~0.4.13:
-    version "0.4.15"
-    resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.15.tgz#fe265a218ac6a57cfe854927e9d04c19825eddeb"
   
   ieee754@^1.1.4:
     version "1.1.8"
@@ -2687,6 +2684,10 @@ Lockfile:
   uid-number@~0.0.6:
     version "0.0.6"
     resolved "https://registry.yarnpkg.com/uid-number/-/uid-number-0.0.6.tgz#0ea10e8035e8eb5b8e4449f06da1c730663baa81"
+  
+  underscore@^1.8.3:
+    version "1.8.3"
+    resolved "https://registry.yarnpkg.com/underscore/-/underscore-1.8.3.tgz#4f3fb53b106e6097fcf9cb4109f2a5e9bdfa5022"
   
   unpipe@1.0.0, unpipe@~1.0.0:
     version "1.0.0"
