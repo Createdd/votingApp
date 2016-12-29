@@ -18,8 +18,10 @@ db.once('open', () => {
 
 //----------Set other Router
 const userRouter = require('./app/routes/user.routes')(express, app);
+const pollRouter = require('./app/routes/poll.routes')(express, app);
 
 app.use('/api/users', userRouter);
+app.use('/api/polls', pollRouter);
 app.use('/', express.static('public'));
 app.use(bodyParser.urlencoded({ extended: false }));
 
