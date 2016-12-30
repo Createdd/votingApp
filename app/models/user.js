@@ -1,6 +1,7 @@
 'use strict';
 const mongoose = require('mongoose');
 const validate = require('mongoose-validator');
+const bcrypt = require('bcrypt');
 
 //----------Validations
 let usernameValidator = [
@@ -55,5 +56,18 @@ var userSchema = mongoose.Schema({
     validate: passwordValidator
   }
 });
+
+//----------Password Encryption
+userSchema.pre('save', next => {
+  let user = this;
+  bcrypt.genSalt(10, (err, salt) => {
+    bcrypt.hash(user.password, salt, (err,hash) => {
+      user.password = hash;
+      next();
+    });
+  });
+});
+
+
 let User = mongoose.model('User',userSchema);
 module.exports = User;
