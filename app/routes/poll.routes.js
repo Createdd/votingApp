@@ -41,7 +41,21 @@ module.exports = function(express,app) {
       }
       res.json(poll);
     });
+  });
 
+  //----------Get single poll
+  router.get('/:id', (req,res) => {
+    let pollId = req.params.id;
+
+    Poll.findById({_id: pollId}, (err,poll) => {
+      if(err) {
+        res.status(500).send('Error in Request');
+      }
+      if(!poll) {
+        res.status(404).json({message: 'There is no poll with that ID in the DB'});
+      }
+      res.json(poll);
+    });
   });
 
 
