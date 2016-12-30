@@ -25,7 +25,7 @@ module.exports = function(express,app) {
     let newUser = new User (validAttributes);
     newUser.save((err,user) => {
       if(err){
-        res.status(500).json({success: false, message: err});
+        return res.status(500).json({success: false, message: err});
       } else {
         res.json(user);
       }
@@ -63,7 +63,7 @@ module.exports = function(express,app) {
         if(validAttributes.email) user.email = validAttributes.email;
         if(validAttributes.password) user.password = validAttributes.password;
       } else {
-        return res.status(404).send('Cannot find User');
+        res.status(404).send('Cannot find User');
       }
       user.save((err,user) => {
         if(err){
