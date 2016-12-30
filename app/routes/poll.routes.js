@@ -86,7 +86,22 @@ module.exports = function(express,app) {
     });
   });
 
+  //----------Delete poll
+  router.delete('/:id', (req,res) => {
+    let pollId = req.params.id;
 
+    Poll.remove({_id: pollId}, (err, obj) => {
+      if(err) {
+        res.status(500).json({message: 'Error in delete request'});
+      }
+      if(obj.result.n === 0) {
+        res.status(404).json({message: 'There is no poll with that ID in the DB'});
+      }
+      else {
+        res.send('Poll has been deleted');
+      }
+    });
+  });
 
   return router;
-};//module export
+};
