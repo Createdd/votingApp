@@ -16,6 +16,33 @@ module.exports = function(express,app) {
     });
   });
 
+  //----------Create poll
+  router.post('/', (req,res) => {
+    let validAttributes = {};
+    if(typeof req.body.choices !== 'object' || req.body.choices.length < 2) {
+      return res.status(400).send('A poll must have at least 2 options');
+    } else if (typeof req.body.choices !== 'object' || req.body.choices.length > 30) {
+      return res.status(400).send('A poll cannot exceed 30 options');
+    } else if (typeof req.body.question !== 'string') {
+      return res.status(400).send('A question must be a text');
+    }
+    validAttributes.question = req.body.question.trim();
+
+    let choices = {};
+    req.body.choices.forEach((choice) => {
+      choices[choice] = 0;
+    });
+    validAttributes.choices = choices;
+
+    let poll = new Poll(validAttributes);
+    poll.save((err) => {
+      if(err){
+        res.status(500).send(err);
+      }
+      res.json(poll);
+    });
+
+  });
 
 
 
