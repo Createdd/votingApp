@@ -58,15 +58,22 @@ var userSchema = mongoose.Schema({
 });
 
 //----------Password Encryption
-userSchema.pre('save', next => {
+userSchema.pre('save', function(next) {
   let user = this;
   bcrypt.genSalt(10, (err, salt) => {
     bcrypt.hash(user.password, salt, (err,hash) => {
+      if(err) {
+        return console.log('hashing error: '+err);
+      }
       user.password = hash;
       next();
     });
   });
 });
+userSchema.methods.comparePassword = function(password) {
+  let user = this;
+  return bcrypt.compareSync(password, user.password);
+};
 
 
 let User = mongoose.model('User',userSchema);
