@@ -25,7 +25,15 @@ module.exports = function(express,app) {
     let newUser = new User (validAttributes);
     newUser.save((err,user) => {
       if(err){
-        return res.status(500).json({success: false, message: err});
+        if(err.code === 11000) {
+          if(/username/.test(err.message)) {
+            return res.status(500).json({success: false, message: 'Name is taken :('});
+          } else {
+            return res.status(500).json({success: false, message: 'Mail is taken :('});
+          }
+        } else {
+          return res.status(500).json({success: false, message: 'Error occured'});
+        }
       } else {
         res.json(user);
       }
