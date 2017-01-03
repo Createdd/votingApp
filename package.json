@@ -25,6 +25,7 @@
     "bcrypt": "^1.0.1",
     "body-parser": "^1.15.2",
     "express": "^4.13.4",
+    "jsonwebtoken": "^7.2.1",
     "materialize-css": "^0.97.8",
     "mongoose": "^4.7.4",
     "mongoose-validator": "^1.2.5",
