@@ -34,5 +34,14 @@ module.exports = function(express,app) {
           .json({success: true, message: 'Login successful'});
       });
   });
+  router.delete('/authenticate', authenticateRoute, (req,res) => {
+    if(req.decoded) {
+      res.cookie('auth_token', false, {maxAge: 1, path: "/"});
+      res.clearCookie('auth_token', {path: "/"});
+      res.send('Logout successful');
+    } else {
+      res.status(400).send('No active session');
+    }
+  });
   return router;
 };
