@@ -21,15 +21,11 @@ module.exports = function(express,app) {
         if(!correctPassword) {
           return res.json({success: false, message: 'Password incorrect - authentication failed'});
         }
-
-        let token = jwt.sign({
+        let payload = {
           username: user.username,
           email: user.email
-        },
-        config.privateKey,
-        {
-          expiresIn: '7d'
-        });
+        };
+        let token = jwt.sign(payload, config.privateKey,{ expiresIn: '7d'});
         res.json({
           success:true,
           message: 'successful login',

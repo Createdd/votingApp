@@ -1,12 +1,13 @@
 'use strict';
 var User = require('../models/user');
 const _ = require('underscore');
+const authenticateRoute = require('../middleware/auth-middleware');
 
 module.exports = function(express,app) {
   let router = express.Router();
 
   //----------Find existing users
-  router.get('/', (req, res) => {
+  router.get('/', authenticateRoute, (req, res) => {
     User.find({}, (err,users) => {
       if(err) {
         return res.status(500).send('Error in Request');
@@ -41,7 +42,7 @@ module.exports = function(express,app) {
   });
 
   //----------Find existing user with id
-  router.get('/:id', (req,res) => {
+  router.get('/:id', authenticateRoute, (req,res) => {
     let userId = req.params.id;
     User.findById({_id: userId}, (err, user) => {
       if(err) {
@@ -58,7 +59,8 @@ module.exports = function(express,app) {
   });
 
   //----------update User
-  router.put('/:id', (req,res) => {
+  router.put('/:id', authenticateRoute, (req,res) => {
+    console.log(req.decoded);
     let userId = req.params.id;
     let validAttributes = _.pick(req.body, 'username', 'email', 'password');
     User.findById({_id: userId}, (err, user) => {
@@ -71,21 +73,21 @@ module.exports = function(express,app) {
         if(validAttributes.email) user.email = validAttributes.email;
         if(validAttributes.password) user.password = validAttributes.password;
       } else {
-        res.status(404).send('Cannot find User');
+        return res.status(404).send('Cannot find User');
       }
       user.save((err,user) => {
         if(err){
           console.log(err);
-          res.status(500).send('Cannot update user');
+          return res.status(500).send('Cannot update user');
         } else {
-          res.json({success:true, message: 'User updated'});
+          return res.json({success:true, message: 'User updated'});
         }
       });
     });
   });
 
   //----------delete user
-  router.delete('/:id', (req,res) => {
+  router.delete('/:id', authenticateRoute, (req,res) => {
     let userId = req.params.id;
     User.remove({_id: userId}, (err, obj) => {
       if(err) {
@@ -95,7 +97,7 @@ module.exports = function(express,app) {
       if(obj.result.n === 0) {
         return res.status(404).send('User not found');
       } else {
-        res.send('User deleted');
+        return res.send('User deleted');
       }
     });
   });
