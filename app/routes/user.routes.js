@@ -62,7 +62,6 @@ module.exports = function(express,app) {
 
   //----------update User
   router.put('/:id', authenticateRoute, (req,res) => {
-    console.log(req.decoded);
     let userId = req.params.id;
     let validAttributes = _.pick(req.body, 'username', 'email', 'password');
     User.findById({_id: userId}, (err, user) => {

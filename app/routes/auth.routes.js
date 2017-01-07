@@ -29,6 +29,7 @@ module.exports = function(express,app) {
           username: user.username,
           email: user.email
         };
+
         let token = jwt.sign(payload, config.privateKey,{ expiresIn: '7d'});
         res.cookie('auth_token', token, {maxAge: 60480000, path: "/"})
           .json({success: true, message: 'Login successful'});

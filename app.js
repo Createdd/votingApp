@@ -6,6 +6,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const cookieParser = require('cookie-parser');
 
 //----------Connect to DB
 mongoose.connect('mongodb://test:test@ds141368.mlab.com:41368/votingapp');
@@ -26,6 +27,7 @@ app.use('/api/', authRouter);
 app.use('/', express.static('public'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(cookieParser());
 
 
 app.listen(port, function(){
