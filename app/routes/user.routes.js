@@ -36,7 +36,9 @@ module.exports = function(express,app) {
           return res.status(500).json({success: false, message: 'Error occured'});
         }
       } else {
-        res.json(user);
+        let displayUser = _.pick(user, '_id', 'username', 'email');
+        console.warn(displayUser);
+        res.json(displayUser);
       }
     });
   });
