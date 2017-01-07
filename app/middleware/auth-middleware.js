@@ -3,8 +3,12 @@ const config = require('../config/config');
 const jwt = require('jsonwebtoken');
 
 module.exports = function(req,res,next) {
-  let token = req.body.token || req.param('token') || req.headers['x-access-token'];
-
+  let token = req.cookies.auth_token;
+  if(token && typeof token === 'string') {
+    token = token.split('').join('');
+  } else {
+    return res.status(401).send('Authentication failed');
+  }
   if(token) {
     jwt.verify(token, config.privateKey, (err,decoded) => {
       if(err) {
