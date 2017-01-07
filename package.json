@@ -24,6 +24,7 @@
     "babel-register": "^6.4.3",
     "bcrypt": "^1.0.1",
     "body-parser": "^1.15.2",
+    "cookie-parser": "^1.4.3",
     "cookies": "^0.6.2",
     "express": "^4.13.4",
     "jsonwebtoken": "^7.2.1",
