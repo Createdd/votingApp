@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 module.exports = function(req,res,next) {
   let token = req.cookies.auth_token;
   if(token && typeof token === 'string') {
-    token = token.split('').join('');
+    token = token.split(' ').join('');
   } else {
     return res.status(401).send('Authentication failed');
   }

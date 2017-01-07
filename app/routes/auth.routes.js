@@ -2,16 +2,20 @@
 const User = require('../models/user');
 const config = require('../config/config');
 const jwt = require('jsonwebtoken');
+const authenticateRoute = require('../middleware/auth-middleware');
+
 
 module.exports = function(express,app) {
   let router = express.Router();
 
   router.post('/authenticate', (req,res) => {
+    if(!req.body.email || typeof req.body.email !== 'string') {
+      res.status(400).send('Bad data request');
+    }
     User.findOne({
       email: req.body.email.toLowerCase()})
       .select('username email password')
       .exec((err, user) => {
-        console.log(user);
         if(err) {
           return res.status(500).send('An error while authenticating the user');
         } else if (!user) {
@@ -26,11 +30,8 @@ module.exports = function(express,app) {
           email: user.email
         };
         let token = jwt.sign(payload, config.privateKey,{ expiresIn: '7d'});
-        res.json({
-          success:true,
-          message: 'successful login',
-          token: token
-        });
+        res.cookie('auth_token', token, {maxAge: 60480000, path: "/"})
+          .json({success: true, message: 'Login successful'});
       });
   });
   return router;
