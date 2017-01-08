@@ -30,6 +30,10 @@ var pollSchema = mongoose.Schema({
     type: Object,
     required: true,
     validate: choicesValidator
+  },
+  user_id: {
+    type: String,
+    ref: 'User'
   }
 });
 let Poll = mongoose.model('Poll', pollSchema);

@@ -84,7 +84,7 @@ module.exports = function(express,app) {
       }
       Poll.update({_id: pollId}, poll, (err,obj) => {
         if(err || obj.n !== 1) {
-          res.status(500).json({message: 'Cannot update poll'});
+          return res.status(500).json({message: 'Cannot update poll'});
         }
         res.json(poll);
       });
@@ -97,10 +97,10 @@ module.exports = function(express,app) {
 
     Poll.remove({_id: pollId}, (err, obj) => {
       if(err) {
-        res.status(500).json({message: 'Error in delete request'});
+        return res.status(500).json({message: 'Error in delete request'});
       }
       if(obj.result.n === 0) {
-        res.status(404).json({message: 'There is no poll with that ID in the DB'});
+        return res.status(404).json({message: 'There is no poll with that ID in the DB'});
       }
       else {
         res.send('Poll has been deleted');
