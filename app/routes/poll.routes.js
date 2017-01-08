@@ -1,6 +1,9 @@
 'use strict';
-var Poll = require('../models/poll');
+const Poll = require('../models/poll');
+const User = require('../models/user');
 const _ = require('underscore');
+const authenticateRoute = require('../middleware/auth-middleware');
+
 
 module.exports = function(express,app) {
   let router = express.Router();
@@ -17,8 +20,9 @@ module.exports = function(express,app) {
   });
 
   //----------Create poll
-  router.post('/', (req,res) => {
+  router.post('/', authenticateRoute, (req,res) => {
     let validAttributes = {};
+    let currentUser = req.decoded.username;
     if(typeof req.body.choices !== 'object' || req.body.choices.length < 2) {
       return res.status(400).send('A poll must have at least 2 options');
     } else if (typeof req.body.choices !== 'object' || req.body.choices.length > 30) {
@@ -35,11 +39,20 @@ module.exports = function(express,app) {
     validAttributes.choices = choices;
 
     let poll = new Poll(validAttributes);
-    poll.save((err) => {
-      if(err){
-        res.status(500).send(err);
+    User.findOne({username: currentUser}, '_id', (err, user) => {
+      if(err) {
+        return res.status(500).send('Error in User request');
+      } else if (!user) {
+        return res.status(500).send('Response is not a user');
       }
-      res.json(poll);
+      validAttributes.user_id = user._id;
+      let poll = new Poll(validAttributes);
+      poll.save((err) => {
+        if(err){
+          return res.status(500).send(err);
+        }
+        res.json(poll);
+      });
     });
   });
 
@@ -92,19 +105,28 @@ module.exports = function(express,app) {
   });
 
   //----------Delete poll
-  router.delete('/:id', (req,res) => {
+  router.delete('/:id', authenticateRoute, (req,res) => {
     let pollId = req.params.id;
+    let currentUser = req.decoded.username;
 
-    Poll.remove({_id: pollId}, (err, obj) => {
+    User.findOne({username: currentUser}, '_id', (err, user) => {
       if(err) {
-        return res.status(500).json({message: 'Error in delete request'});
+        return res.status(500).send('Error in User request');
+      } else if (!user) {
+        return res.status(400).send('Response is not a user');
       }
-      if(obj.result.n === 0) {
-        return res.status(404).json({message: 'There is no poll with that ID in the DB'});
-      }
-      else {
-        res.send('Poll has been deleted');
-      }
+
+      Poll.remove({_id: pollId}, (err, obj) => {
+        if(err) {
+          return res.status(500).json({message: 'Error in delete request'});
+        }
+        if(obj.result.n === 0) {
+          return res.status(404).json({message: 'There is no poll with that ID in the DB'});
+        }
+        else {
+          res.send('Poll has been deleted');
+        }
+      });
     });
   });
 
