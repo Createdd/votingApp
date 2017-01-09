@@ -3,6 +3,8 @@ const User = require('../models/user');
 const Poll = require('../models/poll');
 const _ = require('underscore');
 const authenticateRoute = require('../middleware/auth-middleware');
+const jwt = require('jsonwebtoken');
+const config = require('../config/config');
 
 module.exports = function(express,app) {
   let router = express.Router();
@@ -29,9 +31,15 @@ module.exports = function(express,app) {
       if(err){
         if(err.code === 11000) {
           if(/username/.test(err.message) || /lowercase_name/.test(err.message)) {
-            return res.status(500).json({success: false, message: 'Name is taken :('});
+            return res.status(500).json({
+              success: false,
+              message: 'Name is taken :('});
           } else {
-            return res.status(500).json({success: false, message: 'Mail is taken :('});
+            return res.status(500).json({
+              success: false,
+              message: 'Mail is taken :(',
+              error: err.message
+            });
           }
         } else {
           return res.status(500).json({
@@ -42,7 +50,6 @@ module.exports = function(express,app) {
         }
       } else {
         let displayUser = _.pick(user, '_id', 'username', 'email');
-        console.warn(displayUser);
         res.json(displayUser);
       }
     });
@@ -71,6 +78,9 @@ module.exports = function(express,app) {
         return res.status(500).send('Error in Request');
       }
       if(user){
+        if(user.username !== req.decoded.username) {
+          return res.status(401).send('You cannot update other profiles');
+        }
         if(validAttributes.username) user.username = validAttributes.username;
         if(validAttributes.email) user.email = validAttributes.email;
         if(validAttributes.password) user.password = validAttributes.password;
@@ -81,7 +91,15 @@ module.exports = function(express,app) {
         if(err){
           return res.status(500).send('Cannot update user');
         } else {
-          return res.json({success:true, message: 'User updated'});
+          let payload = {
+            username: user.username,
+            email: user.email
+          };
+          let token = jwt.sign(payload, config.privateKey,{ expiresIn: '7d'});
+          res.cookie('auth_token', false, {maxAge: 1, path: "/"});
+          res.clearCookie('auth_token', {path: "/"});
+          res.cookie('auth_token', token, {maxAge: 60480000, path: "/"})
+            .json({success: true, message: 'User has been updated'});
         }
       });
     });
