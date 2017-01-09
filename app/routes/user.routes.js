@@ -1,5 +1,6 @@
 'use strict';
-var User = require('../models/user');
+const User = require('../models/user');
+const Poll = require('../models/poll');
 const _ = require('underscore');
 const authenticateRoute = require('../middleware/auth-middleware');
 
@@ -52,15 +53,11 @@ module.exports = function(express,app) {
     let userId = req.params.id;
     User.findById({_id: userId}, (err, user) => {
       if(err) {
-        res.status(500).send('Error in Request');
-        return console.error(err);
-      } else {
-        if(user){
-          res.json(user);
-        } else {
-          res.status(404).send('User not found');
-        }
+        res.status(500).send('Error in request');
+      }else if(!user) {
+        return res.status(404).send("User not found");
       }
+      res.json(user);
     });
   });
 
@@ -82,7 +79,6 @@ module.exports = function(express,app) {
       }
       user.save((err,user) => {
         if(err){
-          console.log(err);
           return res.status(500).send('Cannot update user');
         } else {
           return res.json({success:true, message: 'User updated'});
@@ -96,7 +92,6 @@ module.exports = function(express,app) {
     let userId = req.params.id;
     User.remove({_id: userId}, (err, obj) => {
       if(err) {
-        console.log(err);
         return res.status(500).send('Cannot delete user');
       }
       if(obj.result.n === 0) {
@@ -105,6 +100,33 @@ module.exports = function(express,app) {
         return res.send('User deleted');
       }
     });
+  });
+
+  //----------Find polls of user
+  router.get('/:username/polls', (req,res) => {
+    let username = req.params.username;
+    if(typeof username !== 'string') {
+      return res.status(400).send('username has to be a string!');
+    }
+    User.findOne({
+      lowercase_name: username.toLowerCase()},
+      (err,user) => {
+        if(err) {
+          return res.status(500).send('error in request');
+        } else if(!user){
+          return res.status(401).send('User is not in DB');
+        }
+        Poll.find({
+          user_id: user._id},
+          (err,polls) => {
+            if(err) {
+              return res.status(500).send('error in request');
+            }
+            res.json(polls);
+          }
+        );
+      }
+    );
   });
 
   return router;
