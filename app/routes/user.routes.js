@@ -108,17 +108,38 @@ module.exports = function(express,app) {
   //----------delete user
   router.delete('/:id', authenticateRoute, (req,res) => {
     let userId = req.params.id;
-    User.remove({_id: userId}, (err, obj) => {
+    User.findOne(
+    {username: req.decoded.username},
+    (err, user) => {
       if(err) {
-        return res.status(500).send('Cannot delete user');
-      }
-      if(obj.result.n === 0) {
+        return res.status(500).send('Error in request');
+      } else if(!user) {
         return res.status(404).send('User not found');
-      } else {
-        return res.send('User deleted');
+      } if(userId !== user._id) {
+        return res.status(401).send('Cannot delete other account');
       }
-    });
-  });
+      User.remove(
+      {_id: userId},
+      (err,obj) => {
+        if(err || obj.n < 1) {
+          return res.status(500).send('Error removing account');
+        }
+        Poll.remove(
+        {_id: userId},
+        (err,obj) => {
+          if(err || obj.n >= 1) {
+            return res.status(500).json({
+              success:false,
+              message: 'Could not delete poll'
+            });
+          }
+          res.cookie('auth_token', false, {maxAge: 1, path: "/"});
+          res.clearCookie('auth_token', {path: "/"});
+          res.json({success: true, message: 'User has been deleted'});
+        });//pollremove
+      });//userremove
+    });//userfindOne
+  });//routerdelete
 
   //----------Find polls of user
   router.get('/:username/polls', (req,res) => {
