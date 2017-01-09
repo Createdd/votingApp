@@ -42,6 +42,11 @@ var userSchema = mongoose.Schema({
     },
     validate: usernameValidator
   },
+  lowercase_name: {
+    type: String,
+    unique: true,
+    select: false
+  },
   email: {
     type: String,
     required: true,
@@ -60,6 +65,9 @@ var userSchema = mongoose.Schema({
 //----------Password Encryption
 userSchema.pre('save', function(next) {
   let user = this;
+  if(!user.isModified('username') || user.isNew){
+    user.lowercase_name = user.username.toLowerCase();
+  }
   if(!user.isModified('password')) {
     return next();
   }
