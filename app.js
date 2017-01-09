@@ -7,9 +7,10 @@ const port = process.env.PORT || 3000;
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
+const config = require('./app/config/config');
 
 //----------Connect to DB
-mongoose.connect('mongodb://test:test@ds141368.mlab.com:41368/votingapp');
+mongoose.connect(config.db.connectString);
 var db = mongoose.connection;
 db.on('error', console.error.bind(console,'connection error'));
 db.once('open', () => {
