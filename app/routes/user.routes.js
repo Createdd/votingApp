@@ -27,13 +27,17 @@ module.exports = function(express,app) {
     newUser.save((err,user) => {
       if(err){
         if(err.code === 11000) {
-          if(/username/.test(err.message)) {
+          if(/username/.test(err.message) || /lowercase_name/.test(err.message)) {
             return res.status(500).json({success: false, message: 'Name is taken :('});
           } else {
             return res.status(500).json({success: false, message: 'Mail is taken :('});
           }
         } else {
-          return res.status(500).json({success: false, message: 'Error occured'});
+          return res.status(500).json({
+            success: false,
+            message: 'Error occured',
+            error: err.message
+          });
         }
       } else {
         let displayUser = _.pick(user, '_id', 'username', 'email');
