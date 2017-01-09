@@ -114,7 +114,7 @@ module.exports = function(express,app) {
         if(err) {
           return res.status(500).send('error in request');
         } else if(!user){
-          return res.status(401).send('User is not in DB');
+          return res.status(404).send('User is not in DB');
         }
         Poll.find({
           user_id: user._id},
@@ -123,6 +123,36 @@ module.exports = function(express,app) {
               return res.status(500).send('error in request');
             }
             res.json(polls);
+          }
+        );
+      }
+    );
+  });
+
+  //----------Find questions of polls of user
+  router.get('/:username/polls', (req,res) => {
+    let username = req.params.username;
+    let question = req.params.question;
+    User.findOne({
+      lowercase_name: username.toLowerCase()},
+      (err,user) => {
+        if(err) {
+          return res.status(500).send('error in request');
+        } else if(!user){
+          return res.status(404).send('User is not in DB');
+        }
+        let likeQuestion = new RegExp(question, 'i');
+
+        Poll.findOne({
+          question: likeQuestion,
+          user_id: user._id},
+          (err,poll) => {
+            if(err) {
+              return res.status(500).send('error in request');
+            } else if(!poll){
+              return res.status(404).send('Poll is not in DB');
+            }
+            res.json(poll);
           }
         );
       }
