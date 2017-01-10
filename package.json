@@ -32,6 +32,7 @@
     "underscore": "^1.8.3"
   },
   "devDependencies": {
+    "babel-core": "^6.21.0",
     "babel-loader": "^6.2.2",
     "babel-plugin-transform-class-properties": "^6.4.0",
     "babel-plugin-transform-runtime": "^6.4.3",
