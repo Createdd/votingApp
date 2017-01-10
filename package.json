@@ -18,6 +18,7 @@
     "body-parser": "^1.15.2",
     "cookie-parser": "^1.4.3",
     "express": "^4.13.4",
+    "extract-text-webpack-plugin": "^1.0.1",
     "history": "^4.5.0",
     "jsonwebtoken": "^7.2.1",
     "materialize-css": "^0.97.8",
