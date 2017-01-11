@@ -1,10 +1,17 @@
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+}
+
 body {
   display: flex;
   height: 100vh;
   flex-direction: column;
-  font-family: Verdana;
+  font-family: 'Dosis', Verdana;
 }
-main {
+#main {
   flex: 1 0 auto;
-  font-family: Verdana;
+}
+#footer {
+  flex: 1 0 auto;
 }
