@@ -4,6 +4,9 @@ import Header from './HeaderC.js';
 import Footer from './FooterC.js';
 import * as materialize from 'materialize-css';
 
+$(document).ready(function(){
+      $('.parallax').parallax();
+});
 
 class Main extends React.Component {
   render () {
