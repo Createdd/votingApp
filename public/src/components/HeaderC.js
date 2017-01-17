@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 export default class Header extends React.Component {
   render() {
     return (
@@ -28,12 +27,14 @@ export default class Header extends React.Component {
               <li><a href="#" className="teal-text">Signup</a></li>
               <li>
                 <a
-                className="dropdown-button teal-text"
-                href="#!"
-                data-activates="dropdown1"
-              >
-                I am looking for<i className="material-icons right">zoom_in</i>
-              </a>
+                  className="dropdown-button teal-text"
+                  href="#!"
+                  data-activates="dropdown1"
+                >
+                   I am looking for<i className="material-icons right">
+                    zoom_in
+                  </i>
+                </a>
               </li>
             </ul>
             <ul className="side-nav blue-grey darken-3" id="mobile-demo">
