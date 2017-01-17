@@ -52,7 +52,7 @@ class Main extends React.Component {
                 <div className="card-content teal-text">
                   <i className="large material-icons">assessment</i><br></br>
                   <span className="card-title">Databases And Charts</span>
-                  <p>Experience your results with updated charts in Databases</p>
+                  <p>Experience your results with updated charts and Databases</p>
                 </div>
                 <div className="card-action">
                   <a href="#">Check It Out</a>
