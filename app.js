@@ -30,6 +30,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cookieParser());
 
+//----------Use React-Router for all other Routes
+app.get('*', function (req,res) {
+  res.sendFile(__dirname+'/public/index.html');
+});
+
 
 app.listen(port, function(){
   console.log(`Listening on: ${port}.`);
