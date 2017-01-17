@@ -2,10 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Header from './HeaderC.js';
 import Footer from './FooterC.js';
-import * as materialize from 'materialize-css';
 
 $(document).ready(function(){
       $('.parallax').parallax();
+      $('.button-collapse').sideNav();
 });
 
 class Main extends React.Component {
