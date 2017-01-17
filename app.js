@@ -17,7 +17,7 @@ db.once('open', () => {
   console.log('Connection to MongoDB successful!');
 });
 
-//----------Set other Router
+//----------Set other Routers
 const userRouter = require('./app/routes/user.routes')(express, app);
 const pollRouter = require('./app/routes/poll.routes')(express, app);
 const authRouter = require('./app/routes/auth.routes')(express, app);
