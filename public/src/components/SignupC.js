@@ -10,20 +10,24 @@ export default class SignUp extends React.Component {
         <div className="col s8">
           <form className="input-field col s10">
             <div className="input-field">
-              <input id="name" type="text" class="validate" />
-              <label for="name">Name</label>
+              <input id="name" type="text" className="validate" />
+              <label htmlFor="name">Name</label>
             </div>
             <div className="input-field">
-              <input id="email" type="text" class="validate" />
-              <label for="email">E-Mail</label>
+              <input id="email" type="text" className="validate" />
+              <label htmlFor="email">E-Mail</label>
             </div>
             <div className="input-field ">
-              <input id="password" type="password" class="validate" />
-              <label for="password">Password</label>
+              <input id="password" type="password" className="validate" />
+              <label htmlFor="password">Password</label>
             </div>
             <div className="input-field">
-              <input id="confirmPassword" type="password" class="validate" />
-              <label for="confirmPassword">Confirm Password</label>
+              <input
+                id="confirmPassword"
+                type="password"
+                className="validate"
+              />
+              <label htmlFor="confirmPassword">Confirm Password</label>
             </div>
             <button
               className="btn waves-effect waves-green blue-grey darken-3"
