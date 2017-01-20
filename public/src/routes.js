@@ -1,13 +1,14 @@
 import React from 'react';
 import { Router, Route, IndexRoute } from 'react-router';
 
-import Header from './HeaderC.js';
-import Footer from './FooterC.js';
-import Welcome from './WelcomeC.js';
-import SignUp from './SignUpC.js';
+import App from './Components/AppC.js';
+import Header from './Components/HeaderC.js';
+import Footer from './Components/FooterC.js';
+import Welcome from './Components/WelcomeC.js';
+import SignUp from './Components/SignUpC.js';
 
 export default (
-  <Route path="/" component={Main}>
+  <Route path="/" component={App}>
     <IndexRoute component={Welcome} />
     <Route path="/signup" component={SignUp} />
   </Route>

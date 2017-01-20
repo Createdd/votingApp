@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import Header from './HeaderC.js';
 import Footer from './FooterC.js';
 import Welcome from './WelcomeC.js';
@@ -10,17 +9,14 @@ $(document).ready(function() {
   $('.button-collapse').sideNav();
 });
 
-class Main extends React.Component {
+export default class App extends React.Component {
   render() {
     return (
       <div>
-        <Welcome />
-        <SignUp />
+        <Header />
+        {this.props.children}
+        <Footer />
       </div>
     );
   }
 }
-
-ReactDOM.render(<Header />, document.getElementById('header'));
-ReactDOM.render(<Main />, document.getElementById('main'));
-ReactDOM.render(<Footer />, document.getElementById('footer'));
