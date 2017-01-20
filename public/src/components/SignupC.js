@@ -5,7 +5,7 @@ export default class SignUp extends React.Component {
     return (
       <div className="row grey darken-2">
         <div className="col s4">
-          <h3>Social Media Logins</h3>
+          <h3>Social Media Logins here</h3>
         </div>
         <div className="col s8">
           <form className="input-field col s10">
