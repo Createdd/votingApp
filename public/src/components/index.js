@@ -22,5 +22,5 @@ class Main extends React.Component {
 }
 
 ReactDOM.render(<Header />, document.getElementById('header'));
-ReactDOM.render(<Footer />, document.getElementById('footer'));
 ReactDOM.render(<Main />, document.getElementById('main'));
+ReactDOM.render(<Footer />, document.getElementById('footer'));
