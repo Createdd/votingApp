@@ -3,8 +3,8 @@ import React from 'react';
 export default class Footer extends React.Component {
   render() {
     return (
-      <div>
-        <div className="container teal-text center'">
+      <div className="blue-grey darken-4">
+        <div className="container section teal-text">
           <div className="col s6">
             <h5>A Free Code Camp Challenge</h5>
             <h4>written by <strong>Daniel Deutsch</strong></h4>
