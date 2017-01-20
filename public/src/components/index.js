@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Header from './HeaderC.js';
 import Footer from './FooterC.js';
+import SignUp from './SignUpC.js';
 
 $(document).ready(function(){
       $('.parallax').parallax();
@@ -67,8 +68,9 @@ class Main extends React.Component {
             <img src="https://images.unsplash.com/photo-1470074506451-60892faba445?dpr=1&auto=format&fit=crop&w=1500&h=1000&q=80&cs=tinysrgb&crop="></img>
           </div>
         </div>
-
+          <SignUp />
       </div>
+
     );
   }
 }
