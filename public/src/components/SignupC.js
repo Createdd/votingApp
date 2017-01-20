@@ -34,7 +34,9 @@ export default class SignUp extends React.Component {
               <i className="material-icons right">flight_takeoff</i>
             </button>
             <div className="section valign-wrapper">
-            <a href="#" className="valign waves-effect waves-light teal-text">Already signed up? Log in!</a>
+              <a href="#" className="valign waves-effect waves-light teal-text">
+                Already signed up? Log in!
+              </a>
             </div>
           </form>
         </div>
