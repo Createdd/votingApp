@@ -3,6 +3,7 @@ import Header from './HeaderC.js';
 import Footer from './FooterC.js';
 import Welcome from './WelcomeC.js';
 import SignUp from './SignUpC.js';
+import Login from './LoginC.js';
 
 $(document).ready(function() {
   $('.parallax').parallax();
