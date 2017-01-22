@@ -4,6 +4,7 @@ export default class SignUp extends React.Component {
   render() {
     return (
       <div className="row grey darken-2">
+        <h1 className="center-align teal-text">Sign Up</h1>
         <div className="col s4">
           <h3>Social Media Logins here</h3>
         </div>
