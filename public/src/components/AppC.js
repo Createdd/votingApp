@@ -8,6 +8,7 @@ import Login from './LoginC.js';
 $(document).ready(function() {
   $('.parallax').parallax();
   $('.button-collapse').sideNav();
+  $('.carousel').carousel({dist: -70});
 });
 
 export default class App extends React.Component {
