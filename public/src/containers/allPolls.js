@@ -29,7 +29,7 @@ class GetAllPolls extends Component {
   }
   render() {
     return (
-      <div className="container-fluid">
+      <div className="container">
         <ul>
           {this.renderPolls()}
         </ul>
