@@ -2,7 +2,7 @@ import React from 'react';
 
 const PollChoice = props => {
   return (
-    <div>
+    <div className="input-field">
       <input
         id="choice"
         type="radio"
@@ -19,7 +19,6 @@ const PollChoice = props => {
         className="validate"
         value={props.choice}
         aria-label={'Label for: ' + props.choice}
-        disabled="disabled"
       />
     </div>
   );
