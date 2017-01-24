@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchAllPolls } from '../actions/index';
-import Poll from '../components/poll';
+import Poll from '../components/PollC';
 
 class GetAllPolls extends Component {
   componentWillMount() {

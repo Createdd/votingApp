@@ -23,4 +23,4 @@ const PollChoice = (props) => {
     </div>
   );
 };
-export default pollChoice;
+export default PollChoice;
