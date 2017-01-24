@@ -2,6 +2,14 @@ import React from 'react';
 import PollChoice from './PollChoiceC.js';
 
 export default class Poll extends React.Component {
+  renderPollChoices() {
+    if (typeof this.props.choices === 'undefined') {
+      return null;
+    }
+    return this.props.choices.map((choice) => {
+      return <li key={choice}><PollChoice choice={choice} /></li>;
+    });
+  }
   render() {
     return (
       <div className="row grey darken-2">
@@ -13,7 +21,9 @@ export default class Poll extends React.Component {
               <input id="pollTitle" type="text" className="validate" />
               <label forHtml="pollTitle">Add title</label>
             </div>
-            <PollChoice />
+            <ul>
+              {this.renderPollChoices()}
+            </ul>
             <button
               className="btn waves-effect waves-green blue-grey darken-3"
               type="submit"

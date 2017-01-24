@@ -1,6 +1,6 @@
 import React from 'react';
 
-const PollChoice = props => {
+const PollChoice = (props) => {
   return (
     <div className="input-field">
       <input
