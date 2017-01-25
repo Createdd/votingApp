@@ -14,7 +14,7 @@ class GetAllPolls extends Component {
   }
   renderPolls() {
     if (typeof this.props.polls !== 'undefined') {
-      return this.props.map(poll => {
+      return this.props.map((poll) => {
         return (
           <li key={poll._id}>
             <Poll
