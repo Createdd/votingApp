@@ -7,7 +7,7 @@ export default class Poll extends React.Component {
       return null;
     }
     return this.props.choices.map((choice) => {
-      return <li key={choice}><PollChoice choice={choice} /></li>;
+      return <li key={choice}><PollChoice choice={choice} disabled={true} /></li>;
     });
   }
   render() {
