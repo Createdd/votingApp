@@ -19,6 +19,7 @@ class GetAllPolls extends Component {
           <li key={poll._id}>
             <Poll
               choices={Object.keys(poll.choices)}
+              id={poll._id}
               question={poll.question}
             />
           </li>
