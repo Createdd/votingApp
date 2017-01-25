@@ -47,6 +47,7 @@ module.exports = function(express,app) {
       }
       validAttributes.user_id = user._id;
       let poll = new Poll(validAttributes);
+      poll.totalVotes = 0;
       poll.save((err) => {
         if(err){
           return res.status(500).send(err);
@@ -95,6 +96,7 @@ module.exports = function(express,app) {
       if(newItem) {
         poll.choices[choice] = 1;
       }
+      poll.totalVotes = poll.totalVotes + 1;
       Poll.update({_id: pollId}, poll, (err,obj) => {
         if(err || obj.n !== 1) {
           return res.status(500).json({message: 'Cannot update poll'});

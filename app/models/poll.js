@@ -31,6 +31,9 @@ var pollSchema = mongoose.Schema({
     required: true,
     validate: choicesValidator
   },
+  totalVotes: {
+    type: Number
+  },
   user_id: {
     type: String,
     ref: 'User'
