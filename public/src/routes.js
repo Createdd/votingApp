@@ -16,7 +16,6 @@ export default (
     <IndexRoute component={Welcome} />
     <Route path="/signup" component={SignUp} />
     <Route path="/login" component={Login} />
-    <Route path="/polls" component={AllPolls} />
     <Route path="/chart" component={PollResult} />
     <Route path="*" component={Lost} />
   </Route>
