@@ -11,7 +11,12 @@ export default class PollChoice extends Component {
     }
   }
   handleChoiceUpdate(e) {
-    this.setState({ text: e.target.value });
+    this.setState({ text: e.target.value }, () => {
+      this.props.checkOption(this.state.text);
+    });
+  }
+  selectChoice(e) {
+    this.props.checkOption(e.target.value);
   }
   render() {
     return (
@@ -23,7 +28,8 @@ export default class PollChoice extends Component {
           aria-label={'Choose for: ' + this.props.choice}
           value={this.props.choice}
           className="with-gap"
-          checked
+          checked={this.props.currentChoice === this.state.text ? true : false}
+          onClick={this.selectChoice.bind(this)}
         />
         <label forHtml="choice">
           <i className="small material-icons prefix teal-text">playlist_add</i>
@@ -31,11 +37,12 @@ export default class PollChoice extends Component {
         <input
           type="text"
           className="validate"
-          value={this.props.choice}
+          value={this.state.text}
           aria-label={'Label for: ' + this.props.choice}
           disabled={this.props.disabled ? 'disabled' : ''}
-          placeholder='Create your own choice'
+          placeholder="Create your own choice"
           onChange={this.handleChoiceUpdate.bind(this)}
+          onClick={this.selectChoice.bind(this)}
         />
       </div>
     );
