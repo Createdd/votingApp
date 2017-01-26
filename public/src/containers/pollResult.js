@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchSinglePoll } from './actions/index';
+import { fetchSinglePoll } from '../actions/index';
 import axios from 'axios';
 
 class PollResult extends Component {
