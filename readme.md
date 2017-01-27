@@ -6,9 +6,11 @@ Created by Daniel Deutsch (<kbd>
 </kbd>)
 
 ### FreeCodeCamp Dynamic Web Application Projects:
-# Build A Voting App [![App Progress Status](https://img.shields.io/badge/App%20Status-In%20Progress-0520b7.svg?style=plastic)](https://github.com/DDCreationStudios/votingApp)
+# Build A Voting App [![App Progress Status](https://img.shields.io/badge/App%20Status-In%20Pause-0520b7.svg?style=plastic)](https://github.com/DDCreationStudios/votingApp)
 [![Travis CI](https://travis-ci.org/DDCreationStudios/votingApp.svg?branch=master)](https://travis-ci.org/DDCreationStudios/votingApp) [![Code Climate](https://codeclimate.com/github/DDCreationStudios/votingApp/badges/gpa.svg)](https://codeclimate.com/github/DDCreationStudios/votingApp) [![Dependency Status](https://gemnasium.com/badges/github.com/DDCreationStudios/votingApp.svg)](https://gemnasium.com/github.com/DDCreationStudios/votingApp)
 ![Heroku](http://heroku-badge.herokuapp.com/?app=ddcs-votingpoll&style=flat&svg=1) [![Service status](https://assertible.com/apis/3e9881ec-bea9-44c6-893e-0ebba3c40b4c/status?api_token=OzGsx0BXYmaN6dA8)](https://assertible.com/dashboard#/services/3e9881ec-bea9-44c6-893e-0ebba3c40b4c)
+
+#### Currently paused and expanding knowledge on React Structure!
 
 ## Watch it on Heroku:
 <a href="https://ddcs-votingapp.herokuapp.com/" target="_blank">https://ddcs-votingapp.herokuapp.com/</a>

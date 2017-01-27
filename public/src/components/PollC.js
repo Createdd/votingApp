@@ -7,7 +7,7 @@ import { updateVotes } from '../actions/index';
 class Poll extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { showResult: false, currentChoice: '' };
+    this.state = { showResult: false, currentChoice: null };
   }
   handleChecked(choice) {
     this.setState({ currentChoice: choice });
