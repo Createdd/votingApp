@@ -4,10 +4,8 @@
   "main": "app.js",
   "author": "Daniel Deutsch <deudan1010@gmail.com>",
   "scripts": {
-    "start": "node app.js",
+    "start": "node app.js"
   },
-  "dependencies": {
-  },
-  "devDependencies": {
-  }
+  "dependencies": {},
+  "devDependencies": {}
 }
