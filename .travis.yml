@@ -1,9 +1,9 @@
 language: node_js
 node_js:
-  - "6"
-  - "6.9.1"
-  - "7"
-  notifications:
+- "6"
+- "6.9.1"
+- "7"
+notifications:
 email:
-  on_success: never # default: change
-  on_failure: change # default: always
+on_success: never # default: change
+on_failure: change # default: always
