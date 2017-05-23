@@ -4,8 +4,25 @@
   "main": "app.js",
   "author": "Daniel Deutsch <deudan1010@gmail.com>",
   "scripts": {
-    "start": "node app.js"
+    "start": "node src/app.js",
+    "dev": "NODE_ENV=development nodemon dist/app.bundle.js",
+    "dev:build": "webpack -w"
   },
-  "dependencies": {},
-  "devDependencies": {}
+  "dependencies": {
+    "express": "^4.15.3"
+  },
+  "devDependencies": {
+    "babel-core": "^6.24.1",
+    "babel-loader": "^7.0.0",
+    "babel-plugin-transform-object-rest-spread": "^6.23.0",
+    "babel-preset-env": "^1.5.1",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb": "^15.0.1",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^5.0.3",
+    "eslint-plugin-react": "^7.0.1",
+    "nodemon": "^1.11.0",
+    "webpack": "^2.6.0",
+    "webpack-node-externals": "^1.6.0"
+  }
 }
