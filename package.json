@@ -9,7 +9,11 @@
     "dev:build": "webpack -w"
   },
   "dependencies": {
-    "express": "^4.15.3"
+    "body-parser": "^1.17.2",
+    "compression": "^1.6.2",
+    "express": "^4.15.3",
+    "helmet": "^3.6.1",
+    "mongoose": "^4.10.2"
   },
   "devDependencies": {
     "babel-core": "^6.24.1",
@@ -21,6 +25,7 @@
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^5.0.3",
     "eslint-plugin-react": "^7.0.1",
+    "morgan": "^1.8.2",
     "nodemon": "^1.11.0",
     "webpack": "^2.6.0",
     "webpack-node-externals": "^1.6.0"
