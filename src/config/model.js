@@ -3,11 +3,19 @@ import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 
 const AnswerSchema = new Schema({
-  text: {
+  answer: {
     type: String,
     unique: true,
   },
-  votes: Number,
+  votes: {
+    type: Number,
+    default: 0,
+  },
+});
+
+AnswerSchema.method('vote', function (vote, cb) {
+  this.votes += 1;
+  this.parent().save(cb);
 });
 
 const PollSchema = new Schema({
