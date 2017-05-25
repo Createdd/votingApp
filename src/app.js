@@ -8,9 +8,6 @@ const app = express();
 
 middlewaresConfig(app);
 
-app.get('/', (req, res) => {
-  res.send('works!!!!');
-});
 
 app.listen(constants.PORT, (err) => {
   if (err) {

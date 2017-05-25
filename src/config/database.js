@@ -15,5 +15,6 @@ mongoose.connection
   console.log('MongoDB is connected!');
 })
 	.on('error', (err) => {
+  console.error(`Error while connecting to ${err.message}`);
   throw err;
 });
