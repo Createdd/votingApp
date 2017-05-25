@@ -5,12 +5,13 @@
   "author": "Daniel Deutsch <deudan1010@gmail.com>",
   "scripts": {
     "start": "node src/app.js",
-    "dev": "NODE_ENV=development nodemon dist/app.bundle.js && mongod",
+    "dev": "NODE_ENV=development nodemon dist/app.bundle.js",
     "dev:build": "webpack -w"
   },
   "dependencies": {
     "body-parser": "^1.17.2",
     "compression": "^1.6.2",
+    "dotenv": "^4.0.0",
     "express": "^4.15.3",
     "helmet": "^3.6.1",
     "mongoose": "^4.10.2"

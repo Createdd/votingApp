@@ -8,7 +8,6 @@ const app = express();
 
 middlewaresConfig(app);
 
-
 app.listen(constants.PORT, (err) => {
   if (err) {
     throw err;
@@ -20,6 +19,5 @@ app.listen(constants.PORT, (err) => {
     Running on ${process.env.NODE_ENV}
     `,
 		);
-    console.log(constants);
   }
 });

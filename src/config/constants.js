@@ -1,5 +1,13 @@
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config();
+}
+
 const devConfig = {
-  MONGO_URL: 'mongodb://localhost/votingAppDb-dev',
+  MONGO_URL: `mongodb://${
+		process.env.DB_USER
+		}:${
+		process.env.DB_PASS
+		}@ds141368.mlab.com:41368/votingapp`,
 };
 const testConfig = {
   MONGO_URL: 'mongodb://localhost/votingAppDb-test',
@@ -25,5 +33,5 @@ function envConfig(env) {
 
 export default {
   ...defaultConfig,
-  ...envConfig(process.env.NODE_END),
+  ...envConfig(process.env.NODE_ENV),
 };
