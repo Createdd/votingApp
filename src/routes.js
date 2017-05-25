@@ -1,4 +1,5 @@
 import express from 'express';
+import Poll from './config/model';
 
 const router = express.Router();
 
