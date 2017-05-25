@@ -33,18 +33,18 @@ router.post('/:pID/vote', (req, res) => {
   });
 });
 
-// router.post('/new', (req, res) => {
-//   const poll = new Poll(req.body);
-//   poll.save((err, poll, next) => {
-//     if (err) return next(err);
-//     res.status(201).json(poll);
-//   });
+router.post('/new', (req, res) => {
+  const poll = new Poll(req.body);
+  poll.save((err, poll, next) => {
+    if (err) return next(err);
+    res.status(201).json(poll);
+  });
 
-// 	// res.json({
-// 	//   response: 'POST for home route /authReq',
-// 	//   body: req.body,
-// 	// });
-// });
+	// res.json({
+	//   response: 'POST for home route /authReq',
+	//   body: req.body,
+	// });
+});
 
 router.post('/:pID/new', (req, res) => {
   res.json({
