@@ -45,7 +45,7 @@ router.get('/', (req, res) => {
 router.get('/polls', (req, res) => {
   Poll.find({}, (err, polls, next) => {
     if (err) return next(err);
-    res.status(200).json(polls);
+    return res.status(200).json(polls);
   });
 });
 
@@ -57,7 +57,7 @@ router.post('/new', (req, res, next) => {
   const poll = new Poll(req.body);
   poll.save((err, doc) => {
     if (err) return next(err);
-    res.status(201).json(doc);
+    return res.status(201).json(doc);
   });
 });
 
@@ -65,14 +65,14 @@ router.post('/:pID/new', (req, res, next) => {
   req.poll.answers.push(req.body);
   req.poll.save((err, doc) => {
     if (err) return next(err);
-    res.status(201).json(doc);
+    return res.status(201).json(doc);
   });
 });
 
 router.post('/:pID/:aID/vote', (req, res, next) => {
   req.answer.vote(req.vote, (err, doc) => {
     if (err) return next(err);
-    res.json(doc);
+    return res.json(doc);
   });
 });
 
@@ -80,7 +80,7 @@ router.delete('/:pID', (req, res, next) => {
   req.poll.remove(() => {
     req.poll.save((err, doc) => {
       if (err) return next(err);
-      res.json(doc);
+      return res.json(doc);
     });
   });
 });
