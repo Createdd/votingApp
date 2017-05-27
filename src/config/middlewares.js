@@ -2,10 +2,14 @@ import morgan from 'morgan';
 import bodyParser from 'body-parser';
 import compression from 'compression';
 import helmet from 'helmet';
+import session from 'express-session';
+
+import passport from 'passport';
+import passportConfig from './passport';
 import routes from '../routes';
 
-const isDev = process.env.NODE_ENV === 'development';
 const isProd = process.env.NODE_ENV === 'production';
+passportConfig(passport);
 
 export default (app) => {
   if (isProd) {
@@ -16,6 +20,17 @@ export default (app) => {
   app.use(morgan('dev'));
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: true }));
+
+	// use sessions
+  app.use(
+		session({
+  secret: 'SessionSecret1',
+  resave: false,
+  saveUninitialized: true,
+}),
+	);
+  app.use(passport.initialize());
+  app.use(passport.session());
 
 	// Middleware for handling routes and errors
   app.use('/', routes);
