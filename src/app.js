@@ -1,5 +1,4 @@
 /* eslint-disable no-console */
-
 import express from 'express';
 
 import constants from './config/constants';

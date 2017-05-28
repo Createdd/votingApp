@@ -1,7 +1,5 @@
-// load the things we need
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
-// define the schema for our user model
 const userSchema = mongoose.Schema({
   twitter: {
     id: String,

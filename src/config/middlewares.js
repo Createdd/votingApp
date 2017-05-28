@@ -39,7 +39,6 @@ export default (app) => {
   app.use(passport.initialize());
   app.use(passport.session());
 
-	// Middleware for handling routes and errors
   app.use('/', routes);
   app.use((reg, res, next) => {
     const err = new Error('Not found');

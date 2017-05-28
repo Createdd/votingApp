@@ -3,11 +3,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 const devConfig = {
-  MONGO_URL: `mongodb://${
-		process.env.DB_USER
-		}:${
-		process.env.DB_PASS
-		}@ds141368.mlab.com:41368/votingapp`,
+  MONGO_URL: `mongodb://${process.env.DB_USER}:${process.env.DB_PASS}@ds141368.mlab.com:41368/votingapp`,
 };
 const testConfig = {
   MONGO_URL: 'mongodb://localhost/votingAppDb-test',
@@ -18,6 +14,12 @@ const prodConfig = {
 
 const defaultConfig = {
   PORT: process.env.PORT || 3000,
+  TWITTER_STRATEGY: {
+    consumerKey: process.env.TWITTER_CONSUMER_KEY,
+    consumerSecret: process.env.TWITTER_CONSUMER_SECRET,
+    callbackURL: 'http://127.0.0.1:3000/auth/twitter/callback',
+    passReqToCallback: true,
+  },
 };
 
 function envConfig(env) {

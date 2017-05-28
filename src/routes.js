@@ -2,10 +2,7 @@
 import express from 'express';
 import passport from 'passport';
 
-import Poll from './config/model';
-
-// const passport = require('passport');
-// require('./config/passport')(passport);
+import Poll from './models/poll';
 
 const router = express.Router();
 
