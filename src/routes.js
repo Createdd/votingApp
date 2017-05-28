@@ -9,6 +9,10 @@ import Poll from './config/model';
 
 const router = express.Router();
 
+function isLoggedIn(req, res, next) {
+  if (req.isAuthenticated()) return next();
+  return res.redirect('/');
+}
 
 // set router param
 router.param('pID', (req, res, next, id) => {
@@ -97,16 +101,22 @@ router.get(
 }),
 );
 
-// // send to twitter to do the authentication
-// router.get('/auth/twitter', passport.authenticate('twitter', { scope: 'email' }));
+router.get('/connect/twitter', passport.authorize('twitter', { scope: 'email' }));
 
-// // handle the callback after twitter has authenticated the user
-// router.get(
-// 	'/auth/twitter/callback',
-// 	passport.authenticate('twitter', {
-//   successRedirect: '/profile',
-//   failureRedirect: '/',
-// }),
-// );
+router.get(
+	'/connect/twitter/callback',
+	passport.authorize('twitter', {
+  successRedirect: '/polls',
+  failureRedirect: '/',
+}),
+);
+
+router.get('/unlink/twitter', isLoggedIn, (req, res) => {
+  const user = req.user;
+  user.twitter.token = undefined;
+  user.save((err) => {
+    res.redirect('/');
+  });
+});
 
 export default router;

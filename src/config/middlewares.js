@@ -25,12 +25,14 @@ export default (app) => {
   app.use(
 		session({
   secret: 'SessionSecret1',
-  resave: false,
+  name: 'NameForCookie',
+  resave: true,
   saveUninitialized: true,
 }),
 	);
   app.use(passport.initialize());
   app.use(passport.session());
+
 
 	// Middleware for handling routes and errors
   app.use('/', routes);

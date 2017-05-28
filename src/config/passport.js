@@ -6,7 +6,7 @@ export default function (passport) {
   {
     consumerKey: process.env.TWITTER_CONSUMER_KEY,
     consumerSecret: process.env.TWITTER_CONSUMER_SECRET,
-    callbackURL: 'http://localhost:3000/auth/twitter',
+    callbackURL: 'http://127.0.0.1:3000/auth/twitter/callback',
     passReqToCallback: true,
   },
 			(req, token, tokenSecret, profile, cb) => cb(null, profile),
