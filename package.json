@@ -9,7 +9,6 @@
     "dev:build": "webpack -w"
   },
   "dependencies": {
-    "bcrypt-nodejs": "^0.0.3",
     "body-parser": "^1.17.2",
     "compression": "^1.6.2",
     "dotenv": "^4.0.0",
