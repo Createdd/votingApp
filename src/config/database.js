@@ -10,7 +10,9 @@ try {
   mongoose.createConnection(constants.MONGO_URL);
 }
 
-mongoose.connection
+const db = mongoose.connection;
+
+db
 	.once('open', () => {
   console.log('MongoDB is connected!');
 })
@@ -18,3 +20,5 @@ mongoose.connection
   console.error(`Error while connecting to ${err.message}`);
   throw err;
 });
+
+export default db;

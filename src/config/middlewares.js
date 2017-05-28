@@ -3,13 +3,16 @@ import bodyParser from 'body-parser';
 import compression from 'compression';
 import helmet from 'helmet';
 import session from 'express-session';
+import MongoStore from 'connect-mongo';
 
 import passport from 'passport';
 import passportConfig from './passport';
+import db from './database';
 import routes from '../routes';
 
 const isProd = process.env.NODE_ENV === 'production';
 passportConfig(passport);
+const MongoConnect = MongoStore(session);
 
 export default (app) => {
   if (isProd) {
@@ -28,11 +31,13 @@ export default (app) => {
   name: 'NameForCookie',
   resave: true,
   saveUninitialized: true,
+  store: new MongoConnect({
+    mongooseConnection: db,
+  }),
 }),
 	);
   app.use(passport.initialize());
   app.use(passport.session());
-
 
 	// Middleware for handling routes and errors
   app.use('/', routes);

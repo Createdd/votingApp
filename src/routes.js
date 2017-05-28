@@ -9,10 +9,12 @@ import Poll from './config/model';
 
 const router = express.Router();
 
-function isLoggedIn(req, res, next) {
-  if (req.isAuthenticated()) return next();
-  return res.redirect('/');
-}
+const isLoggedIn = (req, res, next) => {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  return res.send('You are not authorized to do this :) ');
+};
 
 // set router param
 router.param('pID', (req, res, next, id) => {
@@ -53,11 +55,11 @@ router.get('/polls', (req, res) => {
   });
 });
 
-router.get('/:pID', (req, res) => {
+router.get('/:pID', isLoggedIn, (req, res) => {
   res.json(req.poll);
 });
 
-router.post('/new', (req, res, next) => {
+router.post('/new', isLoggedIn, (req, res, next) => {
   const poll = new Poll(req.body);
   poll.save((err, doc) => {
     if (err) return next(err);
@@ -65,7 +67,7 @@ router.post('/new', (req, res, next) => {
   });
 });
 
-router.post('/:pID/new', (req, res, next) => {
+router.post('/:pID/new', isLoggedIn, (req, res, next) => {
   req.poll.answers.push(req.body);
   req.poll.save((err, doc) => {
     if (err) return next(err);
@@ -80,7 +82,7 @@ router.post('/:pID/:aID/vote', (req, res, next) => {
   });
 });
 
-router.delete('/:pID', (req, res, next) => {
+router.delete('/:pID', isLoggedIn, (req, res, next) => {
   req.poll.remove(() => {
     req.poll.save((err, doc) => {
       if (err) return next(err);
@@ -100,23 +102,5 @@ router.get(
   failureRedirect: '/',
 }),
 );
-
-router.get('/connect/twitter', passport.authorize('twitter', { scope: 'email' }));
-
-router.get(
-	'/connect/twitter/callback',
-	passport.authorize('twitter', {
-  successRedirect: '/polls',
-  failureRedirect: '/',
-}),
-);
-
-router.get('/unlink/twitter', isLoggedIn, (req, res) => {
-  const user = req.user;
-  user.twitter.token = undefined;
-  user.save((err) => {
-    res.redirect('/');
-  });
-});
 
 export default router;
