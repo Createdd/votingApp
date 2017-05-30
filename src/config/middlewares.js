@@ -20,6 +20,8 @@ export default (app) => {
     app.use(helmet());
   }
 
+  app.set('view engine', 'ejs');
+
   app.use(morgan('dev'));
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: true }));
@@ -40,17 +42,12 @@ export default (app) => {
   app.use(passport.session());
 
   app.use('/', routes);
-  app.use((reg, res, next) => {
-    const err = new Error('Not found');
-    err.status = 404;
-    next(err);
-  });
-  app.use((err, reg, res, next) => {
+
+  app.use((err, req, res, next) => {
     res.status(err.status || 500).json({
       error: {
         message: err.message,
       },
     });
-    next(err);
   });
 };

@@ -3,6 +3,9 @@ import express from 'express';
 import passport from 'passport';
 
 import Poll from './models/poll';
+import passportConfig from './config/passport';
+
+passportConfig(passport);
 
 const router = express.Router();
 
@@ -25,6 +28,7 @@ router.param('pID', (req, res, next, id) => {
     req.poll = doc;
     return next();
   });
+	// next(),
 });
 
 router.param('aID', (req, res, next, id) => {
@@ -34,15 +38,12 @@ router.param('aID', (req, res, next, id) => {
     err.status = 404;
     return next(err);
   }
-  return next();
+  next();
 });
 
 // GET,POST, DELETE Routes
 router.get('/', (req, res) => {
-  res.json({
-    response: 'GET for home route',
-    body: req.body,
-  });
+  res.render('index.ejs');
 });
 
 router.get('/polls', (req, res) => {
@@ -52,11 +53,11 @@ router.get('/polls', (req, res) => {
   });
 });
 
-router.get('/:pID', isLoggedIn, (req, res) => {
+router.get('/poll/:pID', isLoggedIn, (req, res) => {
   res.json(req.poll);
 });
 
-router.post('/new', isLoggedIn, (req, res, next) => {
+router.post('/poll/new', isLoggedIn, (req, res, next) => {
   const poll = new Poll(req.body);
   poll.save((err, doc) => {
     if (err) return next(err);
@@ -64,7 +65,7 @@ router.post('/new', isLoggedIn, (req, res, next) => {
   });
 });
 
-router.post('/:pID/new', isLoggedIn, (req, res, next) => {
+router.post('/poll/:pID/new', isLoggedIn, (req, res, next) => {
   req.poll.answers.push(req.body);
   req.poll.save((err, doc) => {
     if (err) return next(err);
@@ -72,14 +73,14 @@ router.post('/:pID/new', isLoggedIn, (req, res, next) => {
   });
 });
 
-router.post('/:pID/:aID/vote', (req, res, next) => {
+router.post('/poll/:pID/:aID/vote', (req, res, next) => {
   req.answer.vote(req.vote, (err, doc) => {
     if (err) return next(err);
     return res.json(doc);
   });
 });
 
-router.delete('/:pID', isLoggedIn, (req, res, next) => {
+router.delete('/poll/:pID', isLoggedIn, (req, res, next) => {
   req.poll.remove(() => {
     req.poll.save((err, doc) => {
       if (err) return next(err);
@@ -88,7 +89,7 @@ router.delete('/:pID', isLoggedIn, (req, res, next) => {
   });
 });
 
-// authentication routes
+// twitter authentication routes
 
 router.get('/auth/twitter', passport.authenticate('twitter'));
 
@@ -99,5 +100,37 @@ router.get(
   failureRedirect: '/',
 }),
 );
+
+// local sign up
+router.get('/signup', (req, res) => {
+  res.json({ message: 'Signup GET' });
+});
+
+router.post(
+	'/signup',
+	passport.authenticate('local-signup', {
+  successRedirect: '/polls',
+  failureRedirect: '/signup',
+}),
+);
+
+// local sign in
+router.get('/login', (req, res) => {
+  res.json({ message: 'Login GET' });
+});
+
+router.post(
+	'/login',
+	passport.authenticate('local-login', {
+  successRedirect: '/polls',
+  failureRedirect: '/signup',
+}),
+);
+
+router.get('*', (req, res, next) => {
+  const err = new Error('The page cannot be found!!!!');
+  err.status = 404;
+  next(err);
+});
 
 export default router;
