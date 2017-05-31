@@ -10,10 +10,13 @@ passportConfig(passport);
 const router = express.Router();
 
 const isLoggedIn = (req, res, next) => {
-  if (req.isAuthenticated()) {
+  if (req.user) {
+    console.log(`||Logged in as ${req.user.local.email}||`);
     return next();
   }
-  return res.send('You are not authorized to do this :) ');
+  return res.status(401).json({
+    error: 'User not authenticated',
+  });
 };
 
 // set router param
@@ -38,7 +41,7 @@ router.param('aID', (req, res, next, id) => {
     err.status = 404;
     return next(err);
   }
-  next();
+  return next();
 });
 
 // GET,POST, DELETE Routes
@@ -53,11 +56,11 @@ router.get('/polls', (req, res) => {
   });
 });
 
-router.get('/poll/:pID', isLoggedIn, (req, res) => {
+router.get('/polls/:pID', isLoggedIn, (req, res) => {
   res.json(req.poll);
 });
 
-router.post('/poll/new', isLoggedIn, (req, res, next) => {
+router.post('/polls/new', isLoggedIn, (req, res, next) => {
   const poll = new Poll(req.body);
   poll.save((err, doc) => {
     if (err) return next(err);
@@ -65,7 +68,7 @@ router.post('/poll/new', isLoggedIn, (req, res, next) => {
   });
 });
 
-router.post('/poll/:pID/new', isLoggedIn, (req, res, next) => {
+router.post('/polls/:pID/new', isLoggedIn, (req, res, next) => {
   req.poll.answers.push(req.body);
   req.poll.save((err, doc) => {
     if (err) return next(err);
@@ -73,14 +76,14 @@ router.post('/poll/:pID/new', isLoggedIn, (req, res, next) => {
   });
 });
 
-router.post('/poll/:pID/:aID/vote', (req, res, next) => {
+router.post('/polls/:pID/:aID/vote', (req, res, next) => {
   req.answer.vote(req.vote, (err, doc) => {
     if (err) return next(err);
     return res.json(doc);
   });
 });
 
-router.delete('/poll/:pID', isLoggedIn, (req, res, next) => {
+router.delete('/polls/:pID', isLoggedIn, (req, res, next) => {
   req.poll.remove(() => {
     req.poll.save((err, doc) => {
       if (err) return next(err);
@@ -92,7 +95,6 @@ router.delete('/poll/:pID', isLoggedIn, (req, res, next) => {
 // twitter authentication routes
 
 router.get('/auth/twitter', passport.authenticate('twitter'));
-
 router.get(
 	'/auth/twitter/callback',
 	passport.authenticate('twitter', {
@@ -106,26 +108,51 @@ router.get('/signup', (req, res) => {
   res.json({ message: 'Signup GET' });
 });
 
-router.post(
-	'/signup',
-	passport.authenticate('local-signup', {
-  successRedirect: '/polls',
-  failureRedirect: '/signup',
-}),
-);
+router.post('/signup', (req, res, next) => {
+  passport.authenticate('local-signup', (err, user, info) => {
+    if (err) {
+      return next(err);
+    }
+    if (!user) {
+      return res.json({ message: info.message });
+    }
+    req.logIn(user, (err) => {
+      if (err) {
+        return next(err);
+      }
+      return res.redirect('/polls');
+    });
+  })(req, res, next);
+});
 
 // local sign in
 router.get('/login', (req, res) => {
   res.json({ message: 'Login GET' });
 });
 
-router.post(
-	'/login',
-	passport.authenticate('local-login', {
-  successRedirect: '/polls',
-  failureRedirect: '/signup',
-}),
-);
+router.post('/login', (req, res, next) => {
+  passport.authenticate('local-login', (err, user, info) => {
+    if (err) {
+      return next(err);
+    }
+    if (!user) {
+      return res.json({ message: info.message });
+    }
+    req.logIn(user, (err) => {
+      if (err) {
+        return next(err);
+      }
+      return res.redirect('/polls');
+    });
+  })(req, res, next);
+});
+
+router.get('/logout', (req, res, next) => {
+  req.session.destroy((err) => {
+    if (err) next(err);
+    res.redirect('/');
+  });
+});
 
 router.get('*', (req, res, next) => {
   const err = new Error('The page cannot be found!!!!');

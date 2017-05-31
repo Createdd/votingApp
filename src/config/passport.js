@@ -7,6 +7,18 @@ import constants from './constants';
 import User from '../models/user';
 
 export default function (passport) {
+  passport.serializeUser((user, done) => {
+    console.log(`___SERIALIZE{user}+++${user}`);
+    done(null, user.id);
+  });
+
+  passport.deserializeUser((id, done) => {
+    console.log(`____DESERIALIZE${id}+++${id}`);
+    User.findById(id, (err, user) => {
+      done(err, user);
+    });
+  });
+
   passport.use(
 		new TwitterStrategy(constants.TWITTER_STRATEGY, (req, token, tokenSecret, profile, cb) => {
   process.nextTick(() => {
@@ -57,88 +69,86 @@ export default function (passport) {
 }),
 	);
 
-  passport.serializeUser((user, cb) => {
-    cb(null, user.id);
-  });
-
-  passport.deserializeUser((id, cb) => {
-    User.findById(id, (err, user) => {
-      cb(err, user);
-    });
-  });
-
 	//= ==========local signup===================
 
   passport.use(
 		'local-signup',
-		new LocalStrategy(constants.LOCAL_STRATEGY, (req, email, password, cb) => {
-  if (email) email = email.toLowerCase();
+		new LocalStrategy(constants.LOCAL_STRATEGY, (req, email, password, done) => {
+  console.log('er geht in die function rein!!!!!!!');
+
+  if (!email) {
+    console.log('NO EMAIL WAS FOUND');
+  }
+  if (email) {
+    email = email.toLowerCase();
+  }
   process.nextTick(() => {
     if (!req.user) {
       User.findOne({ 'local.email': email }, (err, user) => {
-        if (err) return cb(err);
+        if (err) return done(err);
         if (user) {
-          return cb(null, false, req.send('The email is already taken.'));
+          return done(null, false, {
+            message: 'You cannot sign up with this email because it is already taken!',
+          });
         }
-						// create user
+						// create the user
         const newUser = new User();
         newUser.local.email = email;
         newUser.local.password = newUser.generateHash(password);
 
         newUser.save((err) => {
-          if (err) return cb(err);
-          return cb(null, newUser);
+          if (err) return done(err);
+          return done(null, newUser);
         });
       });
-					// if the user is logged in but has no local account...
+					// if the user is logged in with a provider
     } else if (!req.user.local.email) {
       User.findOne({ 'local.email': email }, (err, user) => {
-        if (err) return cb(err);
+        if (err) return done(err);
         if (user) {
-          return cb(
-								null,
-								false,
-								req.send('That email is already taken. Login not possible'),
-							);
+          return done(null, false, {
+            message: 'You cannot sign up with this email because it is already taken!',
+          });
         }
         user = req.user;
         user.local.email = email;
         user.local.password = user.generateHash(password);
         user.save((err) => {
-          if (err) return cb(err);
-          return cb(null, user);
+          if (err) return done(err);
+          return done(null, user);
         });
       });
     } else {
-					// user is logged in and already has a local account
-      return cb(null, req.user);
+					// user is logged in
+      return done(null, req.user);
     }
   });
 }),
 	);
-	// =========== local login
-  passport.use(
-		'local-login',
-		new LocalStrategy(
-  {
-    usernameField: 'email',
-    passwordField: 'password',
-    passReqToCallback: true, // allows us to pass in the req from our route (lets us check if a user is logged in or not)
-  },
-			(req, email, password, cb) => {
-  if (email) email = email.toLowerCase();
-  process.nextTick(() => {
-    User.findOne({ 'local.email': email }, (err, user) => {
-      if (err) return cb(err);
-      if (!user) return cb(null, false, req.send('No user found'));
 
-      if (!user.validPassword(password)) {
-        return cb(null, false, req.send('Wrong password!!!!!'));
-      }
-      return cb(null, user);
-    });
-  });
-},
-		),
-	);
+	// =========== local login
+	//   passport.use(
+	// 		'local-login',
+	// 		new LocalStrategy(
+	//   {
+	//     usernameField: 'email',
+	//     passwordField: 'password',
+	//     passReqToCallback: true, // allows us to pass in the req from our route (lets us check if a user is logged in or not)
+	//   },
+	// 			(req, email, password, cb) => {
+	//   if (email) email = email.toLowerCase();
+	//   process.nextTick(() => {
+	//     User.findOne({ 'local.email': email }, (err, user) => {
+	//       if (err) return cb(err);
+	//       if (!user) return cb(null, false, req.flash('loginMessage', 'No user found.'));
+
+	//       if (!user.validPassword(password)) {
+	//         return cb(null, false, req.flash('loginMessage', 'Wrong password'));
+	//       }
+	//       return cb(null, user);
+	//     });
+	//   });
+	// },
+	// 		),
+	// 	);
 }
