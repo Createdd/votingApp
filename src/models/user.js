@@ -14,9 +14,13 @@ const userSchema = mongoose.Schema({
   },
 });
 
-userSchema.methods.generateHash = password =>
-	bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+userSchema.methods.generateHash = function (password) {
+  return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+};
 
-userSchema.methods.validPassword = password => bcrypt.compareSync(password, this.local.password);
+// don't use arrow function here!
+userSchema.methods.validPassword = function (password) {
+  return bcrypt.compareSync(password, this.local.password);
+};
 
 export default mongoose.model('User', userSchema);

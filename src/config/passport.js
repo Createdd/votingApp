@@ -20,22 +20,22 @@ export default function (passport) {
   });
 
   passport.use(
-		new TwitterStrategy(constants.TWITTER_STRATEGY, (req, token, tokenSecret, profile, cb) => {
+		new TwitterStrategy(constants.TWITTER_STRATEGY, (req, token, tokenSecret, profile, done) => {
   process.nextTick(() => {
     if (!req.user) {
       User.findOne({ 'twitter.id': profile.id }, (err, user) => {
-        if (err) return cb(err);
+        if (err) return done(err);
         if (user) {
           if (!user.twitter.token) {
             user.twitter.token = token;
             user.twitter.username = profile.username;
             user.twitter.displayName = profile.displayName;
             user.save(() => {
-              if (err) return cb(err);
-              return cb(null, user);
+              if (err) return done(err);
+              return done(null, user);
             });
           }
-          return cb(null, user);
+          return done(null, user);
         }
 
 						// if no user is found create one
@@ -47,8 +47,8 @@ export default function (passport) {
         newUser.twitter.displayName = profile.displayName;
 
         newUser.save(() => {
-          if (err) return cb(err);
-          return cb(null, newUser);
+          if (err) return done(err);
+          return done(null, newUser);
         });
       });
     } else {
@@ -61,8 +61,8 @@ export default function (passport) {
       user.twitter.displayName = profile.displayName;
 
       user.save((err) => {
-        if (err) return cb(err);
-        return cb(null, user);
+        if (err) return done(err);
+        return done(null, user);
       });
     }
   });
@@ -76,9 +76,6 @@ export default function (passport) {
 		new LocalStrategy(constants.LOCAL_STRATEGY, (req, email, password, done) => {
   console.log('er geht in die function rein!!!!!!!');
 
-  if (!email) {
-    console.log('NO EMAIL WAS FOUND');
-  }
   if (email) {
     email = email.toLowerCase();
   }
@@ -127,28 +124,34 @@ export default function (passport) {
 	);
 
 	// =========== local login
-	//   passport.use(
-	// 		'local-login',
-	// 		new LocalStrategy(
-	//   {
-	//     usernameField: 'email',
-	//     passwordField: 'password',
-	//     passReqToCallback: true, // allows us to pass in the req from our route (lets us check if a user is logged in or not)
-	//   },
-	// 			(req, email, password, cb) => {
-	//   if (email) email = email.toLowerCase();
-	//   process.nextTick(() => {
-	//     User.findOne({ 'local.email': email }, (err, user) => {
-	//       if (err) return cb(err);
-	//       if (!user) return cb(null, false, req.flash('loginMessage', 'No user found.'));
+  passport.use(
+		'local-login',
+		new LocalStrategy(constants.LOCAL_STRATEGY, (req, email, password, done) => {
+  if (email) email = email.toLowerCase();
+  process.nextTick(() => {
+    User.findOne({ 'local.email': email }, (err, user) => {
+      if (err) return done(err);
 
-	//       if (!user.validPassword(password)) {
-	//         return cb(null, false, req.flash('loginMessage', 'Wrong password'));
-	//       }
-	//       return cb(null, user);
-	//     });
-	//   });
-	// },
-	// 		),
-	// 	);
+      if (req.user) {
+        return done(null, false, {
+          message: `You are already logged in as ${req.user}`,
+        });
+      }
+
+      if (!user) {
+        return done(null, false, {
+          message: 'User cannot be found in DB!',
+        });
+      }
+
+      if (!user.validPassword(password)) {
+        return done(null, false, {
+          message: 'Password is completely wrong! :D',
+        });
+      }
+      return done(null, user);
+    });
+  });
+}),
+	);
 }
