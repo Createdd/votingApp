@@ -11,7 +11,7 @@ const router = express.Router();
 
 const isLoggedIn = (req, res, next) => {
   if (req.user) {
-    console.log(`||Logged in as ${req.user.local.email}||`);
+    console.log(`|||||||||Logged in as ${req.user.local.email}|||||||`);
     return next();
   }
   return res.status(401).json({
@@ -60,7 +60,7 @@ router.get('/polls/:pID', isLoggedIn, (req, res) => {
   res.json(req.poll);
 });
 
-router.post('/polls/new', isLoggedIn, (req, res, next) => {
+router.post('/polls/new', (req, res, next) => {
   const poll = new Poll(req.body);
   poll.save((err, doc) => {
     if (err) return next(err);
@@ -93,7 +93,6 @@ router.delete('/polls/:pID', isLoggedIn, (req, res, next) => {
 });
 
 // twitter authentication routes
-
 router.get('/auth/twitter', passport.authenticate('twitter'));
 router.get(
 	'/auth/twitter/callback',
@@ -116,7 +115,7 @@ router.post('/signup', (req, res, next) => {
     if (!user) {
       return res.json({ message: info.message });
     }
-    req.logIn(user, (err) => {
+    req.logIn(user, () => {
       if (err) {
         return next(err);
       }
@@ -138,7 +137,7 @@ router.post('/login', (req, res, next) => {
     if (!user) {
       return res.json({ message: info.message });
     }
-    req.logIn(user, (err) => {
+    req.logIn(user, () => {
       if (err) {
         return next(err);
       }

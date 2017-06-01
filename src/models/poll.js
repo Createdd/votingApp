@@ -13,7 +13,7 @@ const AnswerSchema = new Schema({
   },
 });
 
-AnswerSchema.method('vote', function (vote, cb) {
+AnswerSchema.method('vote', function voting(vote, cb) {
   this.votes += 1;
   this.parent().save(cb);
 });

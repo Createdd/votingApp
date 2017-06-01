@@ -1,4 +1,4 @@
-/* eslint no-param-reassign: ["error", { "props": false }]*/
+/* eslint-disable no-param-reassign*/
 // disabling eslint rule since no "reassign" happening ->  creating properties!
 import { Strategy as TwitterStrategy } from 'passport-twitter';
 import { Strategy as LocalStrategy } from 'passport-local';
@@ -74,8 +74,6 @@ export default function (passport) {
   passport.use(
 		'local-signup',
 		new LocalStrategy(constants.LOCAL_STRATEGY, (req, email, password, done) => {
-  console.log('er geht in die function rein!!!!!!!');
-
   if (email) {
     email = email.toLowerCase();
   }
@@ -92,8 +90,7 @@ export default function (passport) {
         const newUser = new User();
         newUser.local.email = email;
         newUser.local.password = newUser.generateHash(password);
-
-        newUser.save((err) => {
+        newUser.save(() => {
           if (err) return done(err);
           return done(null, newUser);
         });
@@ -110,7 +107,7 @@ export default function (passport) {
         user = req.user;
         user.local.email = email;
         user.local.password = user.generateHash(password);
-        user.save((err) => {
+        user.save(() => {
           if (err) return done(err);
           return done(null, user);
         });

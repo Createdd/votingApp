@@ -14,12 +14,11 @@ const userSchema = mongoose.Schema({
   },
 });
 
-userSchema.methods.generateHash = function (password) {
+userSchema.methods.generateHash = function generateHash(password) {
   return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
 };
 
-// don't use arrow function here!
-userSchema.methods.validPassword = function (password) {
+userSchema.methods.validPassword = function validPassword(password) {
   return bcrypt.compareSync(password, this.local.password);
 };
 

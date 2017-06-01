@@ -22,7 +22,8 @@
         "no-tabs": 0,
         "import/no-extraneous-dependencies": [
             2,
-            { "devDependencies": true
+            {
+                "devDependencies": true
             }
         ]
     },
