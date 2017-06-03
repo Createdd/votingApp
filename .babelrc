@@ -7,7 +7,9 @@
           "node": "current"
         }
       }
-    ]
+    ],
+    "react",
+    "es2015"
   ],
   "plugins": [
     [
