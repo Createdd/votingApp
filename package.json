@@ -4,7 +4,7 @@
   "main": "app.js",
   "author": "Daniel Deutsch <deudan1010@gmail.com>",
   "scripts": {
-    "start": "node src/app.js",
+    "start": "webpack-dev-server --hot",
     "dev": "NODE_ENV=development nodemon dist/app.bundle.js",
     "dev:build": "webpack --progress --watch"
   },
@@ -21,7 +21,10 @@
     "mongoose": "^4.10.2",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
-    "passport-twitter": "^1.0.4"
+    "passport-twitter": "^1.0.4",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4",
+    "react-router": "^4.1.1"
   },
   "devDependencies": {
     "babel-core": "^6.24.1",
@@ -39,6 +42,7 @@
     "nodemon": "^1.11.0",
     "react-hot-loader": "^1.3.1",
     "webpack": "^2.6.0",
+    "webpack-dev-server": "^2.4.5",
     "webpack-node-externals": "^1.6.0"
   }
 }

@@ -1,16 +1,21 @@
-const nodeExternals = require('webpack-node-externals');
-const path = require('path');
+// const nodeExternals = require('webpack-node-externals');
+// const path = require('path');
 
 module.exports = {
-  target: 'node',
-  externals: [nodeExternals()],
+  // target: 'node',
+  // externals: [nodeExternals()],
   entry: {
     app: './src/app.js',
   },
   output: {
-    path: path.join(__dirname, 'dist'),
-    filename: '[name].bundle.js',
-    libraryTarget: 'commonjs2',
+    // path: __dirname,
+    filename: 'bundle.js',
+    // libraryTarget: 'commonjs2',
+  },
+  devServer: {
+    inline: true,
+    contentBase: './public',
+    port: 8100,
   },
   module: {
     rules: [
