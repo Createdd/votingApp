@@ -16,6 +16,7 @@ module.exports = {
     inline: true,
     contentBase: './public',
     port: 8100,
+    historyApiFallback: true,
   },
   module: {
     rules: [

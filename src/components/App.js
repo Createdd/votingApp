@@ -1,20 +1,25 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 
 import Home from './Home';
 import Footer from './Footer';
 import Header from './Header';
+import Lost from './Lost';
+import Signin from './Signin';
 
-const BasicExample = () =>
+const App = () =>
   (<Router>
     <div>
       <Header />
 
-      <Route exact path="/" component={Home} />
-      <Route path="/about" component={Footer} />
-      <Route path="/topics" component={Header} />
-      
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route exact path="/signin" component={Signin} />
+        <Route path="/topics" component={Header} />
+        <Route component={Lost} />
+      </Switch>
+
       <Footer />
     </div>
   </Router>);
-export default BasicExample;
+export default App;
