@@ -11,18 +11,24 @@ import SinglePoll from './SinglePoll';
 
 const App = () =>
   (<Router>
-    <div>
+    <div
+      style={{
+        display: 'flex',
+        minHeight: '100vh',
+        flexDirection: 'column',
+      }}
+    >
       <Header />
-
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/signin" component={Sidebar} />
-        <Route exact path="/polls" component={Polls} />
-        <Route exact path="/SinglePoll" component={SinglePoll} />
-        <Route path="/topics" component={Header} />
-        <Route component={Lost} />
-      </Switch>
-
+      <main>
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/signin" component={Sidebar} />
+          <Route exact path="/polls" component={Polls} />
+          <Route exact path="/SinglePoll" component={SinglePoll} />
+          <Route path="/topics" component={Header} />
+          <Route component={Lost} />
+        </Switch>
+      </main>
       <Footer />
     </div>
   </Router>);

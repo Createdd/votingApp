@@ -9,7 +9,6 @@ $(document).ready(() => {
   $('.button-collapse').sideNav();
   $('.modal').modal();
 
-  
 });
 
 ReactDOM.render(<App />, document.getElementById('root'));

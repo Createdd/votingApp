@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Header = () =>
-  (<div>
+  (<header>
     <nav>
       <div className="nav-wrapper blue-grey darken-4">
         <a href="#!" className="brand-logo teal-text">
@@ -20,6 +20,6 @@ const Header = () =>
         </ul>
       </div>
     </nav>
-  </div>);
+  </header>);
 
 export default Header;

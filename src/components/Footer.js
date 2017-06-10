@@ -1,9 +1,8 @@
 import React from 'react';
 
 const Footer = () =>
-  (<div>
-    <div className="blue-grey darken-4">
-      <div className="section container teal-text">
+  (<footer className="page-footer blue-grey darken-4">
+      <div className="container teal-text">
         <div className="col s6">
           <h6>A Free Code Camp Challenge</h6>
           <h5>written by <strong>Daniel Deutsch</strong></h5>
@@ -69,7 +68,7 @@ const Footer = () =>
 					</a>
         </div>
       </div>
-    </div>
-  </div>);
+
+  </footer>);
 
 export default Footer;
