@@ -19,6 +19,7 @@ const App = () =>
         <Route component={Lost} />
       </Switch>
 
+
       <Footer />
     </div>
   </Router>);
