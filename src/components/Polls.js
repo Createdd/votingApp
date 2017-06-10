@@ -9,10 +9,35 @@ const Polls = () =>
       <strong>Created Polls</strong>
     </h1>
     <div className="row" style={{ margin: '0px', padding: '0px' }}>
-      <Poll />
-      <Poll />
-      <Poll />
-      <Poll />
+
+      <div className="col s12 m6 card-panel hoverable teal">
+        <div className="card blue-grey darken-4">
+          <Poll />
+
+          <div className="card-action">
+            <a href="#">See the poll</a>
+          </div>
+        </div>
+      </div>
+      <div className="col s12 m6 card-panel hoverable teal">
+        <div className="card blue-grey darken-4">
+          <Poll />
+
+          <div className="card-action">
+            <a href="#">See the poll</a>
+          </div>
+        </div>
+      </div>
+      <div className="col s12 m6 card-panel hoverable teal">
+        <div className="card blue-grey darken-4">
+          <Poll />
+
+          <div className="card-action">
+            <a href="#">See the poll</a>
+          </div>
+        </div>
+      </div>
+
     </div>
 
     <div className="fixed-action-btn">

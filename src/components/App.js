@@ -7,6 +7,7 @@ import Header from './Header';
 import Lost from './Lost';
 import Sidebar from './Sidebar';
 import Polls from './Polls';
+import SinglePoll from './SinglePoll';
 
 const App = () =>
   (<Router>
@@ -17,10 +18,10 @@ const App = () =>
         <Route exact path="/" component={Home} />
         <Route exact path="/signin" component={Sidebar} />
         <Route exact path="/polls" component={Polls} />
+        <Route exact path="/SinglePoll" component={SinglePoll} />
         <Route path="/topics" component={Header} />
         <Route component={Lost} />
       </Switch>
-
 
       <Footer />
     </div>
