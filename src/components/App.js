@@ -5,7 +5,8 @@ import Home from './Home';
 import Footer from './Footer';
 import Header from './Header';
 import Lost from './Lost';
-import Signin from './Signin';
+import Sidebar from './Sidebar';
+import Polls from './Polls';
 
 const App = () =>
   (<Router>
@@ -14,7 +15,8 @@ const App = () =>
 
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route exact path="/signin" component={Signin} />
+        <Route exact path="/signin" component={Sidebar} />
+        <Route exact path="/polls" component={Polls} />
         <Route path="/topics" component={Header} />
         <Route component={Lost} />
       </Switch>

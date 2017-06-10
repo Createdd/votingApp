@@ -4,9 +4,9 @@ import Login from './Login';
 import Signup from './Signup';
 import SocialMedia from './SocialMedia';
 
-const Signin = () =>
+const Sidebar = () =>
   (<div>
-    <ul id="slide-out" className="side-nav fixed blue-grey darken-4 center-align">
+    <ul id="slide-out" className="side-nav blue-grey darken-4 center-align">
       <li><Login /></li>
       <li><Signup /></li>
       <li><SocialMedia /></li>
@@ -26,4 +26,4 @@ const Signin = () =>
     </a>
   </div>);
 
-export default Signin;
+export default Sidebar;
