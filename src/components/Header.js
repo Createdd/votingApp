@@ -1,21 +1,22 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Header = () =>
   (<header>
     <nav>
       <div className="nav-wrapper blue-grey darken-4">
-        <a href="#!" className="brand-logo teal-text">
+        <Link to="/" className="brand-logo teal-text">
           <i className="material-icons left">poll</i>Dynamic Web Voting App
-				</a>
-        <a href="#!" data-activates="mobile-demo" className="button-collapse">
+				</Link>
+        <Link to="/sidebar" data-activates="mobile-demo" className="button-collapse">
           <i className="large material-icons right teal-text">play_for_work</i>
-        </a>
+        </Link>
         <ul className="right hide-on-med-and-down teal-text">
-          <li><a href="#" className="teal-text text-lighten-3">Signin/-up</a></li>
+          <li><Link to="/sidebar" className="teal-text text-lighten-3">Signin/-up</Link></li>
           <li>
-            <a href="#" className="teal-text text-lighten-3">
+            <Link to="/sidebar" className="teal-text text-lighten-3">
               <i className="material-icons right teal-text text-lighten-3">done</i>Logged in as: XXX
-						</a>
+						</Link>
           </li>
         </ul>
       </div>

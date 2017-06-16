@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 
 const Home = () =>
   (<div>
@@ -18,7 +20,7 @@ const Home = () =>
               <p>Everyone can vote, add another option and see the results</p>
             </div>
             <div className="card-action">
-              <a href="#">Check It Out</a>
+              <Link to="/polls">Check It Out</Link>
             </div>
           </div>
         </div>
@@ -31,7 +33,7 @@ const Home = () =>
               <p>Create, edit, delete and share your Poll as authenticated user</p>
             </div>
             <div className="card-action">
-              <a href="#">Log In Now</a>
+              <Link to="/sidebar">Log In Now</Link>
             </div>
           </div>
         </div>
@@ -44,7 +46,7 @@ const Home = () =>
               <p>Experience your results with updated charts and Databases</p>
             </div>
             <div className="card-action">
-              <a href="#">Check It Out</a>
+              <Link to="/polls">Check It Out</Link>
             </div>
           </div>
         </div>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import Poll from './Poll';
 import NewPoll from './NewPoll';
@@ -13,32 +14,32 @@ const Polls = () =>
       <div className="col s12 m6 card-panel hoverable teal">
         <div className="card blue-grey darken-4">
           <Poll />
-
           <div className="card-action">
-            <a href="#">See the poll</a>
+            <Link to="/dfs">See the poll</Link>
           </div>
         </div>
       </div>
+
       <div className="col s12 m6 card-panel hoverable teal">
         <div className="card blue-grey darken-4">
           <Poll />
-
           <div className="card-action">
-            <a href="#">See the poll</a>
+            <Link to="/singlepoll">See the poll</Link>
           </div>
         </div>
       </div>
+
       <div className="col s12 m6 card-panel hoverable teal">
         <div className="card blue-grey darken-4">
           <Poll />
-
           <div className="card-action">
-            <a href="#">See the poll</a>
+            <Link to="/singlepoll">See the poll</Link>
           </div>
         </div>
       </div>
 
     </div>
+
 
     <div className="fixed-action-btn">
       <a className="modal-trigger btn-floating btn-large orange pulse" href="#modal1">
