@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Poll = () =>
   (<div className="card-content teal-text">
@@ -9,5 +10,9 @@ const Poll = () =>
       <li>3</li>
     </ul>
   </div>);
+
+Poll.PropTypes = {
+  name: PropTypes.number,
+};
 
 export default Poll;
