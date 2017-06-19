@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import Poll from './Poll';
 import NewPoll from './NewPoll';
@@ -49,5 +50,9 @@ const Polls = () =>
     <NewPoll />
 
   </div>);
+
+  Poll.PropTypes = {
+  name: PropTypes.number,
+};
 
 export default Polls;
