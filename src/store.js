@@ -1,4 +1,4 @@
-import { applyMiddleware, createStore, combineReducers } from 'redux';
+import { createStore, combineReducers } from 'redux';
 
 // import reducers
 import ducks from './ducks/polls';
