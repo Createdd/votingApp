@@ -1,7 +1,7 @@
 import React from 'react';
 
-const Login = () => (
-  <div className="row ">
+const Login = () =>
+  (<div className="row ">
     <form className="input-field col s8 offset-s2">
       <div className="input-field">
         <input id="email" type="email" className="validate" />
@@ -16,11 +16,10 @@ const Login = () => (
         type="submit"
         name="action"
       >
-					Log In
-					<i className="material-icons right">flight_land</i>
+				Log In
+				<i className="material-icons right">flight_land</i>
       </button>
     </form>
-  </div>
-	);
+  </div>);
 
 export default Login;

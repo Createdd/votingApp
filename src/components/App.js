@@ -12,6 +12,7 @@ import Sidebar from './Sidebar';
 import Polls from './Polls';
 import SinglePoll from './SinglePoll';
 import NewPoll from './NewPoll';
+import Login from './Login';
 
 class App extends React.Component {
   render() {
@@ -30,8 +31,8 @@ class App extends React.Component {
           <Header />
           <main>
             <Switch>
-              <Route exact path="/" render={() => <Home />} />
-              <Route exact path="/sidebar" component={Sidebar} />
+              <Route exact path="/" component={Home} />
+              <Route exact path="/Login" component={Login} />
               <Route exact path="/polls" component={Polls} />
               <Route exact path="/singlePoll" component={SinglePoll} />
               <Route path="/topics" component={Header} />

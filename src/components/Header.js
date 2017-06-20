@@ -19,7 +19,7 @@ export default class Header extends React.Component {
               data-activates="slide-out"
               className="button-collapse teal-text text-lighten-3"
             >
-              <i className="material-icons right teal-text text-lighten-3">play_for_work</i>
+              <i className="material-icons right orange-text">play_for_work</i>
             </a>
             <Link to="/" className="brand-logo teal-text">
               <i className="material-icons left">poll</i>Dynamic Web Voting App

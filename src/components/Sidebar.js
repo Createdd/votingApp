@@ -14,10 +14,17 @@ export default class Sidebar extends React.Component {
   render() {
     return (
       <div>
-        <ul id="slide-out" className="side-nav blue-grey darken-4 center-align">
+        <ul id="slide-out" className="side-nav blue-grey darken-4 center">
+          <li><div className="userView"></div></li>
+          <div className="row" />
           <li><Login /></li>
+          <div className="row" />
+          <div className="row" />
+          <div className="row" />
           <li><Signup /></li>
+          <div className="row" />
           <li><SocialMedia /></li>
+          <div className="row" />
           <li>
             <button
               className="btn waves-effect waves-green blue-grey darken-3"
