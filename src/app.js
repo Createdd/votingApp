@@ -5,13 +5,14 @@ import { Provider } from 'react-redux';
 import App from './components/App';
 import store from './store';
 
-$(document).ready(() => {
-  $('.parallax').parallax();
-  $('.button-collapse').sideNav();
-  $('.carousel').carousel({ dist: -70 });
-  $('.button-collapse').sideNav();
-  $('.modal').modal();
-});
+export default function () {
+  $(document).ready(() => {
+    $('.parallax').parallax();
+    $('.carousel').carousel({ dist: -70 });
+    $('.button-collapse').sideNav({ draggable: false });
+    $('.modal').modal();
+  });
+}
 
 ReactDOM.render(
   <Provider store={store}>

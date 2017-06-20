@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
+import loadAgain from '../app';
 import Home from './Home';
 import Footer from './Footer';
 import Header from './Header';
@@ -10,6 +11,7 @@ import Lost from './Lost';
 import Sidebar from './Sidebar';
 import Polls from './Polls';
 import SinglePoll from './SinglePoll';
+import NewPoll from './NewPoll';
 
 class App extends React.Component {
   render() {
@@ -27,15 +29,14 @@ class App extends React.Component {
         >
           <Header />
           <main>
-            <button className="btn" onClick={this.props.addPoll}>Add Polls</button>
-            {/* <Switch>
-              <Route exact path="/" component={Home} />
+            <Switch>
+              <Route exact path="/" render={() => <Home />} />
               <Route exact path="/sidebar" component={Sidebar} />
               <Route exact path="/polls" component={Polls} />
               <Route exact path="/singlePoll" component={SinglePoll} />
               <Route path="/topics" component={Header} />
               <Route component={Lost} />
-            </Switch>*/}
+            </Switch>
           </main>
           <Footer />
         </div>
