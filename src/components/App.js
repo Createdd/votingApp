@@ -1,5 +1,6 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -30,15 +31,14 @@ class App extends React.Component {
         >
           <Header />
           <main>
-            {/* <Switch>
+            <Switch>
               <Route exact path="/" component={Home} />
               <Route exact path="/Login" component={Login} />
               <Route exact path="/polls" component={Polls} />
-              <Route exact path="/singlePoll" component={SinglePoll} />
+              <Route path="/polls/:id" component={SinglePoll} />
               <Route path="/topics" component={Header} />
               <Route component={Lost} />
-            </Switch>*/}
-            <Polls polls={polls} />
+            </Switch>
           </main>
           <Footer />
         </div>
@@ -50,5 +50,10 @@ class App extends React.Component {
 const mapStateToProps = state => ({
   polls: state.polls,
 });
+
+App.propTypes = {
+  polls: PropTypes.arrayOf(PropTypes.object).isRequired,
+  dispatch: PropTypes.func,
+};
 
 export default connect(mapStateToProps)(App);

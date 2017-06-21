@@ -1,7 +1,7 @@
 export const ExamplePolls = [
   {
     _id: {
-      $oid: '123',
+      $oid: 'ID1',
     },
     question: 'Is this the 1 question?',
     answers: ['Answer1', 'Answer2', 'Answer3', 'Answer4'],
@@ -9,18 +9,18 @@ export const ExamplePolls = [
   },
   {
     _id: {
-      $oid: '123',
+      $oid: 'ID2',
     },
     question: 'Is this the 2 question?',
-    answers: ['Answer1', 'Answer2', 'Answer3', 'Answer4'],
+    answers: ['Answer21', 'Answer22', 'Answer23', 'Answer24'],
     __v: 0,
   },
   {
     _id: {
-      $oid: '123',
+      $oid: 'ID3',
     },
     question: 'Is this the 3 question?',
-    answers: ['Answer1', 'Answer2', 'Answer3', 'Answer4'],
+    answers: ['Answer31', 'Answer32', 'Answer33', 'Answer34'],
     __v: 0,
   },
 ];
