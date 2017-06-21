@@ -16,7 +16,7 @@ import Login from './Login';
 
 class App extends React.Component {
   render() {
-    const { dispatch, questions } = this.props;
+    const { dispatch, polls } = this.props;
 		// const addQuestion = bindActionCreators(QuestionActionCreators.addQuestion, dispatch);
 
     return (
@@ -30,14 +30,15 @@ class App extends React.Component {
         >
           <Header />
           <main>
-            <Switch>
+            {/* <Switch>
               <Route exact path="/" component={Home} />
               <Route exact path="/Login" component={Login} />
               <Route exact path="/polls" component={Polls} />
               <Route exact path="/singlePoll" component={SinglePoll} />
               <Route path="/topics" component={Header} />
               <Route component={Lost} />
-            </Switch>
+            </Switch>*/}
+            <Polls polls={polls} />
           </main>
           <Footer />
         </div>

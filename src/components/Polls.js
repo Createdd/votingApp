@@ -12,42 +12,28 @@ export default class Polls extends React.Component {
   }
 
   render() {
+    const props = this.props;
+    const pollComp = props.polls.map((poll, index) =>
+      (<div>
+        <div className="col s12 m6 card-panel hoverable teal">
+          <div className="card blue-grey darken-4">
+            <Poll polls={props.polls} index={index} key={`id${poll}`} />
+            <div className="card-action">
+              <Link to="/singlepoll">See the poll</Link>
+            </div>
+          </div>
+        </div>
+      </div>),
+		);
+
     return (
       <div className="grey darken-2 center-align">
         <h1 className="blue-grey-text text-darken-4 " style={{ margin: '0px', padding: '0px' }}>
           <strong>Created Polls</strong>
         </h1>
         <div className="row" style={{ margin: '0px', padding: '0px' }}>
-
-          <div className="col s12 m6 card-panel hoverable teal">
-            <div className="card blue-grey darken-4">
-              <Poll />
-              <div className="card-action">
-                <Link to="/singlepoll">See the poll</Link>
-              </div>
-            </div>
-          </div>
-
-          <div className="col s12 m6 card-panel hoverable teal">
-            <div className="card blue-grey darken-4">
-              <Poll />
-              <div className="card-action">
-                <Link to="/singlepoll">See the poll</Link>
-              </div>
-            </div>
-          </div>
-
-          <div className="col s12 m6 card-panel hoverable teal">
-            <div className="card blue-grey darken-4">
-              <Poll />
-              <div className="card-action">
-                <Link to="/singlepoll">See the poll</Link>
-              </div>
-            </div>
-          </div>
-
+          {pollComp}
         </div>
-
         <div className="fixed-action-btn">
           <a className="modal-trigger btn-floating btn-large orange pulse" href="#modal1">
             <i className="large material-icons">add</i>
@@ -60,6 +46,6 @@ export default class Polls extends React.Component {
   }
 }
 
-Poll.PropTypes = {
-  name: PropTypes.number,
+Polls.propTypes = {
+  polls: PropTypes.arrayOf(React.PropTypes.object).isRequired,
 };
