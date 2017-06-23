@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import shortid from 'shortid';
 
 import * as PollActionCreators from '../ducks/polls';
 import Poll from './Poll';
@@ -19,7 +20,7 @@ class Polls extends React.Component {
     const addPoll = bindActionCreators(PollActionCreators.addPoll, dispatch);
 
     const pollComp = polls.map((poll, index) =>
-      (<div key={`DIV_id${index + 1}`}>
+      (<div key={shortid.generate()}>
         <div className="col s12 m6 card-panel hoverable teal">
           <div className="card blue-grey darken-4">
             <Poll polls={polls} index={index} />
