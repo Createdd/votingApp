@@ -4,6 +4,8 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
+import * as PollActionCreators from '../ducks/polls';
+
 import loadAgain from '../app';
 import Home from './Home';
 import Footer from './Footer';
@@ -18,7 +20,6 @@ import Login from './Login';
 class App extends React.Component {
   render() {
     const { dispatch, polls } = this.props;
-		// const addQuestion = bindActionCreators(QuestionActionCreators.addQuestion, dispatch);
 
     return (
       <Router>

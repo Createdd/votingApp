@@ -17,6 +17,12 @@
       {
         "useBuiltIns": true
       }
+    ],
+    [
+      "transform-class-properties"
+    ],
+    [
+      "transform-es2015-destructuring"
     ]
   ]
 }

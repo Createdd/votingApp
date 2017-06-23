@@ -1,7 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
+import * as PollActionCreators from '../ducks/polls';
 import Poll from './Poll';
 import NewPoll from './NewPoll';
 import loadAgain from '../app';
@@ -12,12 +15,14 @@ class Polls extends React.Component {
   }
 
   render() {
-    const props = this.props;
-    const pollComp = props.polls.map((poll, index) =>
+    const { dispatch, polls } = this.props;
+    const addPoll = bindActionCreators(PollActionCreators.addPoll, dispatch);
+
+    const pollComp = polls.map((poll, index) =>
       (<div key={`DIV_id${index + 1}`}>
         <div className="col s12 m6 card-panel hoverable teal">
           <div className="card blue-grey darken-4">
-            <Poll polls={props.polls} index={index} url={poll._id.$oid} />
+            <Poll polls={polls} index={index} />
             <div className="card-action">
               <Link to={`/polls/${index}`}>See the poll</Link>
             </div>
@@ -39,7 +44,7 @@ class Polls extends React.Component {
             <i className="large material-icons">add</i>
           </a>
         </div>
-        <NewPoll />
+        <NewPoll addPoll={addPoll} />
       </div>
     );
   }
@@ -48,5 +53,10 @@ class Polls extends React.Component {
 const mapStateToProps = state => ({
   polls: state.polls,
 });
+
+Polls.propTypes = {
+  polls: PropTypes.arrayOf(PropTypes.object).isRequired,
+  dispatch: PropTypes.func.isRequired,
+};
 
 export default connect(mapStateToProps)(Polls);
