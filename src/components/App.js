@@ -19,7 +19,7 @@ import Login from './Login';
 
 class App extends React.Component {
   render() {
-    const { dispatch, polls } = this.props;
+    const { dispatch, polls, loggedIn } = this.props;
 
     return (
       <Router>
@@ -50,11 +50,13 @@ class App extends React.Component {
 
 const mapStateToProps = state => ({
   polls: state.polls,
+  loggedIn: state.loggedIn,
 });
 
 App.propTypes = {
   polls: PropTypes.arrayOf(PropTypes.object).isRequired,
   dispatch: PropTypes.func,
+  loggedIn: PropTypes.bool.isRequired,
 };
 
 export default connect(mapStateToProps)(App);

@@ -27,6 +27,7 @@
     "react-redux": "^5.0.5",
     "react-router": "^4.1.1",
     "react-router-dom": "^4.1.1",
+    "react-router-redux": "^4.0.8",
     "redux": "^3.7.0",
     "shortid": "^2.2.8"
   },

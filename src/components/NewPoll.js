@@ -6,47 +6,53 @@ export default class NewPoll extends React.Component {
 		super(props);
 		this.state = {
 			question: '',
-			answers: ['Answer1', 'Answer2'],
+			answers: ['', ''],
 		};
 	}
-
-	componentWillUnmount() {
-		this.setState = {
+	reset() {
+		this.setState({
 			question: '',
-			answers: ['Answer1', 'Answer2'],
-		};
+			answers: ['', ''],
+		});
 	}
+	onChange = (e, index) => {
+		const newValue = e.target.value;
+		this.setState(oldState => ({
+			answers: oldState.answers.map((answer, ansInd) => (ansInd !== index ? answer : newValue)),
+		}));
+	};
 
 	addAnswer = () => {
-		let answers = [];
-		for (let i = 0; i < this.state.answers.length; i++) {
-			let temp = `answer${i}`;
-			answers = answers.concat(this.refs[temp].value);
-		}
-		answers = answers.concat('NewAnswer');
-		this.setState({ answers });
+		this.setState(oldState => ({
+			answers: [...oldState.answers, ''],
+		}));
 	};
 
-	addPoll = () => {
-		let answers = [];
-		for (let i = 0; i < this.state.answers.length; i++) {
-			let temp = `answer${i}`;
-			answers = answers.concat(this.refs[temp].value);
-		}
-
-		const { questionInp, newPollForm } = this.refs;
-		this.setState({ question: questionInp.value, answers }, () =>
+	addPoll = e => {
+		if (e) e.preventDefault();
+		this.setState({ question: this.refs.questionInp.value }, () =>
 			this.props.addPoll(this.state.question, this.state.answers),
 		);
-		newPollForm.reset();
+		this.refs.newPollForm.reset();
+		setTimeout(() => {
+			this.reset();
+		}, 10);
 	};
+
 	render() {
-		const answerList = this.state.answers.map((element, ind) => {
+		const answerList = this.state.answers.map((answer, ind) => {
 			return (
-				<div className="input-field col s10" key={shortid.generate()}>
+				<div className="input-field col s10" key={ind}>
 					<i className="material-icons prefix">queue</i>
-					<input id={`answer${ind}`} type="text" className="validate" ref={`answer${ind}`} />
-					<label htmlFor={`answer${ind}`}>{element}</label>
+					<input
+						id={`answer${ind}`}
+						type="text"
+						value={answer}
+						onChange={event => this.onChange(event, ind)}
+						className="validate"
+						ref={`answer${ind}`}
+					/>
+					<label htmlFor={`answer${ind}`}>New Answer</label>
 				</div>
 			);
 		});

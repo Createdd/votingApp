@@ -12,7 +12,6 @@ export default function Polls(state, action) {
           answers: action.answers,
         },
       ];
-
       return {
         ...state,
         polls: addPollsList,
