@@ -18,7 +18,6 @@ class Polls extends React.Component {
   render() {
     const { dispatch, polls } = this.props;
     const addPoll = bindActionCreators(PollActionCreators.addPoll, dispatch);
-
     const pollComp = polls.map((poll, index) =>
       (<div key={shortid.generate()}>
         <div className="col s12 m6 card-panel hoverable teal">

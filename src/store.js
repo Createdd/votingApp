@@ -5,6 +5,7 @@ import { routerReducer } from 'react-router-redux';
 import Polls from './ducks/polls';
 import Users from './ducks/users';
 
+// defaultState
 import { ExamplePolls, ExampleUsers } from './data/ExampleData';
 
 const defaultState = {
@@ -13,10 +14,12 @@ const defaultState = {
   loggedIn: false,
 };
 
-const rootReducer = combineReducers({
-  Polls,
-  Users,
-});
+// const rootReducer = combineReducers({
+//   polls,
+//   users,
+//   routing: routerReducer,
+//   loggedIn: false,
+// });
 
 const store = createStore(
 	Polls,

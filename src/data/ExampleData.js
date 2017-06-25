@@ -25,7 +25,6 @@ export const ExamplePolls = [
   },
 ];
 
-
 export const ExampleUsers = [
   {
     _id: {
@@ -59,4 +58,3 @@ export const ExampleUsers = [
     },
   },
 ];
-
