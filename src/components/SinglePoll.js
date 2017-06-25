@@ -9,34 +9,46 @@ class SinglePoll extends React.Component {
   render() {
     const props = this.props;
     return (
-      <div className="grey darken-2 center-align">
-        <div className="row">
-          <div className="col s12 m4">
+      <div className="grey darken-2">
+        <div className="row valign-wrapper">
+          <div className="col s12 m6">
             <div className="card blue-grey darken-4 hoverable">
               <Poll
                 polls={props.polls}
                 index={parseInt(props.match.params.id, 10)}
                 url={props.match.params.id}
               />
-              <div className="card-action">
-                <a href="https://twitter.com/share" className="btn blue accent-1">
-                  <i className="waves-effect material-icons right">trending_up</i>
-									Tweet Poll
-								</a>
-                <a className="waves-effect btn red lighten-2">
-                  <i className="material-icons right">report_problem</i>
-									DELETE Poll
-								</a>
-              </div>
+              <div className="card-action" />
             </div>
-            <Link to="/polls" className="waves-effect btn green lighten-2">Back to all Polls</Link>
+
           </div>
 
-          <div className="col s12 m8">
+          <div className="col s12 m6">
             <Chart />
+          </div>
+        </div>
+
+        <div className="row">
+          <div className="col s8">
+            <a href="https://twitter.com/share" className="btn blue accent-1">
+              <i className="waves-effect material-icons right">trending_up</i>
+							Tweet Poll
+						</a>
+            <a className="waves-effect btn red lighten-2">
+              <i className="material-icons right">report_problem</i>
+							DELETE Poll
+						</a>
+          </div>
+          <div className="col s4">
+            <Link to="/polls" className="waves-effect btn green lighten-2 right-align">
+							Back to all Polls
+						</Link>
           </div>
 
         </div>
+        <div className="row grey darken-2" />
+        <div className="row grey darken-2" />
+        <div className="row grey darken-2" />
       </div>
     );
   }
