@@ -4,7 +4,11 @@ export const ExamplePolls = [
       $oid: 'ID1',
     },
     question: 'Is this the 1 question?',
-    answers: ['Answer1', 'Answer2', 'Answer3', 'Answer4'],
+    answers: [
+			{ answer: 'Answer1', votes: 10 },
+			{ answer: 'Answer2', votes: 12 },
+			{ answer: 'Answer3', votes: 30 },
+    ],
     __v: 0,
   },
   {
@@ -12,7 +16,11 @@ export const ExamplePolls = [
       $oid: 'ID2',
     },
     question: 'Is this the 2 question?',
-    answers: ['Answer21', 'Answer22', 'Answer23', 'Answer24'],
+    answers: [
+			{ answer: 'Answer21', votes: 10 },
+			{ answer: 'Answer22', votes: 12 },
+			{ answer: 'Answer23', votes: 30 },
+    ],
     __v: 0,
   },
   {
@@ -20,7 +28,11 @@ export const ExamplePolls = [
       $oid: 'ID3',
     },
     question: 'Is this the 3 question?',
-    answers: ['Answer31', 'Answer32', 'Answer33', 'Answer34'],
+    answers: [
+			{ answer: 'Answer31', votes: 10 },
+			{ answer: 'Answer32', votes: 12 },
+			{ answer: 'Answer33', votes: 30 },
+    ],
     __v: 0,
   },
 ];

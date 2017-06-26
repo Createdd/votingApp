@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
+
 import Poll from './Poll';
 import Chart from './Chart';
 
@@ -24,7 +25,11 @@ class SinglePoll extends React.Component {
           </div>
 
           <div className="col s12 m6">
-            <Chart />
+            <Chart
+              polls={props.polls}
+              index={parseInt(props.match.params.id, 10)}
+              url={props.match.params.id}
+            />
           </div>
         </div>
 

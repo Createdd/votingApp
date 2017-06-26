@@ -1,42 +1,48 @@
 import React from 'react';
-// import { PieChart, Pie, Cell } from 'recharts';
-
+import PropTypes from 'prop-types';
 import { Chart } from 'react-google-charts';
 
-import { ExamplePolls } from '../data/ExampleData';
+let basic = [['Answer', 'Votes']];
 
-const data = [
-	['Task', 'Hours per Day'],
-	['Work', 11],
-	['Eat', 2],
-	['Win', 2],
-	['TV', 2],
-	['Sleep', 7],
-];
+export default class resultChart extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  componentWillUnmount() {
+    basic = [['Answer', 'Votes']];
+  }
+  render() {
+    const props  = this.props;
+    (() => props.polls[props.index].answers.map(ans => basic.push([ans.answer, ans.votes])))();
+    return (
+      <Chart
+        chartType="PieChart"
+        data={basic}
+        options={{
+          title: `${props.polls[props.index].question}`,
+          pieSliceText: 'label',
+          slices: {
+            1: { offset: 0.1 },
+            2: { offset: 0.1 },
+            3: { offset: 0.1 },
+            4: { offset: 0.1 },
+          },
+          is3D: true,
+          backgroundColor: '#616161',
+        }}
+        graph_id="PieChart"
+        width="100%"
+        height="400px"
+        legend_toggle
+      />
+    );
+  }
+}
 
-const resultChart = () =>
-  (<Chart
-    chartType="PieChart"
-    data={data}
-    options={{
-      title: 'Chart for: Answer X',
-      pieSliceText: 'label',
-      slices: {
-        1: { offset: 0.1 },
-        2: { offset: 0.1 },
-        3: { offset: 0.1 },
-        4: { offset: 0.1 },
-      },
-      is3D: true,
-      backgroundColor: '#616161',
-    }}
-    graph_id="PieChart"
-    width="100%"
-    height="400px"
-    legend_toggle
-  />);
-
-export default resultChart;
+resultChart.propTypes = {
+  polls: PropTypes.arrayOf(PropTypes.object).isRequired,
+  index: PropTypes.number.isRequired,
+};
 
 // <img
 //       className="responsive-img"

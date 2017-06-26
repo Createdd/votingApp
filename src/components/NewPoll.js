@@ -6,25 +6,31 @@ export default class NewPoll extends React.Component {
 		super(props);
 		this.state = {
 			question: '',
-			answers: ['', ''],
+			answers: [{ answer: '', votes: 10 }, { answer: '', votes: 10 }],
 		};
 	}
 	reset() {
 		this.setState({
 			question: '',
-			answers: ['', ''],
+			answers: [{ answer: '', votes: 10 }, { answer: '', votes: 10 }],
 		});
 	}
 	onChange = (e, index) => {
 		const newValue = e.target.value;
 		this.setState(oldState => ({
-			answers: oldState.answers.map((answer, ansInd) => (ansInd !== index ? answer : newValue)),
+			answers: oldState.answers.map((answ, ansInd) => {
+				if (ansInd !== index) {
+					return{ answer: answ.answer, votes: 10};
+				} else {
+					return{ answer: newValue, votes: 10};
+				}
+			}),
 		}));
 	};
 
 	addAnswer = () => {
 		this.setState(oldState => ({
-			answers: [...oldState.answers, ''],
+			answers: [...oldState.answers, { answer: '', votes: 10 }],
 		}));
 	};
 
@@ -40,14 +46,14 @@ export default class NewPoll extends React.Component {
 	};
 
 	render() {
-		const answerList = this.state.answers.map((answer, ind) => {
+		const answerList = this.state.answers.map((aw, ind) => {
 			return (
 				<div className="input-field col s10" key={ind}>
 					<i className="material-icons prefix">queue</i>
 					<input
 						id={`answer${ind}`}
 						type="text"
-						value={answer}
+						value={aw.answer}
 						onChange={event => this.onChange(event, ind)}
 						className="validate"
 						ref={`answer${ind}`}
