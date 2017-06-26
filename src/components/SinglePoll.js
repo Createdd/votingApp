@@ -11,7 +11,7 @@ class SinglePoll extends React.Component {
     const props = this.props;
     return (
       <div className="grey darken-2">
-        <div className="row valign-wrapper">
+        <div className="row">
           <div className="col s12 m6">
             <div className="card blue-grey darken-4 hoverable">
               <Poll
@@ -34,7 +34,7 @@ class SinglePoll extends React.Component {
         </div>
 
         <div className="row">
-          <div className="col s8">
+          <div className="col s12 m8">
             <a href="https://twitter.com/share" className="btn blue accent-1">
               <i className="waves-effect material-icons right">trending_up</i>
 							Tweet Poll
@@ -44,7 +44,7 @@ class SinglePoll extends React.Component {
 							DELETE Poll
 						</a>
           </div>
-          <div className="col s4">
+          <div className="col s12 m4">
             <Link to="/polls" className="waves-effect btn green lighten-2 right-align">
 							Back to all Polls
 						</Link>
