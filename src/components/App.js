@@ -30,7 +30,7 @@ class App extends React.Component {
             flexDirection: 'column',
           }}
         >
-          <Header />
+          <Header polls={polls} loggedIn={loggedIn} />
           <main>
             <Switch>
               <Route exact path="/" component={Home} />
