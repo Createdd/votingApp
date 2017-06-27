@@ -1,21 +1,24 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { bindActionCreators } from 'redux';
 
-
+import * as PollActionCreators from '../ducks/polls';
 import Poll from './Poll';
 import Chart from './Chart';
 
 class SinglePoll extends React.Component {
   render() {
+    const { dispatch, polls } = this.props;
     const props = this.props;
+    const deletePoll = bindActionCreators(PollActionCreators.deletePoll, dispatch);
     return (
       <div className="grey darken-2">
         <div className="row">
           <div className="col s12 m6">
             <div className="card blue-grey darken-4 hoverable">
               <Poll
-                polls={props.polls}
+                polls={polls}
                 index={parseInt(props.match.params.id, 10)}
                 url={props.match.params.id}
               />
@@ -26,7 +29,7 @@ class SinglePoll extends React.Component {
 
           <div className="col s12 m6">
             <Chart
-              polls={props.polls}
+              polls={polls}
               index={parseInt(props.match.params.id, 10)}
               url={props.match.params.id}
             />
@@ -39,10 +42,14 @@ class SinglePoll extends React.Component {
               <i className="waves-effect material-icons right">trending_up</i>
 							Tweet Poll
 						</a>
-            <a className="waves-effect btn red lighten-2">
+            <Link
+              to="/polls"
+              className="waves-effect btn red lighten-2"
+              onClick={() => deletePoll(parseInt(props.match.params.id, 10))}
+            >
               <i className="material-icons right">report_problem</i>
 							DELETE Poll
-						</a>
+						</Link>
           </div>
           <div className="col s12 m4">
             <Link to="/polls" className="waves-effect btn green lighten-2 right-align">
