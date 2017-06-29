@@ -1,6 +1,7 @@
 // Actions
 const ADD_POLL = 'polls/ADD_POLL';
 const DELETE_POLL = 'polls/DELETE_POLL';
+const UPDATE_VOTES = 'polls/UPDATE_VOTES';
 const LOGIN = 'polls/LOGIN';
 const LOGOUT = 'polls/LOGOUT';
 
@@ -28,6 +29,25 @@ export default function Polls(state, action) {
         ...state,
         polls: removeQuestionList,
       };
+    case UPDATE_VOTES:
+      const updateVotesList = state.polls.map((poll, ind) => {
+        if (ind === action.question) {
+          return {
+            ...poll,
+            answers: poll.answers.map((ans, index) => {
+              if (index === action.index) {
+                return { ...ans, votes: ans.votes + action.votes };
+              }
+              return ans;
+            }),
+          };
+        }
+        return poll;
+      });
+      return {
+        ...state,
+        polls: updateVotesList,
+      };
     case LOGIN:
       return {
         ...state,
@@ -53,6 +73,13 @@ export const addPoll = (question, answers) => ({
 export const deletePoll = index => ({
   type: DELETE_POLL,
   index,
+});
+
+export const updateVotes = (question, index, votes) => ({
+  type: UPDATE_VOTES,
+  question,
+  index,
+  votes,
 });
 
 export const login = () => ({

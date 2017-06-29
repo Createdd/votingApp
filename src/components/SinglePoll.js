@@ -21,6 +21,7 @@ class SinglePoll extends React.Component {
                 polls={polls}
                 index={parseInt(props.match.params.id, 10)}
                 url={props.match.params.id}
+                
               />
               <div className="card-action" />
             </div>
