@@ -8,11 +8,10 @@ export default class resultChart extends React.Component {
   constructor(props) {
     super(props);
   }
-  componentWillUnmount() {
-    basic = [['Answer', 'Votes']];
-  }
+
   render() {
-    const props  = this.props;
+    basic = [['Answer', 'Votes']];
+    const props = this.props;
     (() => props.polls[props.index].answers.map(ans => basic.push([ans.answer, ans.votes])))();
     return (
       <Chart

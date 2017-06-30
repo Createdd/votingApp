@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
@@ -12,6 +13,8 @@ class SinglePoll extends React.Component {
     const { dispatch, polls } = this.props;
     const props = this.props;
     const deletePoll = bindActionCreators(PollActionCreators.deletePoll, dispatch);
+    const updateVotes = bindActionCreators(PollActionCreators.updateVotes, dispatch);
+
     return (
       <div className="grey darken-2">
         <div className="row">
@@ -21,7 +24,7 @@ class SinglePoll extends React.Component {
                 polls={polls}
                 index={parseInt(props.match.params.id, 10)}
                 url={props.match.params.id}
-                
+                updateVotes={updateVotes}
               />
               <div className="card-action" />
             </div>
@@ -70,5 +73,10 @@ class SinglePoll extends React.Component {
 const mapStateToProps = state => ({
   polls: state.polls,
 });
+
+SinglePoll.propTypes = {
+  polls: PropTypes.arrayOf(PropTypes.object).isRequired,
+  dispatch: PropTypes.func.isRequired,
+};
 
 export default connect(mapStateToProps)(SinglePoll);
