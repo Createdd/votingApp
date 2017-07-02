@@ -4,7 +4,7 @@
 	"main": "app.js",
 	"author": "Daniel Deutsch <deudan1010@gmail.com>",
 	"scripts": {
-		"start": "node src/serverSide/app.js",
+		"start": "babel-node src/serverSide/app.js",
 		"dev": "npm-run-all --parallel dev:*",
 		"dev:client": "webpack-dev-server --hot",
 		"dev:server": "NODE_ENV=development babel-node src/serverSide/app.js",

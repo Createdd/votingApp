@@ -6,6 +6,8 @@ import { Strategy as LocalStrategy } from 'passport-local';
 import constants from './constants';
 import User from '../models/user';
 
+console.log(constants);
+
 export default function (passport) {
   passport.serializeUser((user, done) => {
     console.log(`___SERIALIZE{user}+++${user}`);

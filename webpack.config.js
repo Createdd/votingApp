@@ -9,7 +9,7 @@ module.exports = {
   },
   output: {
 		// path: __dirname,
-    filename: 'bundle.js',
+    filename: 'public/dist/bundle.js',
 		// libraryTarget: 'commonjs2',
   },
   devServer: {

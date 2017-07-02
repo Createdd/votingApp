@@ -45,9 +45,11 @@ router.param('aID', (req, res, next, id) => {
 });
 
 // GET,POST, DELETE Routes
-router.get('/', (req, res) => {
-  res.render('index.ejs');
-});
+// router.get('/', (req, res) => {
+//   res.render('index.ejs');
+// });
+
+
 
 router.get('/polls', (req, res) => {
   Poll.find({}, (err, polls, next) => {

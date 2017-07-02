@@ -4,6 +4,7 @@ import compression from 'compression';
 import helmet from 'helmet';
 import session from 'express-session';
 import MongoStore from 'connect-mongo';
+import express from 'express';
 
 import passport from 'passport';
 import passportConfig from './passport';
@@ -20,7 +21,7 @@ export default (app) => {
     app.use(helmet());
   }
 
-  app.set('view engine', 'ejs');
+  app.use(express.static('public'));
 
   app.use(morgan('dev'));
   app.use(bodyParser.json());
@@ -44,7 +45,7 @@ export default (app) => {
 
   app.use('/', routes);
 
-// keep next to stay in middleware stack
+	// keep next to stay in middleware stack
   app.use((err, req, res, next) => {
     res.status(err.status || 500).json({
       error: {

@@ -9,7 +9,7 @@ const testConfig = {
   MONGO_URL: 'mongodb://localhost/votingAppDb-test',
 };
 const prodConfig = {
-  MONGO_URL: 'mongodb://localhost/votingAppDb-prod',
+  MONGO_URL: `mongodb://${process.env.DB_USER}:${process.env.DB_PASS}@ds141368.mlab.com:41368/votingapp`,
 };
 
 const defaultConfig = {
