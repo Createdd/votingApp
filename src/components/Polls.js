@@ -16,7 +16,7 @@ class Polls extends React.Component {
   }
 
   render() {
-    const { dispatch, polls } = this.props;
+    const { dispatch, polls, loggedIn } = this.props;
     const addPoll = bindActionCreators(PollActionCreators.addPoll, dispatch);
     const updateVotes = bindActionCreators(PollActionCreators.updateVotes, dispatch);
 
@@ -33,6 +33,18 @@ class Polls extends React.Component {
       </div>),
 		);
 
+    const newPollBtn = () => {
+      if (loggedIn) {
+        return (
+          <div className="fixed-action-btn">
+            <a className="modal-trigger btn-floating btn-large orange pulse" href="#modal1">
+              <i className="large material-icons">add</i>
+            </a>
+          </div>
+        );
+      }
+    };
+
     return (
       <div className="grey darken-2 center-align">
         <h1 className="blue-grey-text text-darken-4 " style={{ margin: '0px', padding: '0px' }}>
@@ -41,11 +53,7 @@ class Polls extends React.Component {
         <div className="row" style={{ margin: '0px', padding: '0px' }}>
           {pollComp}
         </div>
-        <div className="fixed-action-btn">
-          <a className="modal-trigger btn-floating btn-large orange pulse" href="#modal1">
-            <i className="large material-icons">add</i>
-          </a>
-        </div>
+        {newPollBtn()}
         <NewPoll addPoll={addPoll} />
       </div>
     );
@@ -54,11 +62,13 @@ class Polls extends React.Component {
 
 const mapStateToProps = state => ({
   polls: state.polls,
+  loggedIn: state.loggedIn,
 });
 
 Polls.propTypes = {
   polls: PropTypes.arrayOf(PropTypes.object).isRequired,
   dispatch: PropTypes.func.isRequired,
+  loggedIn: PropTypes.bool.isRequired,
 };
 
 export default connect(mapStateToProps)(Polls);

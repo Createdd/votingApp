@@ -10,10 +10,25 @@ import Chart from './Chart';
 
 class SinglePoll extends React.Component {
   render() {
-    const { dispatch, polls } = this.props;
+    const { dispatch, polls, loggedIn } = this.props;
     const props = this.props;
     const deletePoll = bindActionCreators(PollActionCreators.deletePoll, dispatch);
     const updateVotes = bindActionCreators(PollActionCreators.updateVotes, dispatch);
+
+    const renderDeleteBtn = () => {
+      if (loggedIn) {
+        return (
+          <Link
+            to="/polls"
+            className="waves-effect btn red lighten-2"
+            onClick={() => deletePoll(parseInt(props.match.params.id, 10))}
+          >
+            <i className="material-icons right">report_problem</i>
+						DELETE Poll
+					</Link>
+        );
+      }
+    };
 
     return (
       <div className="grey darken-2">
@@ -28,7 +43,6 @@ class SinglePoll extends React.Component {
               />
               <div className="card-action" />
             </div>
-
           </div>
 
           <div className="col s12 m6">
@@ -46,21 +60,13 @@ class SinglePoll extends React.Component {
               <i className="waves-effect material-icons right">trending_up</i>
 							Tweet Poll
 						</a>
-            <Link
-              to="/polls"
-              className="waves-effect btn red lighten-2"
-              onClick={() => deletePoll(parseInt(props.match.params.id, 10))}
-            >
-              <i className="material-icons right">report_problem</i>
-							DELETE Poll
-						</Link>
+            {renderDeleteBtn()}
           </div>
           <div className="col s12 m4">
             <Link to="/polls" className="waves-effect btn green lighten-2 right-align">
 							Back to all Polls
 						</Link>
           </div>
-
         </div>
         <div className="row grey darken-2" />
         <div className="row grey darken-2" />
@@ -72,11 +78,13 @@ class SinglePoll extends React.Component {
 
 const mapStateToProps = state => ({
   polls: state.polls,
+  loggedIn: state.loggedIn,
 });
 
 SinglePoll.propTypes = {
   polls: PropTypes.arrayOf(PropTypes.object).isRequired,
   dispatch: PropTypes.func.isRequired,
+  loggedIn: PropTypes.bool.isRequired,
 };
 
 export default connect(mapStateToProps)(SinglePoll);
