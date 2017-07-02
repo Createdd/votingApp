@@ -15,13 +15,13 @@
 <a href="https://ddcs-votingapp.herokuapp.com/" target="_blank">https://ddcs-votingapp.herokuapp.com/</a>
 
 ## User stories:
-- As an authenticated user, I can keep my polls and come back later to access them.
-- As an authenticated user, I can share my polls with my friends.
-- As an authenticated user, I can see the aggregate results of my polls.
-- As an authenticated user, I can delete polls that I decide I don't want anymore.
-- As an authenticated user, I can create a poll with any number of possible items.
-- As an unauthenticated or authenticated user, I can see and vote on everyone's polls.
-- As an unauthenticated or authenticated user, I can see the results of polls in chart form. (This could be implemented using Chart.js or Google Charts.)
-- As an authenticated user, if I don't like the options on a poll, I can create a new option.
+- [X] As an authenticated user, I can keep my polls and come back later to access them.
+- [X] As an authenticated user, I can share my polls with my friends.
+- [X] As an authenticated user, I can see the aggregate results of my polls.
+- [X] As an authenticated user, I can delete polls that I decide I don't want anymore.
+- [X] As an authenticated user, I can create a poll with any number of possible items.
+- [X] As an unauthenticated or authenticated user, I can see and vote on everyone's polls.
+- [X] As an unauthenticated or authenticated user, I can see the results of polls in chart form. (This could be implemented using Chart.js or Google Charts.)
+- [X] As an authenticated user, if I don't like the options on a poll, I can create a new option.
 
 [![forthebadge](http://forthebadge.com/images/badges/built-with-love.svg)](http://forthebadge.com) [![forthebadge](http://forthebadge.com/images/badges/kinda-sfw.svg)](http://forthebadge.com) [![forthebadge](http://forthebadge.com/images/badges/as-seen-on-tv.svg)](http://forthebadge.com)
