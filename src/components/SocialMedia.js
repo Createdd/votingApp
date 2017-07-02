@@ -7,12 +7,13 @@ const SocialMedia = (props) => {
   };
   return (
     <div className="row">
-      <img
-        className="responsive-img waves-effect"
-        src="./img/twitterSignin.png"
-        alt="pic"
-        onClick={passToProps}
-      />
+      <a href="/api/auth/twitter">
+        <img
+          className="responsive-img waves-effect"
+          src="./img/twitterSignin.png"
+          alt="pic"
+        />
+      </a>
     </div>
   );
 };

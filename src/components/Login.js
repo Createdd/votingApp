@@ -3,7 +3,7 @@ import React from 'react';
 const Login = (props) => {
   const passToProps = (e) => {
     if (e) e.preventDefault();
-    props.login(true);
+    props.login({ name: 'daniel' });
   };
   return (
     <div className="row ">

@@ -37,36 +37,15 @@ export const ExamplePolls = [
   },
 ];
 
-export const ExampleUsers = [
-  {
-    _id: {
-      $oid: '123',
-    },
-    local: {
-      password: 'password',
-      email: 'qw',
-    },
-    __v: 0,
+export const ExampleUser = {
+  _id: {
+    $oid: '123',
   },
-  {
-    _id: {
-      $oid: '123',
-    },
-    local: {
-      password: 'password',
-      email: 'as',
-    },
-    __v: 0,
+  twitter: {
+    displayName: 'Daniel Deutsch',
+    username: 'DDCreationStudi',
+    token: 'token1',
+    id: '12345',
   },
-  {
-    _id: {
-      $oid: '123',
-    },
-    twitter: {
-      displayName: 'Daniel Deutsch',
-      username: 'DDCreationStudi',
-      token: 'token1',
-      id: '12345',
-    },
-  },
-];
+  loggedIn: false,
+};

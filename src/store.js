@@ -2,27 +2,24 @@ import { createStore, combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 
 // import reducers
-import Polls from './ducks/polls';
-import Users from './ducks/users';
+import polls from './ducks/polls';
+import user from './ducks/user';
 
 // defaultState
-import { ExamplePolls, ExampleUsers } from './data/ExampleData';
+import { ExamplePolls, ExampleUser } from './data/ExampleData';
 
 const defaultState = {
   polls: ExamplePolls,
-  users: ExampleUsers,
-  loggedIn: false,
+  user: {},
 };
 
-// const rootReducer = combineReducers({
-//   polls,
-//   users,
-//   routing: routerReducer,
-//   loggedIn: false,
-// });
+const rootReducer = combineReducers({
+  polls,
+  user,
+});
 
 const store = createStore(
-	Polls,
+	rootReducer,
 	defaultState,
 	window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
 );

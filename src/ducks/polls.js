@@ -3,11 +3,10 @@ const ADD_POLL = 'polls/ADD_POLL';
 const ADD_EDIT_POLL = 'polls/ADD_EDIT_POLL';
 const DELETE_POLL = 'polls/DELETE_POLL';
 const UPDATE_VOTES = 'polls/UPDATE_VOTES';
-const LOGIN = 'polls/LOGIN';
-const LOGOUT = 'polls/LOGOUT';
+
 
 // reducer
-export default function Polls(state, action) {
+export default function Polls(state = [], action) {
   switch (action.type) {
     case ADD_POLL:
       const addPollsList = [
@@ -63,16 +62,6 @@ export default function Polls(state, action) {
       return {
         ...state,
         polls: updateVotesList,
-      };
-    case LOGIN:
-      return {
-        ...state,
-        loggedIn: true,
-      };
-    case LOGOUT:
-      return {
-        ...state,
-        loggedIn: false,
       };
     default:
       return state;

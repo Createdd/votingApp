@@ -31,7 +31,7 @@ export default (app) => {
   app.use(
 		session({
   secret: 'SessionSecret1',
-  name: 'NameForCookie',
+  name: 'Session',
   resave: true,
   saveUninitialized: true,
   store: new MongoConnect({

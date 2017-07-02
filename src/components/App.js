@@ -50,7 +50,7 @@ class App extends React.Component {
 
 const mapStateToProps = state => ({
   polls: state.polls,
-  loggedIn: state.loggedIn,
+  loggedIn: state.user.loggedIn,
 });
 
 App.propTypes = {
