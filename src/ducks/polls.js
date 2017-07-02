@@ -1,5 +1,6 @@
 // Actions
 const ADD_POLL = 'polls/ADD_POLL';
+const ADD_EDIT_POLL = 'polls/ADD_EDIT_POLL';
 const DELETE_POLL = 'polls/DELETE_POLL';
 const UPDATE_VOTES = 'polls/UPDATE_VOTES';
 const LOGIN = 'polls/LOGIN';
@@ -19,6 +20,21 @@ export default function Polls(state, action) {
       return {
         ...state,
         polls: addPollsList,
+      };
+    case ADD_EDIT_POLL:
+      const addEditPoll = state.polls.map((poll, ind) => {
+        if (ind === action.questionInd) {
+          return {
+            ...poll,
+            answers: poll.answers.concat(action.answers),
+          };
+        }
+
+        return poll;
+      });
+      return {
+        ...state,
+        polls: addEditPoll,
       };
     case DELETE_POLL:
       const removeQuestionList = [
@@ -67,6 +83,12 @@ export default function Polls(state, action) {
 export const addPoll = (question, answers) => ({
   type: ADD_POLL,
   question,
+  answers,
+});
+
+export const addEditPoll = (questionInd, answers) => ({
+  type: ADD_EDIT_POLL,
+  questionInd,
   answers,
 });
 
