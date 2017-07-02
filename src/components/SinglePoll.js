@@ -31,7 +31,7 @@ class SinglePoll extends React.Component {
     };
 
     return (
-      <div className="grey darken-2">
+      <div className="grey darken-2" style={{ margin: '0px', padding: '0px', height: '100%' }}>
         <div className="row">
           <div className="col s12 m6">
             <div className="card blue-grey darken-4 hoverable">
@@ -68,8 +68,6 @@ class SinglePoll extends React.Component {
 						</Link>
           </div>
         </div>
-        <div className="row grey darken-2" />
-        <div className="row grey darken-2" />
         <div className="row grey darken-2" />
       </div>
     );
