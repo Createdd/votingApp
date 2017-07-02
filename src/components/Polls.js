@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import shortid from 'shortid';
 
-import * as PollActionCreators from '../ducks/polls';
+import { updateVotes, addPoll, fetchPolls } from '../ducks/polls';
 import Poll from './Poll';
 import NewPoll from './NewPoll';
 import loadAgain from '../app';
@@ -13,12 +13,11 @@ import loadAgain from '../app';
 class Polls extends React.Component {
   componentDidMount() {
     loadAgain();
+    this.props.fetchPolls();
   }
 
   render() {
-    const { dispatch, polls, loggedIn } = this.props;
-    const addPoll = bindActionCreators(PollActionCreators.addPoll, dispatch);
-    const updateVotes = bindActionCreators(PollActionCreators.updateVotes, dispatch);
+    const { polls, loggedIn, updateVotes, addPoll } = this.props;
 
     const pollComp = polls.map((poll, index) =>
       (<div key={shortid.generate()}>
@@ -71,4 +70,4 @@ Polls.propTypes = {
   loggedIn: PropTypes.bool.isRequired,
 };
 
-export default connect(mapStateToProps)(Polls);
+export default connect(mapStateToProps, { addPoll, updateVotes, fetchPolls })(Polls);

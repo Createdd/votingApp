@@ -1,13 +1,17 @@
+import axios from 'axios';
+
 // Actions
+const FETCHED_POLLS = 'polls/FETCHED_POLLS';
 const ADD_POLL = 'polls/ADD_POLL';
 const ADD_EDIT_POLL = 'polls/ADD_EDIT_POLL';
 const DELETE_POLL = 'polls/DELETE_POLL';
 const UPDATE_VOTES = 'polls/UPDATE_VOTES';
 
-
 // reducer
 export default function Polls(state = [], action) {
   switch (action.type) {
+    case FETCHED_POLLS:
+      return action.polls;
     case ADD_POLL:
       const addPollsList = [
         ...state.polls,
@@ -93,10 +97,23 @@ export const updateVotes = (question, index, votes) => ({
   votes,
 });
 
-export const login = () => ({
-  type: LOGIN,
-});
+function receivePolls(polls) {
+  return {
+    type: FETCHED_POLLS,
+    polls,
+  };
+}
 
-export const logout = () => ({
-  type: LOGOUT,
+export function fetchPolls() {
+  return function (dispatch) {
+    return axios
+			.get('/api/polls')
+			.then((response) => {
+  dispatch(receivePolls(response.data));
+  console.log(response);
+})
+			.catch((error) => {
+  console.log(error);
 });
+  };
+}
