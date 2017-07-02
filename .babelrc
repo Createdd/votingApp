@@ -7,7 +7,9 @@
           "node": "current"
         }
       }
-    ]
+    ],
+    "react",
+    "es2015"
   ],
   "plugins": [
     [
@@ -15,6 +17,12 @@
       {
         "useBuiltIns": true
       }
+    ],
+    [
+      "transform-class-properties",
+    ],
+    [
+      "transform-es2015-destructuring"
     ]
   ]
 }

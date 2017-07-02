@@ -1,23 +1,22 @@
-/* eslint-disable no-console */
-import express from 'express';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
 
-import constants from './config/constants';
-import './config/database';
-import middlewaresConfig from './config/middlewares';
+import App from './components/App';
+import store from './store';
 
-const app = express();
-middlewaresConfig(app);
+export default function () {
+  $(document).ready(() => {
+    $('.parallax').parallax();
+    $('.carousel').carousel({ dist: -70 });
+    $('.button-collapse').sideNav({ draggable: false });
+    $('.modal').modal();
+  });
+}
 
-app.listen(constants.PORT, (err) => {
-  if (err) {
-    throw err;
-  } else {
-    console.log(
-			`
-    Server is running on port: ${constants.PORT}
-    ---
-    Running on ${process.env.NODE_ENV}
-    `,
-		);
-  }
-});
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+	document.getElementById('root'),
+);
