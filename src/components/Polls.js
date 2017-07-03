@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import shortid from 'shortid';
 
 import { updateVotes, addPoll, fetchPolls } from '../ducks/polls';
@@ -17,7 +16,7 @@ class Polls extends React.Component {
   }
 
   render() {
-    const { polls, loggedIn, updateVotes, addPoll } = this.props;
+    const { polls, loggedIn } = this.props;
 
     const pollComp = polls.map((poll, index) =>
       (<div key={shortid.generate()}>
@@ -42,6 +41,7 @@ class Polls extends React.Component {
           </div>
         );
       }
+      return false;
     };
 
     return (
@@ -66,7 +66,7 @@ const mapStateToProps = state => ({
 
 Polls.propTypes = {
   polls: PropTypes.arrayOf(PropTypes.object).isRequired,
-  dispatch: PropTypes.func.isRequired,
+  fetchPolls: PropTypes.func.isRequired,
   loggedIn: PropTypes.bool.isRequired,
 };
 

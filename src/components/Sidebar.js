@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import Login from './Login';
@@ -70,5 +71,11 @@ const mapStateToProps = state => ({
   polls: state.polls,
   loggedIn: state.user.loggedIn,
 });
+
+Sidebar.propTypes = {
+  loggedIn: PropTypes.bool.isRequired,
+  login: PropTypes.func.isRequired,
+  logout: PropTypes.func.isRequired,
+};
 
 export default connect(mapStateToProps, { login, logout })(Sidebar);

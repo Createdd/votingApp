@@ -12,7 +12,7 @@ export default function Polls(state = [], action) {
   switch (action.type) {
     case FETCHED_POLLS:
       return action.polls;
-    case ADD_POLL:
+    case ADD_POLL: {
       const addPollsList = [
         ...state.polls,
         {
@@ -24,7 +24,8 @@ export default function Polls(state = [], action) {
         ...state,
         polls: addPollsList,
       };
-    case ADD_EDIT_POLL:
+    }
+    case ADD_EDIT_POLL: {
       const addEditPoll = state.polls.map((poll, ind) => {
         if (ind === action.questionInd) {
           return {
@@ -39,7 +40,8 @@ export default function Polls(state = [], action) {
         ...state,
         polls: addEditPoll,
       };
-    case DELETE_POLL:
+    }
+    case DELETE_POLL: {
       const removeQuestionList = [
         ...state.polls.slice(0, action.index),
         ...state.polls.slice(action.index + 1),
@@ -48,7 +50,8 @@ export default function Polls(state = [], action) {
         ...state,
         polls: removeQuestionList,
       };
-    case UPDATE_VOTES:
+    }
+    case UPDATE_VOTES: {
       const updateVotesList = state.polls.map((poll, ind) => {
         if (ind === action.question) {
           return {
@@ -67,6 +70,7 @@ export default function Polls(state = [], action) {
         ...state,
         polls: updateVotesList,
       };
+    }
     default:
       return state;
   }
@@ -105,8 +109,7 @@ function receivePolls(polls) {
 }
 
 export function fetchPolls() {
-  return function (dispatch) {
-    return axios
+  return dispatch => axios
 			.get('/api/polls')
 			.then((response) => {
   dispatch(receivePolls(response.data));
@@ -115,5 +118,4 @@ export function fetchPolls() {
 			.catch((error) => {
   console.log(error);
 });
-  };
 }

@@ -2,9 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { bindActionCreators } from 'redux';
 
-import * as PollActionCreators from '../ducks/polls';
+import { deletePoll, updateVotes, addEditPoll } from '../ducks/polls';
 import Poll from './Poll';
 import Chart from './Chart';
 import NewAnswer from './NewAnswer';
@@ -15,11 +14,8 @@ class SinglePoll extends React.Component {
     loadAgain();
   }
   render() {
-    const { dispatch, polls, loggedIn } = this.props;
+    const { polls, loggedIn, deletePoll, updateVotes, addEditPoll } = this.props;
     const props = this.props;
-    const deletePoll = bindActionCreators(PollActionCreators.deletePoll, dispatch);
-    const updateVotes = bindActionCreators(PollActionCreators.updateVotes, dispatch);
-    const addEditPoll = bindActionCreators(PollActionCreators.addEditPoll, dispatch);
 
     const renderDeleteBtn = () => {
       if (loggedIn) {
@@ -34,6 +30,7 @@ class SinglePoll extends React.Component {
 					</Link>
         );
       }
+      return false;
     };
 
     const editPollBtn = () => {
@@ -44,6 +41,7 @@ class SinglePoll extends React.Component {
 					</a>
         );
       }
+      return false;
     };
 
     return (
@@ -103,8 +101,10 @@ const mapStateToProps = state => ({
 
 SinglePoll.propTypes = {
   polls: PropTypes.arrayOf(PropTypes.object).isRequired,
-  dispatch: PropTypes.func.isRequired,
   loggedIn: PropTypes.bool.isRequired,
+  deletePoll: PropTypes.func.isRequired,
+  updateVotes: PropTypes.func.isRequired,
+  addEditPoll: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps)(SinglePoll);
+export default connect(mapStateToProps, { deletePoll, updateVotes, addEditPoll })(SinglePoll);

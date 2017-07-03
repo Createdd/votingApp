@@ -5,9 +5,6 @@ import Sidebar from './Sidebar';
 import loadAgain from '../app';
 
 export default class Header extends React.Component {
-  constructor(props) {
-    super(props);
-  }
   componentDidMount() {
     loadAgain();
   }
@@ -17,26 +14,23 @@ export default class Header extends React.Component {
       if (props.loggedIn) {
         return (
           <a
-            href="#"
             data-activates="slide-out"
             className="button-collapse show-on-large teal-text text-lighten-3"
           >
-            <i className="material-icons right teal-text text-lighten-3">perm_identity</i>Identified as:
-						authenticated User
+            <i className="material-icons right teal-text text-lighten-3">perm_identity</i>Identified
+						as: authenticated User
 					</a>
         );
       }
       return (
-          <a
-            href="#"
-            data-activates="slide-out"
-            className="button-collapse show-on-large teal-text text-lighten-3"
-          >
-            <i className="material-icons right teal-text text-lighten-3">perm_identity</i>Identified as:
-						Visitor
-					</a>
-        );
-
+        <a
+          data-activates="slide-out"
+          className="button-collapse show-on-large teal-text text-lighten-3"
+        >
+          <i className="material-icons right teal-text text-lighten-3">perm_identity</i>Identified
+					as: Visitor
+				</a>
+      );
     };
     return (
       <header>

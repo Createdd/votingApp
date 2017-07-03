@@ -1,12 +1,9 @@
 /* eslint-disable no-param-reassign*/
 import express from 'express';
 import passport from 'passport';
-import fs from 'fs';
 
 import Poll from './models/poll';
 import passportConfig from './config/passport';
-
-// const index = fs.readFileSync(`${__dirname}/../public/index.html`);
 
 passportConfig(passport);
 
@@ -47,10 +44,6 @@ router.param('aID', (req, res, next, id) => {
 });
 
 // GET,POST, DELETE Routes
-// router.get('/', (req, res) => {
-//   res.render('index.ejs');
-// });
-
 router.get('/api/polls', (req, res) => {
   Poll.find({}, (err, polls, next) => {
     if (err) return next(err);
@@ -123,6 +116,7 @@ router.post('/api/signup', (req, res, next) => {
       }
       return res.redirect('/polls');
     });
+    return false;
   })(req, res, next);
 });
 
@@ -145,6 +139,7 @@ router.post('/api/login', (req, res, next) => {
       }
       return res.redirect('/polls');
     });
+    return false;
   })(req, res, next);
 });
 
@@ -155,13 +150,11 @@ router.get('/api/logout', (req, res, next) => {
   });
 });
 
-router.get('*', (req, res, next) => {
+router.get('*', (req, res) => {
   const options = {
     root: `${__dirname}/../public/`,
     dotfiles: 'deny',
   };
-
-  console.log('object');
   res.sendFile('/index.html', options);
 });
 

@@ -45,7 +45,7 @@ export default (app) => {
 
   app.use('/', routes);
 
-	// keep next to stay in middleware stack
+	// -------!!!!!keep "next" to stay in middleware stack!!!!!
   app.use((err, req, res, next) => {
     res.status(err.status || 500).json({
       error: {
