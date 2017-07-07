@@ -24,17 +24,26 @@ export const ExamplePolls = [
     __v: 0,
   },
   {
-    _id: {
-      $oid: 'ID3',
+    "_id": {
+        "$oid": "595f8717734d1d256342d428"
     },
-    question: 'Is this the 3 question?',
-    answers: [
-			{ answer: 'Answer31', votes: 10 },
-			{ answer: 'Answer32', votes: 12 },
-			{ answer: 'Answer33', votes: 30 },
+    "question": "Is this the 3 question?",
+    "answers": [
+        {
+            "answer": "Answer31",
+            "votes": 10
+        },
+        {
+            "answer": "Answer32",
+            "votes": 12
+        },
+        {
+            "answer": "Answer33",
+            "votes": 30
+        }
     ],
-    __v: 0,
-  },
+    "__v": 0
+},
 ];
 
 export const ExampleUser = {

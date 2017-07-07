@@ -101,6 +101,7 @@ export const updateVotes = (question, index, votes) => ({
   votes,
 });
 
+// Async actions
 function receivePolls(polls) {
   return {
     type: FETCHED_POLLS,
@@ -109,13 +110,14 @@ function receivePolls(polls) {
 }
 
 export function fetchPolls() {
-  return dispatch => axios
+  return dispatch =>
+		axios
 			.get('/api/polls')
-			.then((response) => {
-  dispatch(receivePolls(response.data));
-  console.log(response);
+			.then((res) => {
+  dispatch(receivePolls(res.data));
+  console.log(res);
 })
-			.catch((error) => {
-  console.log(error);
+			.catch((err) => {
+  console.log(err);
 });
 }
