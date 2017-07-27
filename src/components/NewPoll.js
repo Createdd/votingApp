@@ -1,5 +1,6 @@
 import React from 'react';
 import shortid from 'shortid';
+import axios from 'axios';
 
 export default class NewPoll extends React.Component {
 	constructor(props) {
@@ -20,9 +21,9 @@ export default class NewPoll extends React.Component {
 		this.setState(oldState => ({
 			answers: oldState.answers.map((answ, ansInd) => {
 				if (ansInd !== index) {
-					return{ answer: answ.answer, votes: 10};
+					return { answer: answ.answer, votes: 10 };
 				} else {
-					return{ answer: newValue, votes: 10};
+					return { answer: newValue, votes: 10 };
 				}
 			}),
 		}));
@@ -36,9 +37,15 @@ export default class NewPoll extends React.Component {
 
 	addPoll = e => {
 		if (e) e.preventDefault();
-		this.setState({ question: this.refs.questionInp.value }, () =>
-			this.props.addPoll(this.state.question, this.state.answers),
-		);
+		this.props.update();
+		axios
+			.post('/api/polls/new', {
+				question: this.refs.questionInp.value,
+				answers: this.state.answers,
+			})
+			.catch(function(error) {
+				console.error(error);
+			});
 		this.refs.newPollForm.reset();
 		setTimeout(() => {
 			this.reset();
@@ -81,16 +88,13 @@ export default class NewPoll extends React.Component {
 										onClick={this.addAnswer}
 										className="waves-effect waves-light btn orange-text left"
 									>
-										<i className="orange-text material-icons prefix">
-											queue
-										</i>Add answer
+										<i className="orange-text material-icons prefix">queue</i>Add answer
 									</a>
 								</div>
 							</div>
 							<input type="submit" hidden />
 						</form>
 					</div>
-
 				</div>
 
 				<div className="modal-footer blue-grey darken-4">

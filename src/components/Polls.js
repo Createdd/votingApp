@@ -13,6 +13,21 @@ class Polls extends React.Component {
   componentDidMount() {
     loadAgain();
     this.props.fetchPolls();
+    this.state = {
+      update: false,
+    };
+    this.addPoll = this.addPoll.bind(this);
+  }
+
+  componentDidUpdate() {
+    if (this.state.update) {
+      this.props.fetchPolls();
+      this.setState({ update: false });
+    }
+  }
+
+  addPoll() {
+    this.setState({ update: true });
   }
 
   render() {
@@ -31,18 +46,15 @@ class Polls extends React.Component {
       </div>),
 		);
 
-    const newPollBtn = () => {
-      if (loggedIn) {
-        return (
-          <div className="fixed-action-btn">
-            <a className="modal-trigger btn-floating btn-large orange pulse" href="#modal1">
-              <i className="large material-icons">add</i>
-            </a>
-          </div>
-        );
-      }
-      return false;
-    };
+    const newPollBtn = () =>
+			// if (!loggedIn) {
+      (<div className="fixed-action-btn">
+        <a className="modal-trigger btn-floating btn-large orange pulse" href="#modal1">
+          <i className="large material-icons">add</i>
+        </a>
+      </div>);
+		// }
+		// return false;
 
     return (
       <div className="grey darken-2 center-align">
@@ -53,7 +65,7 @@ class Polls extends React.Component {
           {pollComp}
         </div>
         {newPollBtn()}
-        <NewPoll addPoll={addPoll} />
+        <NewPoll update={() => this.addPoll()} />
       </div>
     );
   }

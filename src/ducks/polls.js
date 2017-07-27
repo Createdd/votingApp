@@ -101,7 +101,7 @@ export const updateVotes = (question, index, votes) => ({
   votes,
 });
 
-// Async actions
+// Async actions with thunk
 function receivePolls(polls) {
   return {
     type: FETCHED_POLLS,
@@ -115,9 +115,9 @@ export function fetchPolls() {
 			.get('/api/polls')
 			.then((res) => {
   dispatch(receivePolls(res.data));
-  console.log(res);
+  // console.log(res);
 })
 			.catch((err) => {
-  console.log(err);
+  console.error(err);
 });
 }
