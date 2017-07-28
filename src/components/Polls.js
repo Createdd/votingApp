@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import shortid from 'shortid';
 
-import { updateVotes, addPoll, fetchPolls } from '../ducks/polls';
+import { updateVotes, addPoll, fetchPolls, postPoll } from '../ducks/polls';
 import Poll from './Poll';
 import NewPoll from './NewPoll';
 import loadAgain from '../app';
@@ -13,25 +13,10 @@ class Polls extends React.Component {
   componentDidMount() {
     loadAgain();
     this.props.fetchPolls();
-    this.state = {
-      update: false,
-    };
-    this.addPoll = this.addPoll.bind(this);
-  }
-
-  componentDidUpdate() {
-    if (this.state.update) {
-      this.props.fetchPolls();
-      this.setState({ update: false });
-    }
-  }
-
-  addPoll() {
-    this.setState({ update: true });
   }
 
   render() {
-    const { polls, loggedIn } = this.props;
+    const { polls, loggedIn, postPoll } = this.props;
 
     const pollComp = polls.map((poll, index) =>
       (<div key={shortid.generate()}>
@@ -65,7 +50,7 @@ class Polls extends React.Component {
           {pollComp}
         </div>
         {newPollBtn()}
-        <NewPoll update={() => this.addPoll()} />
+        <NewPoll addPoll={postPoll} />
       </div>
     );
   }
@@ -82,4 +67,4 @@ Polls.propTypes = {
   loggedIn: PropTypes.bool.isRequired,
 };
 
-export default connect(mapStateToProps, { addPoll, updateVotes, fetchPolls })(Polls);
+export default connect(mapStateToProps, { addPoll, updateVotes, fetchPolls, postPoll })(Polls);

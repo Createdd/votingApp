@@ -14,16 +14,19 @@ export default function Polls(state = [], action) {
       return action.polls;
     case ADD_POLL: {
       const addPollsList = [
-        ...state.polls,
+        ...state,
         {
           question: action.question,
           answers: action.answers,
         },
       ];
-      return {
+      return [
         ...state,
-        polls: addPollsList,
-      };
+        {
+          question: action.question,
+          answers: action.answers,
+        },
+      ];
     }
     case ADD_EDIT_POLL: {
       const addEditPoll = state.polls.map((poll, ind) => {
@@ -115,9 +118,19 @@ export function fetchPolls() {
 			.get('/api/polls')
 			.then((res) => {
   dispatch(receivePolls(res.data));
-  // console.log(res);
+				// console.log(res);
 })
 			.catch((err) => {
-  console.error(err);
+  console.warn(err);
+});
+}
+
+export function postPoll(question, answers) {
+  return dispatch =>
+		axios
+			.post('/api/polls/new', addPoll(question, answers))
+			.then(dispatch(addPoll(question, answers)))
+			.catch((error) => {
+  console.warn(error);
 });
 }

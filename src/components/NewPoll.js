@@ -37,15 +37,9 @@ export default class NewPoll extends React.Component {
 
 	addPoll = e => {
 		if (e) e.preventDefault();
-		this.props.update();
-		axios
-			.post('/api/polls/new', {
-				question: this.refs.questionInp.value,
-				answers: this.state.answers,
-			})
-			.catch(function(error) {
-				console.error(error);
-			});
+		this.setState({ question: this.refs.questionInp.value }, () =>
+ 			this.props.addPoll(this.state.question, this.state.answers),
+ 		);
 		this.refs.newPollForm.reset();
 		setTimeout(() => {
 			this.reset();
