@@ -51,7 +51,7 @@ router.get('/api/polls', (req, res) => {
   });
 });
 
-router.get('/api/polls/:pID', isLoggedIn, (req, res) => {
+router.get('/api/polls/:pID', (req, res) => {
   res.json(req.poll);
 });
 
@@ -78,7 +78,7 @@ router.post('/api/polls/:pID/:aID/vote', (req, res, next) => {
   });
 });
 
-router.delete('/api/polls/:pID', isLoggedIn, (req, res, next) => {
+router.delete('/api/polls/:pID', (req, res, next) => {
   req.poll.remove(() => {
     req.poll.save((err, doc) => {
       if (err) return next(err);

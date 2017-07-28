@@ -10,7 +10,8 @@ import NewPoll from './NewPoll';
 import loadAgain from '../app';
 
 class Polls extends React.Component {
-  componentDidMount() {
+  constructor(props) {
+    super(props);
     loadAgain();
     this.props.fetchPolls();
   }
@@ -24,7 +25,7 @@ class Polls extends React.Component {
           <div className="card blue-grey darken-4">
             <Poll polls={polls} index={index} updateVotes={updateVotes} />
             <div className="card-action">
-              <Link to={`/polls/${index}`}>See the poll</Link>
+              <Link to={`/polls/${poll._id}`}>See the poll</Link>
             </div>
           </div>
         </div>
@@ -50,7 +51,7 @@ class Polls extends React.Component {
           {pollComp}
         </div>
         {newPollBtn()}
-        <NewPoll addPoll={postPoll} />
+        <NewPoll addPoll={postPoll} polls={polls} />
       </div>
     );
   }

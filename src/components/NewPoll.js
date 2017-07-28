@@ -8,14 +8,26 @@ export default class NewPoll extends React.Component {
 		this.state = {
 			question: '',
 			answers: [{ answer: '', votes: 10 }, { answer: '', votes: 10 }],
+			indexInDb: this.props.polls.length,
 		};
 	}
+
+	componentWillReceiveProps(nextProps) {
+		this.setState({
+			question: '',
+			answers: [{ answer: '', votes: 10 }, { answer: '', votes: 10 }],
+			indexInDb: nextProps.polls.length,
+		});
+	}
+
 	reset() {
 		this.setState({
 			question: '',
 			answers: [{ answer: '', votes: 10 }, { answer: '', votes: 10 }],
+			indexInDb: this.props.polls.length,
 		});
 	}
+
 	onChange = (e, index) => {
 		const newValue = e.target.value;
 		this.setState(oldState => ({
@@ -38,12 +50,13 @@ export default class NewPoll extends React.Component {
 	addPoll = e => {
 		if (e) e.preventDefault();
 		this.setState({ question: this.refs.questionInp.value }, () =>
- 			this.props.addPoll(this.state.question, this.state.answers),
- 		);
+			this.props.addPoll(this.state.question, this.state.answers, this.state.indexInDb),
+		);
 		this.refs.newPollForm.reset();
 		setTimeout(() => {
 			this.reset();
 		}, 10);
+		console.warn(this.props);
 	};
 
 	render() {

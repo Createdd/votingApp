@@ -9,6 +9,7 @@ export const ExamplePolls = [
 			{ answer: 'Answer2', votes: 12 },
 			{ answer: 'Answer3', votes: 30 },
     ],
+    indexInDb: 0,
     __v: 0,
   },
   {
@@ -22,28 +23,30 @@ export const ExamplePolls = [
 			{ answer: 'Answer23', votes: 30 },
     ],
     __v: 0,
+    indexInDb: 1,
   },
   {
-    "_id": {
-        "$oid": "595f8717734d1d256342d428"
+    _id: {
+      $oid: '595f8717734d1d256342d428',
     },
-    "question": "Is this the 3 question?",
-    "answers": [
-        {
-            "answer": "Answer31",
-            "votes": 10
-        },
-        {
-            "answer": "Answer32",
-            "votes": 12
-        },
-        {
-            "answer": "Answer33",
-            "votes": 30
-        }
+    question: 'Is this the 3 question?',
+    answers: [
+      {
+        answer: 'Answer31',
+        votes: 10,
+      },
+      {
+        answer: 'Answer32',
+        votes: 12,
+      },
+      {
+        answer: 'Answer33',
+        votes: 30,
+      },
     ],
-    "__v": 0
-},
+    indexInDb: 2,
+    __v: 0,
+  },
 ];
 
 export const ExampleUser = {

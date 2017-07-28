@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 import { deletePoll, updateVotes, addEditPoll } from '../ducks/polls';
 import Poll from './Poll';
@@ -10,39 +11,52 @@ import NewAnswer from './NewAnswer';
 import loadAgain from '../app';
 
 class SinglePoll extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      poll: {},
+    };
+    this.fetchPoll();
+  }
+
   componentDidMount() {
     loadAgain();
   }
+
+  fetchPoll() {
+    axios
+			.get(`/api/polls/${this.props.match.params.id}`)
+			.then(res => console.warn(res))
+			.catch((err) => {
+  console.log(err);
+});
+    console.warn(this.state);
+  }
+
   render() {
-    const { polls, loggedIn, deletePoll, updateVotes, addEditPoll } = this.props;
+    const { polls, deletePoll, updateVotes, addEditPoll } = this.props;
     const props = this.props;
 
-    const renderDeleteBtn = () => {
-      if (loggedIn) {
-        return (
-          <Link
-            to="/polls"
-            className="waves-effect btn red lighten-2"
-            onClick={() => deletePoll(parseInt(props.match.params.id, 10))}
-          >
-            <i className="material-icons right">report_problem</i>
-						DELETE Poll
-					</Link>
-        );
-      }
-      return false;
-    };
+    const renderDeleteBtn = () =>
+			// if (loggedIn) {
+      (<Link
+        to="/polls"
+        className="waves-effect btn red lighten-2"
+        onClick={() => deletePoll(parseInt(props.match.params.id, 10))}
+      >
+        <i className="material-icons right">report_problem</i>
+				DELETE Poll
+			</Link>);
+		// }
+		// return false;
 
-    const editPollBtn = () => {
-      if (loggedIn) {
-        return (
-          <a className="waves-effect btn teal lighten-2" href="#modal1">
-						ADD New Answer
-					</a>
-        );
-      }
-      return false;
-    };
+    const editPollBtn = () =>
+			// if (loggedIn) {
+      (<a className="waves-effect btn teal lighten-2" href="#modal1">
+				ADD New Answer
+			</a>);
+		// }
+		// return false;
 
     return (
       <div className="grey darken-2" style={{ margin: '0px', padding: '0px', height: '100%' }}>
@@ -50,6 +64,7 @@ class SinglePoll extends React.Component {
           <div className="col s12 m6">
             <div className="card blue-grey darken-4 hoverable">
               <Poll
+                poll={this.state.poll}
                 polls={polls}
                 index={parseInt(props.match.params.id, 10)}
                 url={props.match.params.id}
@@ -61,6 +76,7 @@ class SinglePoll extends React.Component {
 
           <div className="col s12 m6">
             <Chart
+            poll={this.state.poll}
               polls={polls}
               index={parseInt(props.match.params.id, 10)}
               url={props.match.params.id}
@@ -77,6 +93,7 @@ class SinglePoll extends React.Component {
             {editPollBtn()}
             {renderDeleteBtn()}
             <NewAnswer
+            poll={this.state.poll}
               polls={polls}
               index={parseInt(props.match.params.id, 10)}
               addEditPoll={addEditPoll}
@@ -96,12 +113,10 @@ class SinglePoll extends React.Component {
 
 const mapStateToProps = state => ({
   polls: state.polls,
-  loggedIn: state.loggedIn,
 });
 
 SinglePoll.propTypes = {
   polls: PropTypes.arrayOf(PropTypes.object).isRequired,
-  loggedIn: PropTypes.bool.isRequired,
   deletePoll: PropTypes.func.isRequired,
   updateVotes: PropTypes.func.isRequired,
   addEditPoll: PropTypes.func.isRequired,

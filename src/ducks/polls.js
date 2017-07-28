@@ -13,18 +13,12 @@ export default function Polls(state = [], action) {
     case FETCHED_POLLS:
       return action.polls;
     case ADD_POLL: {
-      const addPollsList = [
-        ...state,
-        {
-          question: action.question,
-          answers: action.answers,
-        },
-      ];
       return [
         ...state,
         {
           question: action.question,
           answers: action.answers,
+          indexInDb: action.indexInDb,
         },
       ];
     }
@@ -80,10 +74,18 @@ export default function Polls(state = [], action) {
 }
 
 // actionCreators
-export const addPoll = (question, answers) => ({
+function receivePolls(polls) {
+  return {
+    type: FETCHED_POLLS,
+    polls,
+  };
+}
+
+export const addPoll = (question, answers, indexInDb) => ({
   type: ADD_POLL,
   question,
   answers,
+  indexInDb,
 });
 
 export const addEditPoll = (questionInd, answers) => ({
@@ -105,13 +107,6 @@ export const updateVotes = (question, index, votes) => ({
 });
 
 // Async actions with thunk
-function receivePolls(polls) {
-  return {
-    type: FETCHED_POLLS,
-    polls,
-  };
-}
-
 export function fetchPolls() {
   return dispatch =>
 		axios
@@ -125,11 +120,11 @@ export function fetchPolls() {
 });
 }
 
-export function postPoll(question, answers) {
+export function postPoll(question, answers, index) {
   return dispatch =>
 		axios
-			.post('/api/polls/new', addPoll(question, answers))
-			.then(dispatch(addPoll(question, answers)))
+			.post('/api/polls/new', addPoll(question, answers, index))
+			.then(dispatch(addPoll(question, answers, index)))
 			.catch((error) => {
   console.warn(error);
 });
