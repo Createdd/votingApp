@@ -15,22 +15,20 @@ class SinglePoll extends React.Component {
     super(props);
     this.state = {
       poll: {},
+      fetched: false,
     };
-    this.fetchPoll();
-  }
-
-  componentDidMount() {
     loadAgain();
   }
 
-  fetchPoll() {
+  componentDidMount() {
     axios
 			.get(`/api/polls/${this.props.match.params.id}`)
-			.then(res => console.warn(res))
+			.then((res) => {
+  this.setState({ poll: res.data, fetched: true });
+})
 			.catch((err) => {
   console.log(err);
 });
-    console.warn(this.state);
   }
 
   render() {
@@ -58,53 +56,64 @@ class SinglePoll extends React.Component {
 		// }
 		// return false;
 
-    return (
-      <div className="grey darken-2" style={{ margin: '0px', padding: '0px', height: '100%' }}>
-        <div className="row">
-          <div className="col s12 m6">
-            <div className="card blue-grey darken-4 hoverable">
-              <Poll
-                poll={this.state.poll}
-                polls={polls}
-                index={parseInt(props.match.params.id, 10)}
-                url={props.match.params.id}
-                updateVotes={updateVotes}
-              />
-              <div className="card-action" />
+    const condRender = () => {
+      if (this.state.fetched) {
+        return (
+          <div>
+            <div className="row">
+              <div className="col s12 m6">
+                <div className="card blue-grey darken-4 hoverable">
+                  <Poll
+                    poll={this.state.poll}
+                    polls={polls}
+                    index={this.state.poll.indexInDb}
+                    url={props.match.params.id}
+                    updateVotes={updateVotes}
+                  />
+                  <div className="card-action" />
+                </div>
+              </div>
+
+              <div className="col s12 m6">
+                <Chart
+                  poll={this.state.poll}
+                  polls={polls}
+                  index={this.state.poll.indexInDb}
+                  url={props.match.params.id}
+                />
+              </div>
+            </div>
+
+            <div className="row">
+              <div className="col s12 m8">
+                <a href="https://twitter.com/share" className="btn blue accent-1">
+                  <i className="waves-effect material-icons right">trending_up</i>
+									Tweet Poll
+								</a>
+                {editPollBtn()}
+                {renderDeleteBtn()}
+                <NewAnswer
+                  poll={this.state.poll}
+                  polls={polls}
+                  index={this.state.poll.indexInDb}
+                  addEditPoll={addEditPoll}
+                />
+              </div>
+              <div className="col s12 m4">
+                <Link to="/polls" className="waves-effect btn green lighten-2 right-align">
+									Back to all Polls
+								</Link>
+              </div>
             </div>
           </div>
+        );
+      }
+      return <div>loading</div>;
+    };
 
-          <div className="col s12 m6">
-            <Chart
-            poll={this.state.poll}
-              polls={polls}
-              index={parseInt(props.match.params.id, 10)}
-              url={props.match.params.id}
-            />
-          </div>
-        </div>
-
-        <div className="row">
-          <div className="col s12 m8">
-            <a href="https://twitter.com/share" className="btn blue accent-1">
-              <i className="waves-effect material-icons right">trending_up</i>
-							Tweet Poll
-						</a>
-            {editPollBtn()}
-            {renderDeleteBtn()}
-            <NewAnswer
-            poll={this.state.poll}
-              polls={polls}
-              index={parseInt(props.match.params.id, 10)}
-              addEditPoll={addEditPoll}
-            />
-          </div>
-          <div className="col s12 m4">
-            <Link to="/polls" className="waves-effect btn green lighten-2 right-align">
-							Back to all Polls
-						</Link>
-          </div>
-        </div>
+    return (
+      <div className="grey darken-2" style={{ margin: '0px', padding: '0px', height: '100%' }}>
+        {condRender()}
         <div className="row grey darken-2" />
       </div>
     );
