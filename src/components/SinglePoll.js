@@ -35,12 +35,14 @@ class SinglePoll extends React.Component {
     const { polls, deletePoll, updateVotes, addEditPoll } = this.props;
     const props = this.props;
 
+    console.warn(this.state.poll.indexInDb, polls);
+
     const renderDeleteBtn = () =>
 			// if (loggedIn) {
       (<Link
         to="/polls"
         className="waves-effect btn red lighten-2"
-        onClick={() => deletePoll(parseInt(props.match.params.id, 10))}
+        onClick={() => deletePoll(this.state.poll.indexInDb, props.match.params.id)}
       >
         <i className="material-icons right">report_problem</i>
 				DELETE Poll

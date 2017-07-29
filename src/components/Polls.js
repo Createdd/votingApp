@@ -23,7 +23,7 @@ class Polls extends React.Component {
       (<div key={shortid.generate()}>
         <div className="col s12 m6 card-panel hoverable teal">
           <div className="card blue-grey darken-4">
-            <Poll polls={polls} index={poll.indexInDb} updateVotes={updateVotes} />
+            <Poll polls={polls} index={index} updateVotes={updateVotes} />
             <div className="card-action">
               <Link to={`/polls/${poll._id}`}>See the poll</Link>
             </div>

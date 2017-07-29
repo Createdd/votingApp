@@ -40,13 +40,10 @@ export default function Polls(state = [], action) {
     }
     case DELETE_POLL: {
       const removeQuestionList = [
-        ...state.polls.slice(0, action.index),
-        ...state.polls.slice(action.index + 1),
+        ...state.slice(0, action.index),
+        ...state.slice(action.index + 1),
       ];
-      return {
-        ...state,
-        polls: removeQuestionList,
-      };
+      return removeQuestionList;
     }
     case UPDATE_VOTES: {
       const updateVotesList = state.polls.map((poll, ind) => {
@@ -94,7 +91,7 @@ export const addEditPoll = (questionInd, answers) => ({
   answers,
 });
 
-export const deletePoll = index => ({
+export const removePoll = index => ({
   type: DELETE_POLL,
   index,
 });
@@ -126,6 +123,14 @@ export function postPoll(question, answers, index) {
 			.post('/api/polls/new', addPoll(question, answers, index))
 			.then(dispatch(addPoll(question, answers, index)))
 			.catch((error) => {
+  console.warn(err);
+});
+}
+
+export function deletePoll(index, url) {
+  console.warn(`/api/polls/${url}`);
+  return dispatch =>
+		axios.delete(`/api/polls/${url}`).then(dispatch(removePoll(index))).catch((error) => {
   console.warn(error);
 });
 }
