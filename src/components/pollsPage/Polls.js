@@ -4,10 +4,10 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import shortid from 'shortid';
 
-import { updateVotes, addPoll, fetchPolls, postPoll } from '../ducks/polls';
-import Poll from './Poll';
+import { updateVotes, addPoll, fetchPolls, postPoll } from '../../ducks/polls';
+import Poll from '../singlePollPage/Poll';
 import NewPoll from './NewPoll';
-import loadAgain from '../app';
+import loadAgain from '../../app';
 
 class Polls extends React.Component {
   constructor(props) {

@@ -5,8 +5,8 @@ import { connect } from 'react-redux';
 import Login from './Login';
 import Signup from './Signup';
 import SocialMedia from './SocialMedia';
-import loadAgain from '../app';
-import { login, logout } from '../ducks/user';
+import loadAgain from '../../app';
+import { login, logout } from '../../ducks/user';
 
 class Sidebar extends React.Component {
   componentDidMount() {

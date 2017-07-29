@@ -4,11 +4,11 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-import { deletePoll, updateVotes, addEditPoll } from '../ducks/polls';
+import { deletePoll, updateVotes, addEditPoll } from '../../ducks/polls';
 import Poll from './Poll';
 import Chart from './Chart';
 import NewAnswer from './NewAnswer';
-import loadAgain from '../app';
+import loadAgain from '../../app';
 
 class SinglePoll extends React.Component {
   constructor(props) {
@@ -34,8 +34,6 @@ class SinglePoll extends React.Component {
   render() {
     const { polls, deletePoll, updateVotes, addEditPoll } = this.props;
     const props = this.props;
-
-    console.warn(this.state.poll.indexInDb, polls);
 
     const renderDeleteBtn = () =>
 			// if (loggedIn) {

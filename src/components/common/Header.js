@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import Sidebar from './Sidebar';
-import loadAgain from '../app';
+import Sidebar from '../sidebar/Sidebar';
+import loadAgain from '../../app';
 
 export default class Header extends React.Component {
   componentDidMount() {
