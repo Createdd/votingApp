@@ -1,118 +1,83 @@
 import React from 'react';
-import shortid from 'shortid';
-import axios from 'axios';
+import PropTypes from 'prop-types';
 
 export default class NewPoll extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			question: '',
-			answers: [{ answer: '', votes: 10 }, { answer: '', votes: 10 }],
-			indexInDb: this.props.polls.length,
-		};
-	}
-
-	componentWillReceiveProps(nextProps) {
-		this.setState({
-			question: '',
-			answers: [{ answer: '', votes: 10 }, { answer: '', votes: 10 }],
-			indexInDb: nextProps.polls.length,
-		});
-	}
-
-	reset() {
-		this.setState({
-			question: '',
-			answers: [{ answer: '', votes: 10 }, { answer: '', votes: 10 }],
-			indexInDb: this.props.polls.length,
-		});
-	}
-
-	onChange = (e, index) => {
-		const newValue = e.target.value;
-		this.setState(oldState => ({
-			answers: oldState.answers.map((answ, ansInd) => {
-				if (ansInd !== index) {
-					return { answer: answ.answer, votes: 10 };
-				} else {
-					return { answer: newValue, votes: 10 };
-				}
-			}),
-		}));
-	};
-
-	addAnswer = () => {
-		this.setState(oldState => ({
-			answers: [...oldState.answers, { answer: '', votes: 10 }],
-		}));
-	};
-
-	addPoll = e => {
-		if (e) e.preventDefault();
-		this.setState({ question: this.refs.questionInp.value }, () =>
-			this.props.addPoll(this.state.question, this.state.answers, this.state.indexInDb),
+  render() {
+    const answerList = this.props.state.answers.map((aw, ind) =>
+      (<div className="input-field col s10" key={ind}>
+        <i className="material-icons prefix">queue</i>
+        <input
+          id={`answer${ind}`}
+          type="text"
+          value={aw.answer}
+          onChange={event => this.props.onChange(event, ind)}
+          className="validate"
+          ref={`answer${ind}`}
+        />
+        <label htmlFor={`answer${ind}`}>New Answer</label>
+      </div>),
 		);
-		this.refs.newPollForm.reset();
-		setTimeout(() => {
-			this.reset();
-		}, 10);
-		console.warn(this.props);
-	};
 
-	render() {
-		const answerList = this.state.answers.map((aw, ind) => {
-			return (
-				<div className="input-field col s10" key={ind}>
-					<i className="material-icons prefix">queue</i>
-					<input
-						id={`answer${ind}`}
-						type="text"
-						value={aw.answer}
-						onChange={event => this.onChange(event, ind)}
-						className="validate"
-						ref={`answer${ind}`}
-					/>
-					<label htmlFor={`answer${ind}`}>New Answer</label>
-				</div>
-			);
-		});
-
-		return (
-			<div id="modal1" className="modal modal-fixed-footer teal darken-2 center-align">
-				<div className="modal-content">
-					<h2>New Poll</h2>
-					<div className="row">
-						<form className="col s12" ref="newPollForm" onSubmit={this.addPoll}>
-							<div className="row">
-								<div className="input-field col s10">
-									<i className="material-icons prefix">question_answer</i>
-									<input id="icon_prefix" type="text" className="validate" ref="questionInp" />
-									<label htmlFor="icon_prefix">Your Question</label>
-								</div>
-								{answerList}
-								<div className="col s10">
-									<a
-										onClick={this.addAnswer}
-										className="waves-effect waves-light btn orange-text left"
-									>
-										<i className="orange-text material-icons prefix">queue</i>Add answer
+    return (
+      <div id="modal1" className="modal modal-fixed-footer teal darken-2 center-align">
+        <div className="modal-content">
+          <h2>New Poll</h2>
+          <div className="row">
+            <form className="col s12" ref="newPollForm" onSubmit={this.props.addPoll}>
+              <div className="row">
+                <div className="input-field col s10">
+                  <i className="material-icons prefix">question_answer</i>
+                  <input
+                    id="icon_prefix"
+                    type="text"
+                    className="validate"
+                    ref="questionInp"
+                    onChange={e => this.props.onQuestion(e)}
+                    value={this.props.state.question}
+                  />
+                  <label htmlFor="icon_prefix">Your Question</label>
+                </div>
+                {answerList}
+                <div className="col s10">
+                  <a
+                    onClick={this.props.addAnswer}
+                    className="waves-effect waves-light btn orange-text left"
+                  >
+                    <i className="orange-text material-icons prefix">queue</i>Add answer
 									</a>
-								</div>
-							</div>
-							<input type="submit" hidden />
-						</form>
-					</div>
-				</div>
+                </div>
+              </div>
+              <input type="submit" hidden />
+            </form>
+          </div>
+        </div>
 
-				<div className="modal-footer blue-grey darken-4">
-					<a
-						onClick={this.addPoll}
-						className="modal-action modal-close waves-effect waves-green btn blue-grey darken-4 orange-text"
-					>
+        <div className="modal-footer blue-grey darken-4">
+          <a
+            onClick={this.props.addPoll}
+            className="modal-action modal-close waves-effect waves-green btn blue-grey darken-4 orange-text"
+          >
 						Save
 					</a>
-				</div>
-			</div>
-		);
-	}
+        </div>
+      </div>
+    );
+  }
 }
+
+NewPoll.propTypes = {
+  state: PropTypes.shape({
+    question: PropTypes.string.isRequired,
+    answers: PropTypes.arrayOf(
+			PropTypes.shape({
+  answer: PropTypes.string.isRequired,
+  votes: PropTypes.number.isRequired,
+}),
+		),
+    indexInDb: PropTypes.number.isRequired,
+  }).isRequired,
+  onChange: PropTypes.func.isRequired,
+  addAnswer: PropTypes.func.isRequired,
+  addPoll: PropTypes.func.isRequired,
+  onQuestion: PropTypes.func.isRequired,
+};

@@ -24,7 +24,7 @@ const PollSchema = new Schema({
     unique: true,
   },
   answers: [AnswerSchema],
-  indexInDb:{
+  indexInDb: {
     type: Number,
     unique: true,
   },

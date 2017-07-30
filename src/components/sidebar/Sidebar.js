@@ -69,11 +69,11 @@ class Sidebar extends React.Component {
 
 const mapStateToProps = state => ({
   polls: state.polls,
-  loggedIn: state.user.loggedIn,
+  // loggedIn: state.user.loggedIn,
 });
 
 Sidebar.propTypes = {
-  loggedIn: PropTypes.bool.isRequired,
+  // loggedIn: PropTypes.bool.isRequired,
   login: PropTypes.func.isRequired,
   logout: PropTypes.func.isRequired,
 };

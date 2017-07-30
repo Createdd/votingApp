@@ -1,5 +1,6 @@
 import React from 'react';
 import shortid from 'shortid';
+import loadAgain from '../../app';
 
 export default class NewAnswer extends React.Component {
 	constructor(props) {
@@ -7,7 +8,9 @@ export default class NewAnswer extends React.Component {
 		this.state = {
 			answers: [{ answer: '', votes: 10 }],
 		};
+		loadAgain();
 	}
+	
 	reset() {
 		this.setState({
 			answers: [{ answer: '', votes: 10 }],

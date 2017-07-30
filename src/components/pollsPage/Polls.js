@@ -6,7 +6,7 @@ import shortid from 'shortid';
 
 import { updateVotes, addPoll, fetchPolls, postPoll } from '../../ducks/polls';
 import Poll from '../singlePollPage/Poll';
-import NewPoll from './NewPoll';
+import NewPollCon from './NewPollCon';
 import loadAgain from '../../app';
 
 class Polls extends React.Component {
@@ -51,7 +51,7 @@ class Polls extends React.Component {
           {pollComp}
         </div>
         {newPollBtn()}
-        <NewPoll addPoll={postPoll} polls={polls} />
+        <NewPollCon addPoll={postPoll} polls={polls} />
       </div>
     );
   }
@@ -59,13 +59,13 @@ class Polls extends React.Component {
 
 const mapStateToProps = state => ({
   polls: state.polls,
-  loggedIn: state.loggedIn,
+  // loggedIn: state.loggedIn,
 });
 
 Polls.propTypes = {
   polls: PropTypes.arrayOf(PropTypes.object).isRequired,
   fetchPolls: PropTypes.func.isRequired,
-  loggedIn: PropTypes.bool.isRequired,
+  // loggedIn: PropTypes.bool.isRequired,
 };
 
 export default connect(mapStateToProps, { addPoll, updateVotes, fetchPolls, postPoll })(Polls);
