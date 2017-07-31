@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import shortid from 'shortid';
 
 import { updateVotes, addPoll, fetchPolls, postPoll } from '../../ducks/polls';
-import Poll from '../singlePollPage/Poll';
+import OnePoll from './OnePoll';
 import NewPollCon from './NewPollCon';
 import loadAgain from '../../app';
 
@@ -23,7 +23,7 @@ class Polls extends React.Component {
       (<div key={shortid.generate()}>
         <div className="col s12 m6 card-panel hoverable teal">
           <div className="card blue-grey darken-4">
-            <Poll polls={polls} index={index} updateVotes={updateVotes} />
+            <OnePoll polls={polls} index={index} />
             <div className="card-action">
               <Link to={`/polls/${poll._id}`}>See the poll</Link>
             </div>
@@ -59,13 +59,24 @@ class Polls extends React.Component {
 
 const mapStateToProps = state => ({
   polls: state.polls,
-  // loggedIn: state.loggedIn,
+	// loggedIn: state.loggedIn,
 });
 
 Polls.propTypes = {
-  polls: PropTypes.arrayOf(PropTypes.object).isRequired,
+  polls: PropTypes.arrayOf(
+		PropTypes.shape({
+  question: PropTypes.string.isRequired,
+  answers: PropTypes.arrayOf(
+				PropTypes.shape({
+  answer: PropTypes.string.isRequired,
+  votes: PropTypes.number.isRequired,
+}),
+			),
+  indexInDb: PropTypes.number.isRequired,
+}),
+	).isRequired,
   fetchPolls: PropTypes.func.isRequired,
-  // loggedIn: PropTypes.bool.isRequired,
+	// loggedIn: PropTypes.bool.isRequired,
 };
 
 export default connect(mapStateToProps, { addPoll, updateVotes, fetchPolls, postPoll })(Polls);
