@@ -64,7 +64,7 @@ export default class NewAnswer extends React.Component {
 		});
 
 		const renderPre = () =>
-			props.polls[props.index].answers.map((ans, answerInd) =>
+			props.poll.answers.map((ans, answerInd) =>
 				<div className="input-field col s10" key={shortid.generate()}>
 					<i className="material-icons prefix">done</i>
 					<input disabled id={`label${answerInd}and${props.index}`} />
@@ -85,7 +85,7 @@ export default class NewAnswer extends React.Component {
 									<i className="material-icons prefix">question_answer</i>
 									<input disabled id="icon_prefix" />
 									<label htmlFor="icon_prefix">
-										{props.polls[props.index].question}
+										{props.poll.question}
 									</label>
 								</div>
 								{renderPre()}

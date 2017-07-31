@@ -6,13 +6,13 @@ let basic = [['Answer', 'Votes']];
 
 const resultChart = (props) => {
   basic = [['Answer', 'Votes']];
-  (() => props.polls[props.index].answers.map(ans => basic.push([ans.answer, ans.votes])))();
+  (() => props.poll.answers.map(ans => basic.push([ans.answer, ans.votes])))();
   return (
     <Chart
       chartType="PieChart"
       data={basic}
       options={{
-        title: `${props.polls[props.index].question}`,
+        title: `${props.poll.question}`,
         pieSliceText: 'label',
         slices: {
           1: { offset: 0.1 },
@@ -32,8 +32,16 @@ const resultChart = (props) => {
 };
 
 resultChart.propTypes = {
-  polls: PropTypes.arrayOf(PropTypes.object).isRequired,
-  index: PropTypes.number.isRequired,
+  poll: PropTypes.shape({
+    question: PropTypes.string.isRequired,
+    answers: PropTypes.arrayOf(
+			PropTypes.shape({
+  answer: PropTypes.string.isRequired,
+  votes: PropTypes.number.isRequired,
+}),
+		),
+    indexInDb: PropTypes.number.isRequired,
+  }).isRequired,
 };
 
 export default resultChart;

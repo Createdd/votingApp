@@ -65,7 +65,6 @@ class SinglePoll extends React.Component {
                 <div className="card blue-grey darken-4 hoverable">
                   <Poll
                     poll={this.state.poll}
-                    polls={polls}
                     index={this.state.poll.indexInDb}
                     url={props.match.params.id}
                     updateVotes={updateVotes}
@@ -77,7 +76,6 @@ class SinglePoll extends React.Component {
               <div className="col s12 m6">
                 <Chart
                   poll={this.state.poll}
-                  polls={polls}
                   index={this.state.poll.indexInDb}
                   url={props.match.params.id}
                 />
@@ -94,7 +92,6 @@ class SinglePoll extends React.Component {
                 {renderDeleteBtn()}
                 <NewAnswer
                   poll={this.state.poll}
-                  polls={polls}
                   index={this.state.poll.indexInDb}
                   addEditPoll={addEditPoll}
                 />
