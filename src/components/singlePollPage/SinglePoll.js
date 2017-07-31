@@ -1,14 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 
-import { deletePoll, updateVotes, addEditPoll } from '../../ducks/polls';
 import Poll from './Poll';
 import Chart from './Chart';
 import NewAnswer from './NewAnswer';
-import loadAgain from '../../app';
 
 const SinglePoll = (props) => {
   const renderDeleteBtn = () =>
@@ -16,7 +12,7 @@ const SinglePoll = (props) => {
     (<Link
       to="/polls"
       className="waves-effect btn red lighten-2"
-      onClick={() => deletePoll(props.state.poll.indexInDb, props.match.params.id)}
+      onClick={() => props.deletePoll(props.state.poll.indexInDb, props.url)}
     >
       <i className="material-icons right">report_problem</i>
 			DELETE Poll
@@ -42,19 +38,14 @@ const SinglePoll = (props) => {
                 <Poll
                   poll={props.state.poll}
                   index={props.state.poll.indexInDb}
-                  url={props.match.params.id}
-                  updateVotes={updateVotes}
+                  updateVotes={props.updateVotes}
                 />
                 <div className="card-action" />
               </div>
             </div>
 
             <div className="col s12 m6">
-              <Chart
-                poll={props.state.poll}
-                index={props.state.poll.indexInDb}
-                url={props.match.params.id}
-              />
+              <Chart poll={props.state.poll} index={props.state.poll.indexInDb} />
             </div>
           </div>
 
@@ -69,7 +60,7 @@ const SinglePoll = (props) => {
               <NewAnswer
                 poll={props.state.poll}
                 index={props.state.poll.indexInDb}
-                addEditPoll={addEditPoll}
+                addEditPoll={props.addEditPoll}
               />
             </div>
             <div className="col s12 m4">
@@ -93,10 +84,26 @@ const SinglePoll = (props) => {
 };
 
 SinglePoll.propTypes = {
-  polls: PropTypes.arrayOf(PropTypes.object).isRequired,
-  deletePoll: PropTypes.func.isRequired,
-  updateVotes: PropTypes.func.isRequired,
-  addEditPoll: PropTypes.func.isRequired,
+  state: PropTypes.shape({
+    poll: PropTypes.shape({
+      question: PropTypes.string.isRequired,
+      answers: PropTypes.arrayOf(
+				PropTypes.shape({
+  answer: PropTypes.string.isRequired,
+  votes: PropTypes.number.isRequired,
+}),
+			),
+      indexInDb: PropTypes.number.isRequired,
+    }).isRequired,
+
+    fetched: PropTypes.bool.isRequired,
+  }).isRequired,
+  // deletePoll: PropTypes.func.isRequired,
+  // updateVotes: PropTypes.func.isRequired,
+  // addEditPoll: PropTypes.func.isRequired,
+  match: PropTypes.shape({
+    params: PropTypes.shape({ id: PropTypes.string.isRequired }),
+  }).isRequired,
 };
 
 export default SinglePoll;

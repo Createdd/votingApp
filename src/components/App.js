@@ -8,7 +8,7 @@ import Footer from './common/Footer';
 import Header from './common/Header';
 import Lost from './Lost';
 import Polls from './pollsPage/Polls';
-import SinglePoll from './singlePollPage/SinglePoll';
+import SinglePollCon from './singlePollPage/SinglePollCon';
 
 class App extends React.Component {
   render() {
@@ -28,7 +28,7 @@ class App extends React.Component {
             <Switch>
               <Route exact path="/" component={Home} />
               <Route exact path="/polls" component={Polls} />
-              <Route path="/polls/:id" component={SinglePoll} />
+              <Route path="/polls/:id" component={SinglePollCon} />
               <Route component={Lost} />
             </Switch>
           </main>
