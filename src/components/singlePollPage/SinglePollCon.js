@@ -28,7 +28,7 @@ class SinglePollCon extends React.Component {
 });
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps() {
     setTimeout(() => {
       axios
 				.get(`/api/polls/${this.props.match.params.id}`)
@@ -63,11 +63,24 @@ const mapStateToProps = state => ({
   polls: state.polls,
 });
 
-SinglePoll.propTypes = {
-	// polls: PropTypes.arrayOf(PropTypes.object).isRequired,
-	// deletePoll: PropTypes.func.isRequired,
-	// updateVotes: PropTypes.func.isRequired,
-	// addEditPoll: PropTypes.func.isRequired,
+SinglePollCon.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({ id: PropTypes.string.isRequired }).isRequired,
+  }).isRequired,
+  polls: PropTypes.arrayOf(
+		PropTypes.shape({
+  question: PropTypes.string.isRequired,
+  answers: PropTypes.arrayOf(
+				PropTypes.shape({
+  answer: PropTypes.string.isRequired,
+  votes: PropTypes.number.isRequired,
+}),
+			),
+}),
+	).isRequired,
+  deletePoll: PropTypes.func.isRequired,
+  postVote: PropTypes.func.isRequired,
+  addEditPoll: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, { deletePoll, postVote, addEditPoll })(SinglePollCon);

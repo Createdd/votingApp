@@ -2,20 +2,20 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import shortid from 'shortid';
 
-let c;
-let d;
+let answerId;
+let vote;
 
 const Poll = (props) => {
   const locateVote = (a, b) => {
-    c = a;
-    d = b;
+    answerId = a;
+    vote = b;
   };
 
   const passVote = (event) => {
     if (event) event.preventDefault();
-    props.updateVotes(props.url, c, props.polls.findIndex(i => i._id === props.url), d);
-    c = 0;
-    d = 0;
+    props.updateVotes(props.url, answerId, props.polls.findIndex(i => i._id === props.url), vote);
+    answerId = 0;
+    vote = 0;
   };
 
   const renderComp = () =>

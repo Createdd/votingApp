@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import Poll from './Poll';
 import Chart from './Chart';
@@ -12,7 +12,8 @@ const SinglePoll = (props) => {
     (<Link
       to="/polls"
       className="waves-effect btn red lighten-2"
-      onClick={() => props.deletePoll(props.polls.findIndex(i => i._id === props.url), props.url)}
+      onClick={() =>
+				props.deletePoll(props.polls.findIndex(elem => elem._id === props.url), props.url)}
     >
       <i className="material-icons right">report_problem</i>
 			DELETE Poll
@@ -58,11 +59,7 @@ const SinglePoll = (props) => {
 							</a>
               {editPollBtn()}
               {renderDeleteBtn()}
-              <NewAnswer
-                poll={props.state.poll}
-                index={props.state.poll.indexInDb}
-                addEditPoll={props.addEditPoll}
-              />
+              <NewAnswer poll={props.state.poll} addEditPoll={props.addEditPoll} />
             </div>
             <div className="col s12 m4">
               <Link to="/polls" className="waves-effect btn green lighten-2 right-align">
@@ -85,25 +82,34 @@ const SinglePoll = (props) => {
 };
 
 SinglePoll.propTypes = {
-  state: PropTypes.shape({
-    poll: PropTypes.shape({
-      question: PropTypes.string.isRequired,
-      answers: PropTypes.arrayOf(
+  polls: PropTypes.arrayOf(
+		PropTypes.shape({
+  question: PropTypes.string.isRequired,
+  answers: PropTypes.arrayOf(
 				PropTypes.shape({
   answer: PropTypes.string.isRequired,
   votes: PropTypes.number.isRequired,
+}),
+			),
+}),
+	).isRequired,
+  url: PropTypes.string.isRequired,
+  state: PropTypes.shape({
+    poll: PropTypes.shape({
+      question: PropTypes.string,
+      answers: PropTypes.arrayOf(
+				PropTypes.shape({
+  answer: PropTypes.string,
+  votes: PropTypes.number,
 }),
 			),
     }).isRequired,
 
     fetched: PropTypes.bool.isRequired,
   }).isRequired,
-	// deletePoll: PropTypes.func.isRequired,
+  deletePoll: PropTypes.func.isRequired,
   updateVotes: PropTypes.func.isRequired,
 	// addEditPoll: PropTypes.func.isRequired,
-  match: PropTypes.shape({
-    params: PropTypes.shape({ id: PropTypes.string.isRequired }),
-  }).isRequired,
 };
 
 export default SinglePoll;
