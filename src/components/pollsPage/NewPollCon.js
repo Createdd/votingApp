@@ -9,8 +9,7 @@ export default class NewPollCon extends React.Component {
 		super(props);
 		this.state = {
 			question: '',
-			answers: [{ answer: '', votes: 10 }, { answer: '', votes: 10 }],
-			indexInDb: this.props.polls.length +1,
+			answers: [{ answer: '', votes: 10 }, { answer: '', votes: 10 }]
 		};
 		this.addAnswer = this.addAnswer.bind(this);
 		this.addPoll = this.addPoll.bind(this);
@@ -21,16 +20,14 @@ export default class NewPollCon extends React.Component {
 	componentWillReceiveProps(nextProps) {
 		this.setState({
 			question: '',
-			answers: [{ answer: '', votes: 10 }, { answer: '', votes: 10 }],
-			indexInDb: nextProps.polls.length +1,
+			answers: [{ answer: '', votes: 10 }, { answer: '', votes: 10 }]
 		});
 	}
 
 	reset() {
 		this.setState({
 			question: '',
-			answers: [{ answer: '', votes: 10 }, { answer: '', votes: 10 }],
-			indexInDb: this.props.polls.length,
+			answers: [{ answer: '', votes: 10 }, { answer: '', votes: 10 }]
 		});
 	}
 
@@ -62,7 +59,7 @@ export default class NewPollCon extends React.Component {
 
 	addPoll = e => {
 		if (e) e.preventDefault();
-		this.props.addPoll(this.state.question, this.state.answers, this.state.indexInDb);
+		this.props.addPoll(this.state.question, this.state.answers);
 		this.reset();
 	};
 

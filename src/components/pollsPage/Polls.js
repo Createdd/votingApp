@@ -18,7 +18,6 @@ class Polls extends React.Component {
 
   render() {
     const { polls, loggedIn, postPoll } = this.props;
-
     const pollComp = polls.map((poll, index) =>
       (<div key={shortid.generate()}>
         <div className="col s12 m6 card-panel hoverable teal">
@@ -72,7 +71,6 @@ Polls.propTypes = {
   votes: PropTypes.number.isRequired,
 }),
 			),
-  indexInDb: PropTypes.number.isRequired,
 }),
 	).isRequired,
   fetchPolls: PropTypes.func.isRequired,

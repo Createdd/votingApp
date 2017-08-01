@@ -18,7 +18,6 @@ export default function Polls(state = [], action) {
         {
           question: action.question,
           answers: action.answers,
-          indexInDb: action.indexInDb,
         },
       ];
     }
@@ -78,11 +77,10 @@ function receivePolls(polls) {
   };
 }
 
-export const addPoll = (question, answers, indexInDb) => ({
+export const addPoll = (question, answers) => ({
   type: ADD_POLL,
   question,
   answers,
-  indexInDb,
 });
 
 export const addEditPoll = (questionInd, answers) => ({
@@ -117,11 +115,11 @@ export function fetchPolls() {
 });
 }
 
-export function postPoll(question, answers, index) {
+export function postPoll(question, answers) {
   return dispatch =>
 		axios
-			.post('/api/polls/new', addPoll(question, answers, index))
-			.then(dispatch(addPoll(question, answers, index)))
+			.post('/api/polls/new', addPoll(question, answers))
+			.then(dispatch(addPoll(question, answers)))
 			.catch((error) => {
   console.warn(err);
 });

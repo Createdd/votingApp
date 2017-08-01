@@ -70,7 +70,6 @@ NewPoll.propTypes = {
   votes: PropTypes.number.isRequired,
 }),
 		),
-    indexInDb: PropTypes.number.isRequired,
   }).isRequired,
   addAnswer: PropTypes.func.isRequired,
   addPoll: PropTypes.func.isRequired,

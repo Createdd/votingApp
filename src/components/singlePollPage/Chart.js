@@ -40,7 +40,6 @@ resultChart.propTypes = {
   votes: PropTypes.number.isRequired,
 }),
 		),
-    indexInDb: PropTypes.number.isRequired,
   }).isRequired,
 };
 

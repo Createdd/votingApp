@@ -23,11 +23,7 @@ const PollSchema = new Schema({
     type: String,
     unique: true,
   },
-  answers: [AnswerSchema],
-  indexInDb: {
-    type: Number,
-    unique: true,
-  },
+  answers: [AnswerSchema]
 });
 
 const Poll = mongoose.model('Poll', PollSchema);
