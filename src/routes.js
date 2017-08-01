@@ -34,7 +34,7 @@ router.param('pID', (req, res, next, id) => {
 });
 
 router.param('aID', (req, res, next, id) => {
-  req.answer = req.poll.answers.id(id);
+  req.answer = req.poll.answers[id];
   if (!req.answer) {
     const err = new Error('Document cannot be found in DB');
     err.status = 404;

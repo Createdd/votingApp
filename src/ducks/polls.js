@@ -45,12 +45,12 @@ export default function Polls(state = [], action) {
       return removeQuestionList;
     }
     case UPDATE_VOTES: {
-      const updateVotesList = state.polls.map((poll, ind) => {
-        if (ind === action.question) {
+      const updateVotesList = state.map((poll, ind) => {
+        if (ind === action.questionId) {
           return {
             ...poll,
             answers: poll.answers.map((ans, index) => {
-              if (index === action.index) {
+              if (index === action.answerIndex) {
                 return { ...ans, votes: ans.votes + action.votes };
               }
               return ans;
@@ -59,10 +59,7 @@ export default function Polls(state = [], action) {
         }
         return poll;
       });
-      return {
-        ...state,
-        polls: updateVotesList,
-      };
+      return updateVotesList;
     }
     default:
       return state;
@@ -94,10 +91,10 @@ export const removePoll = index => ({
   index,
 });
 
-export const updateVotes = (question, index, votes) => ({
+export const updateVotes = (questionId, answerIndex, votes) => ({
   type: UPDATE_VOTES,
-  question,
-  index,
+  questionId,
+  answerIndex,
   votes,
 });
 
@@ -125,8 +122,17 @@ export function postPoll(question, answers) {
 });
 }
 
+export function postVote(url, aID, questionId, votes) {
+  return dispatch =>
+		axios
+			.post(`/api/polls/${url}/${aID}/vote`)
+			.then(dispatch(updateVotes(questionId, aID, votes)))
+			.catch((error) => {
+  console.warn(err);
+});
+}
+
 export function deletePoll(index, url) {
-  console.warn(`/api/polls/${url}`);
   return dispatch =>
 		axios.delete(`/api/polls/${url}`).then(dispatch(removePoll(index))).catch((error) => {
   console.warn(error);

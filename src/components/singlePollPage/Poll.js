@@ -2,23 +2,20 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import shortid from 'shortid';
 
+let c;
 let d;
-let e;
-let f;
 
 const Poll = (props) => {
-  const locateVote = (a, b, c) => {
-    d = a;
-    e = b;
-    f = c;
+  const locateVote = (a, b) => {
+    c = a;
+    d = b;
   };
 
   const passVote = (event) => {
     if (event) event.preventDefault();
-    props.updateVotes(d, e, f);
+    props.updateVotes(props.url, c, props.polls.findIndex(i => i._id === props.url), d);
+    c = 0;
     d = 0;
-    e = 0;
-    f = 0;
   };
 
   const renderComp = () =>
@@ -29,7 +26,7 @@ const Poll = (props) => {
       type="radio"
       id={`label${answerInd}and${props.index}`}
       className="collection-item blue-grey darken-4"
-      onClick={() => locateVote(props.index, answerInd, 1)}
+      onClick={() => locateVote(answerInd, 1)}
     />
     <label htmlFor={`label${answerInd}and${props.index}`}>
       {ans.answer}

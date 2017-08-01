@@ -12,7 +12,7 @@ const SinglePoll = (props) => {
     (<Link
       to="/polls"
       className="waves-effect btn red lighten-2"
-      onClick={() => props.deletePoll(props.state.poll.indexInDb, props.url)}
+      onClick={() => props.deletePoll(props.polls.findIndex(i => i._id === props.url), props.url)}
     >
       <i className="material-icons right">report_problem</i>
 			DELETE Poll
@@ -37,15 +37,16 @@ const SinglePoll = (props) => {
               <div className="card blue-grey darken-4 hoverable">
                 <Poll
                   poll={props.state.poll}
-                  index={props.state.poll.indexInDb}
                   updateVotes={props.updateVotes}
+                  url={props.url}
+                  polls={props.polls}
                 />
                 <div className="card-action" />
               </div>
             </div>
 
             <div className="col s12 m6">
-              <Chart poll={props.state.poll} index={props.state.poll.indexInDb} />
+              <Chart poll={props.state.poll} />
             </div>
           </div>
 
@@ -93,14 +94,13 @@ SinglePoll.propTypes = {
   votes: PropTypes.number.isRequired,
 }),
 			),
-      indexInDb: PropTypes.number.isRequired,
     }).isRequired,
 
     fetched: PropTypes.bool.isRequired,
   }).isRequired,
-  // deletePoll: PropTypes.func.isRequired,
-  // updateVotes: PropTypes.func.isRequired,
-  // addEditPoll: PropTypes.func.isRequired,
+	// deletePoll: PropTypes.func.isRequired,
+  updateVotes: PropTypes.func.isRequired,
+	// addEditPoll: PropTypes.func.isRequired,
   match: PropTypes.shape({
     params: PropTypes.shape({ id: PropTypes.string.isRequired }),
   }).isRequired,
