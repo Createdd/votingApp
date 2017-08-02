@@ -63,7 +63,7 @@ router.post('/api/polls/new', (req, res, next) => {
   });
 });
 
-router.post('/api/polls/:pID/new', isLoggedIn, (req, res, next) => {
+router.post('/api/polls/:pID/new', (req, res, next) => {
   req.poll.answers.push(req.body);
   req.poll.save((err, doc) => {
     if (err) return next(err);

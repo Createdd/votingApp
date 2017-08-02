@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import Poll from './Poll';
 import Chart from './Chart';
-import NewAnswer from './NewAnswer';
+import NewAnswerCon from './NewAnswerCon';
 
 const SinglePoll = (props) => {
   const renderDeleteBtn = () =>
@@ -59,7 +59,12 @@ const SinglePoll = (props) => {
 							</a>
               {editPollBtn()}
               {renderDeleteBtn()}
-              <NewAnswer poll={props.state.poll} addEditPoll={props.addEditPoll} />
+              <NewAnswerCon
+                poll={props.state.poll}
+                addEditPoll={props.addEditPoll}
+                polls={props.polls}
+                url={props.url}
+              />
             </div>
             <div className="col s12 m4">
               <Link to="/polls" className="waves-effect btn green lighten-2 right-align">
@@ -109,7 +114,7 @@ SinglePoll.propTypes = {
   }).isRequired,
   deletePoll: PropTypes.func.isRequired,
   updateVotes: PropTypes.func.isRequired,
-	// addEditPoll: PropTypes.func.isRequired,
+  addEditPoll: PropTypes.func.isRequired,
 };
 
 export default SinglePoll;

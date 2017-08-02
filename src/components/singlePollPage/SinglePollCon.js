@@ -50,6 +50,7 @@ class SinglePollCon extends React.Component {
           state={this.state}
           deletePoll={deletePoll}
           updateVotes={postVote}
+          addEditPoll={addEditPoll}
           url={this.props.match.params.id}
           polls={polls}
         />

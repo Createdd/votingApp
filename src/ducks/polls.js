@@ -22,7 +22,7 @@ export default function Polls(state = [], action) {
       ];
     }
     case ADD_EDIT_POLL: {
-      const addEditPoll = state.polls.map((poll, ind) => {
+      const addEditPoll = state.map((poll, ind) => {
         if (ind === action.questionInd) {
           return {
             ...poll,
@@ -32,10 +32,7 @@ export default function Polls(state = [], action) {
 
         return poll;
       });
-      return {
-        ...state,
-        polls: addEditPoll,
-      };
+      return addEditPoll;
     }
     case DELETE_POLL: {
       const removeQuestionList = [
