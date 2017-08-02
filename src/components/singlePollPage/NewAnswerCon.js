@@ -41,7 +41,7 @@ export default class NewAnswerCon extends React.Component {
 	addPoll = e => {
 
 		if (e) e.preventDefault();
-			this.props.addEditPoll(this.props.polls.findIndex(elem => elem._id === this.props.url),this.state.answers);
+			this.props.addEditPoll(this.props.url, this.props.polls.findIndex(elem => elem._id === this.props.url),this.state.answers);
 		// this.refs.newPollForm.reset();
 		// setTimeout(() => {
 		// 	this.reset();

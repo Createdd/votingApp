@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import axios from 'axios';
 
-import { deletePoll, postVote, addEditPoll } from '../../ducks/polls';
+import { deletePoll, postVote, postAnswer } from '../../ducks/polls';
 import SinglePoll from './SinglePoll';
 import loadAgain from '../../app';
 
@@ -42,7 +42,7 @@ class SinglePollCon extends React.Component {
   }
 
   render() {
-    const { polls, deletePoll, postVote, addEditPoll } = this.props;
+    const { polls, deletePoll, postVote, postAnswer } = this.props;
 
     return (
       <div className="grey darken-2" style={{ margin: '0px', padding: '0px', height: '100%' }}>
@@ -50,7 +50,7 @@ class SinglePollCon extends React.Component {
           state={this.state}
           deletePoll={deletePoll}
           updateVotes={postVote}
-          addEditPoll={addEditPoll}
+          addEditPoll={postAnswer}
           url={this.props.match.params.id}
           polls={polls}
         />
@@ -81,7 +81,7 @@ SinglePollCon.propTypes = {
 	).isRequired,
   deletePoll: PropTypes.func.isRequired,
   postVote: PropTypes.func.isRequired,
-  addEditPoll: PropTypes.func.isRequired,
+  postAnswer: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps, { deletePoll, postVote, addEditPoll })(SinglePollCon);
+export default connect(mapStateToProps, { deletePoll, postVote, postAnswer })(SinglePollCon);
