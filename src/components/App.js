@@ -12,7 +12,7 @@ import SinglePollCon from './singlePollPage/SinglePollCon';
 
 class App extends React.Component {
   render() {
-    const { polls } = this.props;
+    const { polls, user } = this.props;
 
     return (
       <Router>
@@ -23,7 +23,7 @@ class App extends React.Component {
             flexDirection: 'column',
           }}
         >
-          <Header polls={polls} />
+          <Header polls={polls} user={user} />
           <main>
             <Switch>
               <Route exact path="/" component={Home} />
@@ -41,11 +41,25 @@ class App extends React.Component {
 
 const mapStateToProps = state => ({
   polls: state.polls,
-  loggedIn: state.user.loggedIn,
+  user: state.user,
 });
 
 App.propTypes = {
-  polls: PropTypes.arrayOf(PropTypes.object).isRequired,
+  polls: PropTypes.arrayOf(
+		PropTypes.shape({
+  question: PropTypes.string.isRequired,
+  answers: PropTypes.arrayOf(
+				PropTypes.shape({
+  answer: PropTypes.string.isRequired,
+  votes: PropTypes.number.isRequired,
+}),
+			),
+}),
+	).isRequired,
+  user: PropTypes.shape({
+    current: PropTypes.object.isRequired,
+    loggedIn: PropTypes.bool.isRequired,
+  }).isRequired,
 };
 
 export default connect(mapStateToProps)(App);

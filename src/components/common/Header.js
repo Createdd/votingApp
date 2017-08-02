@@ -11,15 +11,15 @@ export default class Header extends React.Component {
 
   render() {
     const renderComponent = (props) => {
-      if (props.loggedIn) {
+      if (props.user.loggedIn) {
         return (
           <a
             data-activates="slide-out"
             className="button-collapse show-on-large teal-text text-lighten-3"
           >
             <i className="material-icons right teal-text text-lighten-3">perm_identity</i>Identified
-						as: authenticated User
-					</a>
+						as: {props.user.current.twitter.displayName}
+          </a>
         );
       }
       return (

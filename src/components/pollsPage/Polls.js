@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import shortid from 'shortid';
 
 import { updateVotes, addPoll, fetchPolls, postPoll } from '../../ducks/polls';
+import { fetchUser } from '../../ducks/user';
 import OnePoll from './OnePoll';
 import NewPollCon from './NewPollCon';
 import loadAgain from '../../app';
@@ -14,6 +15,7 @@ class Polls extends React.Component {
     super(props);
     loadAgain();
     this.props.fetchPolls();
+    this.props.fetchUser();
   }
 
   render() {
@@ -74,7 +76,8 @@ Polls.propTypes = {
 }),
 	).isRequired,
   fetchPolls: PropTypes.func.isRequired,
+  fetchUser: PropTypes.func.isRequired,
 	// loggedIn: PropTypes.bool.isRequired,
 };
 
-export default connect(mapStateToProps, { addPoll, updateVotes, fetchPolls, postPoll })(Polls);
+export default connect(mapStateToProps, { addPoll, updateVotes, fetchPolls, postPoll, fetchUser })(Polls);

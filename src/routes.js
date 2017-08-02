@@ -97,6 +97,10 @@ router.get(
 }),
 );
 
+router.get('/api/profile', (req, res) => {
+  res.json({ user: req.user });
+});
+
 // local sign up
 router.get('/api/signup', (req, res) => {
   res.json({ message: 'Signup GET' });

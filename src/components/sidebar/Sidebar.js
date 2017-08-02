@@ -14,12 +14,15 @@ class Sidebar extends React.Component {
   }
 
   render() {
-    const { loggedIn, login, logout } = this.props;
+    const { user, login, logout } = this.props;
+
     const renderComponent = () => {
-      if (loggedIn) {
+      if (user.loggedIn) {
         return (
           <div>
-            <li> You are logged in!</li>
+            <li>
+              {user.current.twitter.displayName} is logged in!
+						</li>
             <li>
               <button
                 className="btn waves-effect waves-green blue-grey darken-3"
@@ -68,12 +71,15 @@ class Sidebar extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  polls: state.polls,
-  // loggedIn: state.user.loggedIn,
+  user: state.user,
 });
 
 Sidebar.propTypes = {
-  // loggedIn: PropTypes.bool.isRequired,
+  user: PropTypes.shape({
+    current: PropTypes.object.isRequired,
+    loggedIn: PropTypes.bool.isRequired,
+  }).isRequired,
+	// loggedIn: PropTypes.bool.isRequired,
   login: PropTypes.func.isRequired,
   logout: PropTypes.func.isRequired,
 };

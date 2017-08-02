@@ -7,7 +7,10 @@ import user from './ducks/user';
 
 const defaultState = {
   polls: [],
-  user: {},
+  user: {
+    current: {},
+    loggedIn: false,
+  },
 };
 
 const rootReducer = combineReducers({
