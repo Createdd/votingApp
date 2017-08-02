@@ -10,7 +10,7 @@
 ![Heroku](http://heroku-badge.herokuapp.com/?app=ddcs-votingpoll&style=flat&svg=1) [![Service status](https://assertible.com/apis/3e9881ec-bea9-44c6-893e-0ebba3c40b4c/status?api_token=OzGsx0BXYmaN6dA8)](https://assertible.com/dashboard#/services/3e9881ec-bea9-44c6-893e-0ebba3c40b4c)
 
 
-<img src="http://recordit.co/vzW1lThdU5/gif/" alt="gif" height=500 />
+<img src="http://recordit.co/vzW1lThdU5/gif/" alt="gif" height=600 />
 
 <!--- ![img](./public/img/screenshot.png) -->
 
