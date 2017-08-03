@@ -34,7 +34,6 @@ class Polls extends React.Component {
 		);
 
     const newPollBtn = () => {
-      console.warn(user.loggedIn);
       if (user.loggedIn) {
         return (
           <div className="fixed-action-btn">

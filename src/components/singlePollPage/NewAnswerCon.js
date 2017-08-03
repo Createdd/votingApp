@@ -8,14 +8,14 @@ export default class NewAnswerCon extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			answers: [{ answer: '', votes: 10 }],
+			answers: [{ answer: '', votes: 0 }],
 		};
 		loadAgain();
 	}
 
 	reset() {
 		this.setState({
-			answers: [{ answer: '', votes: 10 }],
+			answers: [{ answer: '', votes: 0 }],
 		});
 	}
 
@@ -24,9 +24,9 @@ export default class NewAnswerCon extends React.Component {
 		this.setState(oldState => ({
 			answers: oldState.answers.map((answ, ansInd) => {
 				if (ansInd !== index) {
-					return { answer: answ.answer, votes: 10 };
+					return { answer: answ.answer, votes: 0 };
 				} else {
-					return { answer: newValue, votes: 10 };
+					return { answer: newValue, votes: 0 };
 				}
 			}),
 		}));
@@ -34,18 +34,18 @@ export default class NewAnswerCon extends React.Component {
 
 	addAnswer = () => {
 		this.setState(oldState => ({
-			answers: [...oldState.answers, { answer: '', votes: 10 }],
+			answers: [...oldState.answers, { answer: '', votes: 0 }],
 		}));
 	};
 
 	addPoll = e => {
-
 		if (e) e.preventDefault();
-			this.props.addEditPoll(this.props.url, this.props.polls.findIndex(elem => elem._id === this.props.url),this.state.answers);
-		// this.refs.newPollForm.reset();
-		// setTimeout(() => {
-		// 	this.reset();
-		// }, 10);
+		this.props.addEditPoll(
+			this.props.url,
+			this.props.polls.findIndex(elem => elem._id === this.props.url),
+			this.state.answers,
+		);
+		this.reset();
 	};
 
 	render() {
