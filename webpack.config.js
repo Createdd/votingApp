@@ -8,8 +8,9 @@ module.exports = {
     app: './src/app.js',
   },
   output: {
-    path: `${__dirname}/public`,
-    filename: 'dist/bundle.js',
+    path: `${__dirname}/public/dist/`,
+    filename: 'bundle.js',
+    // publicPath: `${__dirname}/public/dist/`,
 		// libraryTarget: 'commonjs2',
   },
   devServer: {
