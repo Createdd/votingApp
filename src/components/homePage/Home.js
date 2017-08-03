@@ -67,7 +67,7 @@ export default class Home extends React.Component {
           </div>
         </div>
 
-        <div className="parallax-container" style={{ height: '250px' }}>
+        <div className="parallax-container" style={{ height: '150px' }}>
 
           <div className="parallax">
             <img className="responsive-img" src="./img/parallax2.jpg" alt="img" />

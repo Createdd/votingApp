@@ -45,7 +45,7 @@ class SinglePollCon extends React.Component {
     const { polls, user, deletePoll, postVote, postAnswer } = this.props;
 
     return (
-      <div className="grey darken-2" style={{ margin: '0px', padding: '0px', height: '100%' }}>
+      <div className="grey darken-2" style={{ margin: '0px', padding: '0px', height: '79vh' }}>
         <SinglePoll
           state={this.state}
           deletePoll={deletePoll}
