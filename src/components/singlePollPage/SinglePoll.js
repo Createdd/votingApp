@@ -7,26 +7,32 @@ import Chart from './Chart';
 import NewAnswerCon from './NewAnswerCon';
 
 const SinglePoll = (props) => {
-  const renderDeleteBtn = () =>
-		// if (loggedIn) {
-    (<Link
-      to="/polls"
-      className="waves-effect btn red lighten-2"
-      onClick={() =>
-				props.deletePoll(props.polls.findIndex(elem => elem._id === props.url), props.url)}
-    >
-      <i className="material-icons right">report_problem</i>
-			DELETE Poll
-		</Link>);
-	// }
+  const renderDeleteBtn = () => {
+    if (props.user.loggedIn) {
+      return (
+        <Link
+          to="/polls"
+          className="waves-effect btn red lighten-2"
+          onClick={() =>
+						props.deletePoll(props.polls.findIndex(elem => elem._id === props.url), props.url)}
+        >
+          <i className="material-icons right">report_problem</i>
+					DELETE Poll
+				</Link>
+      );
+    }
+  };
 	// return false;
 
-  const editPollBtn = () =>
-		// if (loggedIn) {
-    (<a className="waves-effect btn teal lighten-2" href="#modal1">
-			ADD New Answer
-		</a>);
-	// }
+  const editPollBtn = () => {
+    if (props.user.loggedIn) {
+      return (
+        <a className="waves-effect btn teal lighten-2" href="#modal1">
+					ADD New Answer
+				</a>
+      );
+    }
+  };
 	// return false;
 
   const condRender = () => {
@@ -109,8 +115,11 @@ SinglePoll.propTypes = {
 }),
 			),
     }).isRequired,
-
     fetched: PropTypes.bool.isRequired,
+  }).isRequired,
+  user: PropTypes.shape({
+    current: PropTypes.object.isRequired,
+    loggedIn: PropTypes.bool.isRequired,
   }).isRequired,
   deletePoll: PropTypes.func.isRequired,
   updateVotes: PropTypes.func.isRequired,

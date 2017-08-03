@@ -18,13 +18,16 @@ AnswerSchema.method('vote', function voting(vote, cb) {
   this.parent().save(cb);
 });
 
-const PollSchema = new Schema({
-  question: {
-    type: String,
-    unique: true,
+const PollSchema = new Schema(
+  {
+    question: {
+      type: String,
+      unique: true,
+    },
+    answers: [AnswerSchema],
   },
-  answers: [AnswerSchema],
-});
+	// { versionKey: false },
+);
 
 const Poll = mongoose.model('Poll', PollSchema);
 export default Poll;

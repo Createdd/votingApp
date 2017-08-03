@@ -21,16 +21,16 @@ const isLoggedIn = (req, res, next) => {
 
 // set router param
 router.param('pID', (req, res, next, id) => {
-  Poll.findById(id, (err, doc) => {
-    if (err) return next(err);
-    if (!doc) {
-      err = new Error('Document cannot be found in DB');
-      err.status = 404;
-      return next(err);
-    }
-    req.poll = doc;
-    return next();
-  });
+    Poll.findById(id, (err, doc) => {
+      if (err) return next(err);
+      if (!doc) {
+        err = new Error('Document cannot be found in DB');
+        err.status = 404;
+        return next(err);
+      }
+      req.poll = doc;
+      return next();
+    });
 });
 
 router.param('aID', (req, res, next, id) => {

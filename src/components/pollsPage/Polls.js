@@ -19,7 +19,7 @@ class Polls extends React.Component {
   }
 
   render() {
-    const { polls, loggedIn, postPoll } = this.props;
+    const { polls, user, postPoll } = this.props;
     const pollComp = polls.map((poll, index) =>
       (<div key={shortid.generate()}>
         <div className="col s12 m6 card-panel hoverable teal">
@@ -33,15 +33,19 @@ class Polls extends React.Component {
       </div>),
 		);
 
-    const newPollBtn = () =>
-			// if (!loggedIn) {
-      (<div className="fixed-action-btn">
-        <a className="modal-trigger btn-floating btn-large orange pulse" href="#modal1">
-          <i className="large material-icons">add</i>
-        </a>
-      </div>);
-		// }
-		// return false;
+    const newPollBtn = () => {
+      console.warn(user.loggedIn);
+      if (user.loggedIn) {
+        return (
+          <div className="fixed-action-btn">
+            <a className="modal-trigger btn-floating btn-large orange pulse" href="#modal1">
+              <i className="large material-icons">add</i>
+            </a>
+          </div>
+        );
+      }
+			// return false;
+    };
 
     return (
       <div className="grey darken-2 center-align">
@@ -60,7 +64,7 @@ class Polls extends React.Component {
 
 const mapStateToProps = state => ({
   polls: state.polls,
-	// loggedIn: state.loggedIn,
+  user: state.user,
 });
 
 Polls.propTypes = {
@@ -75,9 +79,14 @@ Polls.propTypes = {
 			),
 }),
 	).isRequired,
+  user: PropTypes.shape({
+    current: PropTypes.object.isRequired,
+    loggedIn: PropTypes.bool.isRequired,
+  }).isRequired,
   fetchPolls: PropTypes.func.isRequired,
   fetchUser: PropTypes.func.isRequired,
-	// loggedIn: PropTypes.bool.isRequired,
 };
 
-export default connect(mapStateToProps, { addPoll, updateVotes, fetchPolls, postPoll, fetchUser })(Polls);
+export default connect(mapStateToProps, { addPoll, updateVotes, fetchPolls, postPoll, fetchUser })(
+	Polls,
+);

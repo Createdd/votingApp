@@ -42,7 +42,7 @@ class SinglePollCon extends React.Component {
   }
 
   render() {
-    const { polls, deletePoll, postVote, postAnswer } = this.props;
+    const { polls, user, deletePoll, postVote, postAnswer } = this.props;
 
     return (
       <div className="grey darken-2" style={{ margin: '0px', padding: '0px', height: '100%' }}>
@@ -53,6 +53,7 @@ class SinglePollCon extends React.Component {
           addEditPoll={postAnswer}
           url={this.props.match.params.id}
           polls={polls}
+          user={user}
         />
         <div className="row grey darken-2" />
       </div>
@@ -62,6 +63,7 @@ class SinglePollCon extends React.Component {
 
 const mapStateToProps = state => ({
   polls: state.polls,
+  user: state.user,
 });
 
 SinglePollCon.propTypes = {
@@ -79,6 +81,10 @@ SinglePollCon.propTypes = {
 			),
 }),
 	).isRequired,
+  user: PropTypes.shape({
+    current: PropTypes.object.isRequired,
+    loggedIn: PropTypes.bool.isRequired,
+  }).isRequired,
   deletePoll: PropTypes.func.isRequired,
   postVote: PropTypes.func.isRequired,
   postAnswer: PropTypes.func.isRequired,
