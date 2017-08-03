@@ -11,7 +11,7 @@ const router = express.Router();
 
 const isLoggedIn = (req, res, next) => {
   if (req.user) {
-    console.log(`|||||||||Logged in as ${req.user.local.email}|||||||`);
+    console.log(`|||||||||Logged in as ${req.user}|||||||`);
     return next();
   }
   return res.status(401).json({
@@ -44,7 +44,7 @@ router.param('aID', (req, res, next, id) => {
 });
 
 // GET,POST, DELETE Routes
-router.get('/api/polls', (req, res) => {
+router.get('/api/polls', isLoggedIn, (req, res) => {
   Poll.find({}, (err, polls, next) => {
     if (err) return next(err);
     return res.status(200).json(polls);

@@ -21,7 +21,7 @@ class Sidebar extends React.Component {
         return (
           <div>
             <li>
-              {user.current.twitter.displayName} is logged in!
+              Authenticated
 						</li>
             <li>
               <button
@@ -76,7 +76,7 @@ const mapStateToProps = state => ({
 
 Sidebar.propTypes = {
   user: PropTypes.shape({
-    current: PropTypes.object.isRequired,
+    current: PropTypes.object,
     loggedIn: PropTypes.bool.isRequired,
   }).isRequired,
 	// loggedIn: PropTypes.bool.isRequired,

@@ -18,7 +18,7 @@ export default class Header extends React.Component {
             className="button-collapse show-on-large teal-text text-lighten-3"
           >
             <i className="material-icons right teal-text text-lighten-3">perm_identity</i>Identified
-						as: {props.user.current.twitter.displayName}
+						as: Authenticated
           </a>
         );
       }
