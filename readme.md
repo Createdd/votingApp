@@ -32,6 +32,7 @@
     a free and open-source cross-platform document-oriented database program. 
 </p>
 <br>
+<br>
 <p align="center">
 <a href="https://www.mongodb.com/">
     <img src="https://camo.githubusercontent.com/fc61dcbdb7a6e49d3adecc12194b24ab20dfa25b/68747470733a2f2f692e636c6f756475702e636f6d2f7a6659366c4c376546612d3330303078333030302e706e67" width="150">
@@ -42,6 +43,7 @@
   <p align="center">
     Fast, unopinionated, minimalist web framework for node.
 </p>
+<br>
 <br>
 <p align="center">
 <a href="https://facebook.github.io/react/">
@@ -54,17 +56,18 @@
     A JAVASCRIPT LIBRARY FOR BUILDING USER INTERFACES
 </p>
 <br>
+<br>
 <p align="center">
   <a href="https://nodejs.org/en/">
     <img src="https://camo.githubusercontent.com/9c24355bb3afbff914503b663ade7beb341079fa/68747470733a2f2f6e6f64656a732e6f72672f7374617469632f696d616765732f6c6f676f2d6c696768742e737667" width="150">
   </a>
 </p>
-<br>
 <p align="center">
   <h3 align="center">Node.js</h3>
   <p align="center">
     a JavaScript runtime built on Chrome's V8 JavaScript engine
 </p>
+<br>
 <br>
 <p align="center">
   <a href="http://materializecss.com/">
