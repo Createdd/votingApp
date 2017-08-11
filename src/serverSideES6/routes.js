@@ -156,7 +156,7 @@ router.get('/api/logout', (req, res, next) => {
 
 // router.get('/polls/*', (req, res) => {
 //   const options = {
-//     root: `${__dirname}/../public/`,
+//     root: `${__dirname}/../../public/`,
 //     dotfiles: 'deny',
 //   };
 //   res.sendFile('index.html', options);
@@ -164,7 +164,7 @@ router.get('/api/logout', (req, res, next) => {
 
 router.get('/*', (req, res) => {
   const options = {
-    root: `${__dirname}/../public/`,
+    root: `${__dirname}/../../public/`,
     dotfiles: 'deny',
   };
   res.sendFile('index.html', options);
