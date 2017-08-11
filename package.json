@@ -3,6 +3,10 @@
 	"version": "2.0.0",
 	"main": "app.js",
 	"author": "Daniel Deutsch <deudan1010@gmail.com>",
+	"engines": {
+		"node": "8.1.4",
+		"yarn": "0.27.5"
+  },
 	"scripts": {
 		"start": "babel-node src/serverSide/app.js",
 		"dev": "npm-run-all --parallel dev:*",
