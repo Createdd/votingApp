@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 
 import { deletePoll, postVote, postAnswer } from '../../ducks/polls';
+import { fetchUser } from '../../ducks/user';
 import SinglePoll from './SinglePoll';
 import loadAgain from '../../app';
 
@@ -15,6 +16,7 @@ class SinglePollCon extends React.Component {
       fetched: false,
     };
     loadAgain();
+    this.props.fetchUser();
   }
 
   componentDidMount() {
@@ -82,12 +84,15 @@ SinglePollCon.propTypes = {
 }),
 	).isRequired,
   user: PropTypes.shape({
-    current: PropTypes.object.isRequired,
+    current: PropTypes.object,
     loggedIn: PropTypes.bool.isRequired,
   }).isRequired,
   deletePoll: PropTypes.func.isRequired,
   postVote: PropTypes.func.isRequired,
   postAnswer: PropTypes.func.isRequired,
+  fetchUser: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps, { deletePoll, postVote, postAnswer })(SinglePollCon);
+export default connect(mapStateToProps, { deletePoll, postVote, postAnswer, fetchUser })(
+	SinglePollCon,
+);

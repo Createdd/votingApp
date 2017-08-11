@@ -44,7 +44,7 @@ router.param('aID', (req, res, next, id) => {
 });
 
 // GET,POST, DELETE Routes
-router.get('/api/polls', isLoggedIn, (req, res) => {
+router.get('/api/polls', (req, res) => {
   Poll.find({}, (err, polls, next) => {
     if (err) return next(err);
     return res.status(200).json(polls);
@@ -55,7 +55,7 @@ router.get('/api/polls/:pID', (req, res) => {
   res.json(req.poll);
 });
 
-router.post('/api/polls/new', (req, res, next) => {
+router.post('/api/polls/new', isLoggedIn, (req, res, next) => {
   const poll = new Poll(req.body);
   poll.save((err, doc) => {
     if (err) return next(err);
@@ -63,7 +63,7 @@ router.post('/api/polls/new', (req, res, next) => {
   });
 });
 
-router.post('/api/polls/:pID/new', (req, res, next) => {
+router.post('/api/polls/:pID/new', isLoggedIn, (req, res, next) => {
   req.poll.answers.push(req.body);
   req.poll.save((err, doc) => {
     if (err) return next(err);
@@ -78,7 +78,7 @@ router.post('/api/polls/:pID/:aID/vote', (req, res, next) => {
   });
 });
 
-router.delete('/api/polls/:pID', (req, res, next) => {
+router.delete('/api/polls/:pID', isLoggedIn, (req, res, next) => {
   req.poll.remove(() => {
     req.poll.save((err, doc) => {
       if (err) return next(err);

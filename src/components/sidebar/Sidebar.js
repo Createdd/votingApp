@@ -6,7 +6,7 @@ import Login from './Login';
 import Signup from './Signup';
 import SocialMedia from './SocialMedia';
 import loadAgain from '../../app';
-import { login, logout } from '../../ducks/user';
+import { login, logoutUser } from '../../ducks/user';
 
 class Sidebar extends React.Component {
   componentDidMount() {
@@ -14,7 +14,7 @@ class Sidebar extends React.Component {
   }
 
   render() {
-    const { user, login, logout } = this.props;
+    const { user, login, logoutUser } = this.props;
 
     const renderComponent = () => {
       if (user.loggedIn) {
@@ -28,7 +28,7 @@ class Sidebar extends React.Component {
                 className="btn waves-effect waves-green blue-grey darken-3"
                 type="submit"
                 name="action"
-                onClick={logout}
+                onClick={logoutUser}
               >
 								Log Out<i className="material-icons right">done</i>
               </button>
@@ -81,7 +81,7 @@ Sidebar.propTypes = {
   }).isRequired,
 	// loggedIn: PropTypes.bool.isRequired,
   login: PropTypes.func.isRequired,
-  logout: PropTypes.func.isRequired,
+  logoutUser: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps, { login, logout })(Sidebar);
+export default connect(mapStateToProps, { login, logoutUser })(Sidebar);

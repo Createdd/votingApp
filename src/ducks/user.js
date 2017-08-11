@@ -9,9 +9,15 @@ const FETCH_USER = 'user/FETCH_USER';
 export default function Users(state = {}, action) {
   switch (action.type) {
     case FETCH_USER:
+      const temp = () => {
+        if (action.users === undefined) {
+          return false;
+        }
+        return true;
+      };
       return {
         current: action.users,
-        loggedIn: true,
+        loggedIn: temp(),
       };
     case LOGIN:
       return {
@@ -50,6 +56,19 @@ export function fetchUser() {
 			.get('/api/profile')
 			.then((res) => {
   dispatch(receiveUser(res.data.user));
+  // console.log(res);
+})
+			.catch((err) => {
+  console.warn(err);
+});
+}
+
+export function logoutUser() {
+  return dispatch =>
+		axios
+			.get('/api/logout')
+			.then((res) => {
+  dispatch(logout(res.data.user));
   // console.log(res);
 })
 			.catch((err) => {

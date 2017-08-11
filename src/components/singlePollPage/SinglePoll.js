@@ -118,7 +118,7 @@ SinglePoll.propTypes = {
     fetched: PropTypes.bool.isRequired,
   }).isRequired,
   user: PropTypes.shape({
-    current: PropTypes.object.isRequired,
+    current: PropTypes.object,
     loggedIn: PropTypes.bool.isRequired,
   }).isRequired,
   deletePoll: PropTypes.func.isRequired,
