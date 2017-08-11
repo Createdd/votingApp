@@ -5,20 +5,21 @@
 
 
 ### FreeCodeCamp Dynamic Web Application Projects:
-# Build A Voting App 🌐 [![App Progress Status](https://img.shields.io/badge/App%20Status-inProgress-0520b7.svg?style=plastic)](https://github.com/DDCreationStudios/votingApp)
+# Build A Voting App 
 [![Travis CI](https://travis-ci.org/DDCreationStudios/votingApp.svg?branch=master)](https://travis-ci.org/DDCreationStudios/votingApp) [![Heroku](http://heroku-badge.herokuapp.com/?app=ddcs-votingapp&style=flat&svg=1)](https://ddcs-votingapp.herokuapp.com/) [![Code Climate](https://codeclimate.com/github/DDCreationStudios/votingApp/badges/gpa.svg)](https://codeclimate.com/github/DDCreationStudios/votingApp) [![Dependency Status](https://gemnasium.com/badges/github.com/DDCreationStudios/votingApp.svg)](https://gemnasium.com/github.com/DDCreationStudios/votingApp)
 
 <img src="http://recordit.co/vzW1lThdU5/gif/" alt="gif" height=600 />
 
 <!--- ![img](./public/img/screenshot.png) -->
 
-## See result here
+## See live on Heroku
 
 <p align="center"> 
 <a href="https://ddcs-votingapp.herokuapp.com/">https://ddcs-votingapp.herokuapp.com/ </a>
 </p>
 
-## Build with 
+
+## Built with the "MERN" stack 
 
 <p align="center">
 <a href="https://www.mongodb.com/">
@@ -30,7 +31,7 @@
   <p align="center">
     a free and open-source cross-platform document-oriented database program. 
 </p>
-
+<br>
 <p align="center">
 <a href="https://www.mongodb.com/">
     <img src="https://camo.githubusercontent.com/fc61dcbdb7a6e49d3adecc12194b24ab20dfa25b/68747470733a2f2f692e636c6f756475702e636f6d2f7a6659366c4c376546612d3330303078333030302e706e67" width="150">
@@ -41,7 +42,7 @@
   <p align="center">
     Fast, unopinionated, minimalist web framework for node.
 </p>
-
+<br>
 <p align="center">
 <a href="https://facebook.github.io/react/">
     <img src="https://upload.wikimedia.org/wikipedia/en/thumb/a/a7/React-icon.svg/1024px-React-icon.svg.png" width="150">
@@ -52,18 +53,19 @@
   <p align="center">
     A JAVASCRIPT LIBRARY FOR BUILDING USER INTERFACES
 </p>
-
+<br>
 <p align="center">
   <a href="https://nodejs.org/en/">
     <img src="https://camo.githubusercontent.com/9c24355bb3afbff914503b663ade7beb341079fa/68747470733a2f2f6e6f64656a732e6f72672f7374617469632f696d616765732f6c6f676f2d6c696768742e737667" width="150">
   </a>
 </p>
+<br>
 <p align="center">
   <h3 align="center">Node.js</h3>
   <p align="center">
     a JavaScript runtime built on Chrome's V8 JavaScript engine
 </p>
-
+<br>
 <p align="center">
   <a href="http://materializecss.com/">
     <img src="http://materializecss.com/res/materialize.svg" width="150">
@@ -75,6 +77,7 @@
      a CSS Framework based on material design.
 </p>
 
+
 ## Photo credit
 
 <p align="center">
@@ -83,6 +86,7 @@
 
 
 ## User stories:
+
 - [X] As an authenticated user, I can keep my polls and come back later to access them.
 - [X] As an authenticated user, I can share my polls with my friends.
 - [X] As an authenticated user, I can see the aggregate results of my polls.
@@ -97,6 +101,7 @@
 <p align="center">
 <a href="https://www.freecodecamp.org/challenges/build-a-voting-app">Build a Voting App</a>
 </p>
+
 
 
 [![forthebadge](http://forthebadge.com/images/badges/built-with-love.svg)](http://forthebadge.com) [![forthebadge](http://forthebadge.com/images/badges/kinda-sfw.svg)](http://forthebadge.com) [![forthebadge](http://forthebadge.com/images/badges/as-seen-on-tv.svg)](http://forthebadge.com)
