@@ -8,9 +8,8 @@
 		"yarn": "0.27.5"
 	},
 	"scripts": {
-		"prestart": "yarn run build",
 		"start": "node src/serverSide/server.js",
-		"sstart": "babel-node src/serverSideES6/server.js",
+		"serve": "babel-node src/serverSideES6/server.js",
 		"dev": "npm-run-all --parallel dev:*",
 		"dev:client": "webpack-dev-server --hot",
 		"dev:server": "NODE_ENV=development babel-node src/serverSideES6/server.js",
