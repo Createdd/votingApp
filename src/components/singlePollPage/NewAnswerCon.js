@@ -8,14 +8,14 @@ export default class NewAnswerCon extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			answers: [{ answer: '', votes: 0 }],
+			answers: [{ answer: '', votes: 1 }],
 		};
 		loadAgain();
 	}
 
 	reset() {
 		this.setState({
-			answers: [{ answer: '', votes: 0 }],
+			answers: [{ answer: '', votes: 1 }],
 		});
 	}
 
@@ -24,9 +24,9 @@ export default class NewAnswerCon extends React.Component {
 		this.setState(oldState => ({
 			answers: oldState.answers.map((answ, ansInd) => {
 				if (ansInd !== index) {
-					return { answer: answ.answer, votes: 0 };
+					return { answer: answ.answer, votes: 1 };
 				} else {
-					return { answer: newValue, votes: 0 };
+					return { answer: newValue, votes: 1 };
 				}
 			}),
 		}));
@@ -34,7 +34,7 @@ export default class NewAnswerCon extends React.Component {
 
 	addAnswer = () => {
 		this.setState(oldState => ({
-			answers: [...oldState.answers, { answer: '', votes: 0 }],
+			answers: [...oldState.answers, { answer: '', votes: 1 }],
 		}));
 	};
 

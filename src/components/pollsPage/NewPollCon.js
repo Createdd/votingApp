@@ -9,7 +9,7 @@ export default class NewPollCon extends React.Component {
 		super(props);
 		this.state = {
 			question: '',
-			answers: [{ answer: '', votes: 0 }, { answer: '', votes: 0 }]
+			answers: [{ answer: '', votes: 1 }, { answer: '', votes: 1 }]
 		};
 		this.addAnswer = this.addAnswer.bind(this);
 		this.addPoll = this.addPoll.bind(this);
@@ -20,14 +20,14 @@ export default class NewPollCon extends React.Component {
 	componentWillReceiveProps(nextProps) {
 		this.setState({
 			question: '',
-			answers: [{ answer: '', votes: 0 }, { answer: '', votes: 0 }]
+			answers: [{ answer: '', votes: 1 }, { answer: '', votes: 1 }]
 		});
 	}
 
 	reset() {
 		this.setState({
 			question: '',
-			answers: [{ answer: '', votes: 0 }, { answer: '', votes: 0 }]
+			answers: [{ answer: '', votes: 1 }, { answer: '', votes: 1 }]
 		});
 	}
 
@@ -43,9 +43,9 @@ export default class NewPollCon extends React.Component {
 		this.setState(oldState => ({
 			answers: oldState.answers.map((answ, ansInd) => {
 				if (ansInd !== index) {
-					return { answer: answ.answer, votes: 0 };
+					return { answer: answ.answer, votes: 1 };
 				} else {
-					return { answer: newValue, votes: 0 };
+					return { answer: newValue, votes: 1 };
 				}
 			}),
 		}));
@@ -53,7 +53,7 @@ export default class NewPollCon extends React.Component {
 
 	addAnswer = () => {
 		this.setState(oldState => ({
-			answers: [...oldState.answers, { answer: '', votes: 0 }],
+			answers: [...oldState.answers, { answer: '', votes: 1 }],
 		}));
 	};
 

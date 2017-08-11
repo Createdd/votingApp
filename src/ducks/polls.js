@@ -122,7 +122,7 @@ export function postPoll(question, answers) {
 export function postAnswer(url, questionId, answers) {
   return dispatch =>
 		axios
-			.post(`/api/polls/${url}/new`, { answer: answers[0].answer, votes: 0 })
+			.post(`/api/polls/${url}/new`, { answer: answers[0].answer, votes: 1 })
 			.then(dispatch(addEditPoll(questionId, answers)))
 			.catch((error) => {
   console.warn(err);
