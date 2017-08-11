@@ -29,6 +29,7 @@
 		"express-session": "^1.15.3",
 		"helmet": "^3.6.1",
 		"mongoose": "^4.10.2",
+		"morgan": "^1.8.2",
 		"passport": "^0.3.2",
 		"passport-local": "^1.0.0",
 		"passport-twitter": "^1.0.4",
@@ -56,7 +57,7 @@
 		"eslint-plugin-import": "^2.2.0",
 		"eslint-plugin-jsx-a11y": "^5.0.3",
 		"eslint-plugin-react": "^7.0.1",
-		"morgan": "^1.8.2",
+
 		"nodemon": "^1.11.0",
 		"npm-run-all": "^4.0.2",
 		"prop-types": "^15.5.10",
