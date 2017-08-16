@@ -1,4 +1,4 @@
-import morgan from 'morgan';
+// import morgan from 'morgan';
 import bodyParser from 'body-parser';
 import compression from 'compression';
 import helmet from 'helmet';
@@ -23,7 +23,7 @@ export default (app) => {
 
   app.use(express.static('public'));
 
-  app.use(morgan('dev'));
+	// app.use(morgan('dev'));
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: true }));
 
