@@ -8,12 +8,14 @@
 # Build A Voting App 
 [![Travis CI](https://travis-ci.org/DDCreationStudios/votingApp.svg?branch=master)](https://travis-ci.org/DDCreationStudios/votingApp) [![Heroku](http://heroku-badge.herokuapp.com/?app=ddcs-votingapp&style=flat&svg=1)](https://ddcs-votingapp.herokuapp.com/) [![Code Climate](https://codeclimate.com/github/DDCreationStudios/votingApp/badges/gpa.svg)](https://codeclimate.com/github/DDCreationStudios/votingApp) [![Dependency Status](https://gemnasium.com/badges/github.com/DDCreationStudios/votingApp.svg)](https://gemnasium.com/github.com/DDCreationStudios/votingApp)
 
-<img src="http://recordit.co/vzW1lThdU5/gif/" alt="gif" height=600 />
+<img src="http://g.recordit.co/1hzd8ISznt.gif" alt="gif"/>
 
 <!--- ![img](./public/img/screenshot.png) -->
 
 ## See live on Heroku
 
+
+<p align="center">(Keep in mind that I am using the free tier version on Heroku, which can shut down when traffic is too high in a certain time period)</p>
 <p align="center"> 
 <a href="https://ddcs-votingapp.herokuapp.com/">https://ddcs-votingapp.herokuapp.com/ </a>
 </p>
@@ -53,7 +55,7 @@
 <p align="center">
   <h3 align="center">React</h3>
   <p align="center">
-    A JAVASCRIPT LIBRARY FOR BUILDING USER INTERFACES
+    a JavaScript library for building user interfaces
 </p>
 <br>
 <br>
@@ -104,6 +106,11 @@
 <p align="center">
 <a href="https://www.freecodecamp.org/challenges/build-a-voting-app">Build a Voting App</a>
 </p>
+
+## Issues / Bugs / Further features 
+
+There are already issues open! Feel free to add feedback: [![GitHub issues](https://img.shields.io/github/issues/DDCreationStudios/votingApp.svg?colorB=b342f4)](https://github.com/DDCreationStudios/votingApp/issues)
+
 
 
 
