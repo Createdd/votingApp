@@ -1,0 +1,4 @@
+exclude_paths:
+- "node_modules"
+- "public/dist"
+- "src/serverSide"
