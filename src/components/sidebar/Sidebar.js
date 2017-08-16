@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import Login from './Login';
-import Signup from './Signup';
+// import Login from './Login';
+// import Signup from './Signup';
 import SocialMedia from './SocialMedia';
 import loadAgain from '../../app';
 import { login, logoutUser } from '../../ducks/user';
@@ -38,20 +38,14 @@ class Sidebar extends React.Component {
       }
       return (
         <div>
-          <li>
-            <Login login={login} />
-          </li>
-          <div className="row" />
-          <div className="row" />
-          <div className="row" />
-          <li>
-            <Signup login={login} />
-          </li>
-          <div className="row" />
+          <div className="row"></div>
+          <div className="row"></div>
+          <div className="row"></div>
+          <div className="row"></div>
           <li>
             <SocialMedia login={login} />
           </li>
-          <div className="row" />
+          <div className="row"></div>
         </div>
       );
     };
