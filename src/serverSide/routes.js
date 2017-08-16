@@ -169,14 +169,6 @@ router.get('/api/logout', function (req, res, next) {
   });
 });
 
-// router.get('/polls/*', (req, res) => {
-//   const options = {
-//     root: `${__dirname}/../../public/`,
-//     dotfiles: 'deny',
-//   };
-//   res.sendFile('index.html', options);
-// });
-
 router.get('/*', function (req, res) {
   var options = {
     root: __dirname + '/../../public/',

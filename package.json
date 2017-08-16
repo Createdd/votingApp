@@ -12,8 +12,9 @@
 		"serve": "babel-node src/serverSideES6/server.js",
 		"dev": "npm-run-all --parallel dev:*",
 		"dev:client": "webpack-dev-server --hot",
-		"dev:server": "NODE_ENV=development babel-node src/serverSideES6/server.js",
-		"build": "webpack --progress",
+		"dev:server": "nodemon src/serverSide/server.js",
+		"build": "npm-run-all --parallel build:*",
+		"build:client": "webpack --progress",
 		"build:server": "babel src/serverSideES6 --out-dir src/serverSide"
 	},
 	"dependencies": {
