@@ -111,7 +111,22 @@
 
 There are already issues open! Feel free to add feedback: [![GitHub issues](https://img.shields.io/github/issues/DDCreationStudios/votingApp.svg?colorB=b342f4)](https://github.com/DDCreationStudios/votingApp/issues)
 
+## Frameworks / Libraries
 
+| **Name** | **Description** |**Used**|
+|----------|-------|---|
+|  [React](https://facebook.github.io/react/)  |   Fast, composable client-side components.    | Frontend |
+|  [Redux](http://redux.js.org) |  Enforces unidirectional data flows and immutable, hot reloadable store. Supports time-travel debugging. | Frontend |
+|  [React Router](https://github.com/reactjs/react-router) | A complete routing library for React | Frontend |  Compiles ES6 to ES5. Enjoy the new version of JavaScript today.     | Frontend |
+| [Axios](https://github.com/mzabriskie/axios) | Promise based HTTP client for the browser and node.js | Frontend |
+| [React Google Charts](https://github.com/RakanNimer/react-google-charts) | A React Google Charts Wrapper | Frontend |
+| [Express](https://github.com/expressjs/express) | For creating the backend logic | Backend |
+| [Mongoose](https://github.com/Automattic/mongoose) | To work faster with MongoDB | Backend |
+| [Passport](http://passportjs.org/) | For simplified authentication in Node.js | Backend |
+| [Babel](https://github.com/babel/babel) | Compiles ES6 into ES5 | General |
+| [Webpack](http://webpack.github.io) | Bundles npm packages and our JS into a single file. | General |  
+| [ESLint](http://eslint.org/)| Lint JS. Reports syntax and style issues. | General |
+| [npm Scripts](https://docs.npmjs.com/misc/scripts)| Glues all this together in a handy automated build. | General |
 
 
 [![forthebadge](http://forthebadge.com/images/badges/built-with-love.svg)](http://forthebadge.com) [![forthebadge](http://forthebadge.com/images/badges/kinda-sfw.svg)](http://forthebadge.com) [![forthebadge](http://forthebadge.com/images/badges/as-seen-on-tv.svg)](http://forthebadge.com)
