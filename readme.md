@@ -126,7 +126,6 @@ There are already issues open! Feel free to add feedback: [![GitHub issues](http
 | [Babel](https://github.com/babel/babel) | Compiles ES6 into ES5 | General |
 | [Webpack](http://webpack.github.io) | Bundles npm packages and our JS into a single file. | General |  
 | [ESLint](http://eslint.org/)| Lint JS. Reports syntax and style issues. | General |
-| [npm Scripts](https://docs.npmjs.com/misc/scripts)| Glues all this together in a handy automated build. | General |
 
 
 [![forthebadge](http://forthebadge.com/images/badges/built-with-love.svg)](http://forthebadge.com) [![forthebadge](http://forthebadge.com/images/badges/kinda-sfw.svg)](http://forthebadge.com) [![forthebadge](http://forthebadge.com/images/badges/as-seen-on-tv.svg)](http://forthebadge.com)
