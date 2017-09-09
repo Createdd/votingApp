@@ -21,55 +21,13 @@
 </p>
 
 
-## Built with the "MERN" stack 
+## Built with the MERN stack 
 
-<p align="center">
-<a href="https://www.mongodb.com/">
-    <img src="https://github.com/mongodb-js/leaf/blob/master/dist/mongodb-leaf_256x256.png?raw=true" width="150">
-  </a>
-</p>
-<p align="center">
-  <h3 align="center">MongoDB</h3>
-  <p align="center">
-    a free and open-source cross-platform document-oriented database program. 
-</p>
-<br>
-<br>
-<p align="center">
-<a href="https://www.mongodb.com/">
-    <img src="https://camo.githubusercontent.com/fc61dcbdb7a6e49d3adecc12194b24ab20dfa25b/68747470733a2f2f692e636c6f756475702e636f6d2f7a6659366c4c376546612d3330303078333030302e706e67" width="150">
-  </a>
-</p>
-<p align="center">
-  <h3 align="center">Express</h3>
-  <p align="center">
-    Fast, unopinionated, minimalist web framework for node.
-</p>
-<br>
-<br>
-<p align="center">
-<a href="https://facebook.github.io/react/">
-    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/a/a7/React-icon.svg/1024px-React-icon.svg.png" width="150">
-  </a>
-</p>
-<p align="center">
-  <h3 align="center">React</h3>
-  <p align="center">
-    a JavaScript library for building user interfaces
-</p>
-<br>
-<br>
-<p align="center">
-  <a href="https://nodejs.org/en/">
-    <img src="https://camo.githubusercontent.com/9c24355bb3afbff914503b663ade7beb341079fa/68747470733a2f2f6e6f64656a732e6f72672f7374617469632f696d616765732f6c6f676f2d6c696768742e737667" width="150">
-  </a>
-</p>
-<p align="center">
-  <h3 align="center">Node.js</h3>
-  <p align="center">
-    a JavaScript runtime built on Chrome's V8 JavaScript engine
-</p>
-<br>
+|MongoDB|Express|React|NodeJS|
+|--|--|--|--|
+|[![mdb](https://github.com/mongodb-js/leaf/blob/master/dist/mongodb-leaf_256x256.png?raw=true)](https://www.mongodb.com/)|[![mdb](https://camo.githubusercontent.com/fc61dcbdb7a6e49d3adecc12194b24ab20dfa25b/68747470733a2f2f692e636c6f756475702e636f6d2f7a6659366c4c376546612d3330303078333030302e706e67)](http://expressjs.com/de/)|[![mdb](https://upload.wikimedia.org/wikipedia/en/thumb/a/a7/React-icon.svg/1024px-React-icon.svg.png)](https://facebook.github.io/react/)|[![mdb](https://camo.githubusercontent.com/9c24355bb3afbff914503b663ade7beb341079fa/68747470733a2f2f6e6f64656a732e6f72672f7374617469632f696d616765732f6c6f676f2d6c696768742e737667)](https://nodejs.org/en/)|
+|a free and open-source cross-platform document-oriented database program|Fast, unopinionated, minimalist web framework for node.|a JavaScript library for building user interfaces|a JavaScript runtime built on Chrome's V8 JavaScript engine|
+
 <br>
 <p align="center">
   <a href="http://materializecss.com/">
